@@ -25,8 +25,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -50,6 +52,9 @@ fun CompendiumBreathScreen(
    navController: NavController,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
 ){
+   LaunchedEffect(key1 = true) {
+      viewModel.loadCompendium()
+   }
    Surface(
       color = MaterialTheme.colorScheme.background,
       modifier = Modifier.fillMaxSize()
@@ -72,7 +77,7 @@ fun CompendiumBreathScreen(
             R.drawable.materials_hint,
             R.drawable.treasures_hint
          )
-
+         var selectedIndex by remember { mutableStateOf(0) }
          Row(
             modifier = Modifier
                .fillMaxWidth(),
@@ -84,34 +89,32 @@ fun CompendiumBreathScreen(
                itemsSelected = itemsSelected,
                defaultSelectedItemIndex = 0
             ) {
-               Log.e("CustomToggle", "Selected item : ${items[it]}")
-
+               selectedIndex = it
             }
-
          }
-
-         Spacer(modifier = Modifier.height(10.dp))
-
-         CompendiumList()
+         val filteredList = when (selectedIndex) {
+            0 -> viewModel.compendiumList.value.filter { it.category == "creatures" }
+            1 -> viewModel.compendiumList.value.filter { it.category == "monsters" }
+            2 -> viewModel.compendiumList.value.filter { it.category == "equipment" }
+            3 -> viewModel.compendiumList.value.filter { it.category == "materials" }
+            4 -> viewModel.compendiumList.value.filter { it.category == "treasure" }
+            else -> emptyList()
+         }
+         CompendiumList(compendiumList = filteredList)
       }
    }
 }
 @Composable
 fun CompendiumList(
+   compendiumList: List<CompendiumListEntry>,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
 ){
-   val compendiumList by remember { viewModel.compendiumList }
    val loadError by remember { viewModel.loadError }
    val isLoading by remember { viewModel.isLoading }
 
    LazyColumn(contentPadding = PaddingValues(16.dp)) {
       val itemCount = compendiumList.size
       items(itemCount) {
-         if(it > itemCount && !isLoading) {
-            LaunchedEffect(key1 = true) {
-               viewModel.loadCompendium()
-            }
-         }
          CompendiumItem(entry = compendiumList[it])
          Divider(color = Color.LightGray)
       }

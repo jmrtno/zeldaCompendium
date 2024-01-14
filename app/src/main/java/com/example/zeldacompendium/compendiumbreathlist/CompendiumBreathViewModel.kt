@@ -12,13 +12,15 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
+import androidx.compose.runtime.State
 
 @HiltViewModel
 class CompendiumBreathViewModel @Inject constructor(
    private val repository: CompendiumRepository
 ): ViewModel() {
 
-   var compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
+   private val _compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
+   val compendiumList: State<List<CompendiumListEntry>> = _compendiumList
    var loadError = mutableStateOf("")
    var isLoading = mutableStateOf(false)
 
@@ -26,15 +28,16 @@ class CompendiumBreathViewModel @Inject constructor(
       loadCompendium()
    }
 
-   fun loadCompendium(){
+   fun loadCompendium() {
       viewModelScope.launch {
          isLoading.value = true
-         when(val data = repository.getBreathAllEntries()){
+         when (val data = repository.getBreathAllEntries()) {
             is Resource.Success -> {
                Timber.tag("loadCompendium").d("called loadCompendium()")
                val compendiumEntries = data.data!!.data.mapIndexed { index, entry ->
                   val entryId = entry.id
-                  val url = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/${entryId}/image"
+                  val url =
+                     "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/${entryId}/image"
                   CompendiumListEntry(entry.name.replaceFirstChar {
                      if (it.isLowerCase()) it.titlecase(
                         Locale.ROOT
@@ -43,8 +46,13 @@ class CompendiumBreathViewModel @Inject constructor(
                }
                loadError.value = ""
                isLoading.value = false
-               compendiumList.value += compendiumEntries
+               // Convertir la lista a un conjunto para eliminar duplicados
+               val uniqueSet = compendiumEntries.toSet()
+
+               // Asignar la lista única al _compendiumList
+               _compendiumList.value = uniqueSet.toList()
             }
+
             is Resource.Error -> {
                loadError.value = data.message!!
                isLoading.value = false
@@ -54,9 +62,5 @@ class CompendiumBreathViewModel @Inject constructor(
 
          }
       }
-   }
-
-   suspend fun getCategoryBreath(categoryName: String): Resource<Data> {
-      return repository.getCategoriesBreath(categoryName)
    }
 }
