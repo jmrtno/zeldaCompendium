@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.compendiumlist
+package com.example.zeldacompendium.compendiumtearslist
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class CompendiumListViewModel @Inject constructor(
+class CompendiumTearsViewModel @Inject constructor(
     private val repository: CompendiumRepository
 ): ViewModel() {
 
@@ -28,7 +28,7 @@ class CompendiumListViewModel @Inject constructor(
     fun loadCompendium(){
         viewModelScope.launch {
             isLoading.value = true
-            when(val data = repository.getAllEntries()){
+            when(val data = repository.getTearsAllEntries()){
                 is Resource.Success -> {
                     Timber.tag("loadCompendium").d("called loadCompendium()")
                     val compendiumEntries = data.data!!.data.mapIndexed { index, entry ->
@@ -36,7 +36,7 @@ class CompendiumListViewModel @Inject constructor(
                             if (it.isLowerCase()) it.titlecase(
                                 Locale.ROOT
                             ) else it.toString()
-                        }, entry.category, entry.id)
+                        }, entry.category, entry.image, entry.id)
                     }
                     loadError.value = ""
                     isLoading.value = false
