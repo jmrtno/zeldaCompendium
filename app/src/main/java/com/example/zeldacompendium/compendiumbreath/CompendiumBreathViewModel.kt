@@ -1,10 +1,9 @@
-package com.example.zeldacompendium.compendiumbreathlist
+package com.example.zeldacompendium.compendiumbreath
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.data.remote.responses.Data
 import com.example.zeldacompendium.repository.CompendiumRepository
 import com.example.zeldacompendium.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

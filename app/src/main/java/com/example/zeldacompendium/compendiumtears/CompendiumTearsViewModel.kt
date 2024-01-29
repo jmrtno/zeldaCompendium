@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.compendiumtearslist
+package com.example.zeldacompendium.compendiumtears
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
