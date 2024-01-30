@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.selectcompendium
+package com.example.zeldacompendium.ui.selectgame
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -28,18 +28,7 @@ fun SelectCompendiumScreen(
         color = MaterialTheme.colorScheme.surface,
         modifier = Modifier.fillMaxSize()
     ) {
-        Column {
-            Spacer(modifier = Modifier.height(20.dp))
-            Image(
-                painter = painterResource(id = R.drawable.logo),
-                contentDescription = "Zelda Logo",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            CompendiumNavigation(navController = navController)
-        }
+        CompendiumNavigation(navController = navController)
     }
 }
 

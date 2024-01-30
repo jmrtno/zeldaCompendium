@@ -1,11 +1,11 @@
-package com.example.zeldacompendium.compendiumtears
+package com.example.zeldacompendium.ui.tears
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.repository.CompendiumRepository
-import com.example.zeldacompendium.utils.Resource
+import com.example.zeldacompendium.domain.repository.CompendiumRepository
+import com.example.zeldacompendium.data.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber

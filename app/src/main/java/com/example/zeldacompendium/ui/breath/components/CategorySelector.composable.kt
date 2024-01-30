@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.compendiumtears.components
+package com.example.zeldacompendium.ui.breath.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,11 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.compendiumtears.CompendiumTearsViewModel
+import com.example.zeldacompendium.ui.breath.CompendiumBreathViewModel
+import com.example.zeldacompendium.ui.SegmentedControl
 
 @Composable
 fun CategorySelector(
-   viewModel: CompendiumTearsViewModel = hiltViewModel(),
+   viewModel: CompendiumBreathViewModel = hiltViewModel(),
    paddingValues: PaddingValues
 ) {
    LaunchedEffect(key1 = true) {

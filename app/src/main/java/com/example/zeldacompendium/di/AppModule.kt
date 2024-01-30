@@ -1,8 +1,8 @@
 package com.example.zeldacompendium.di
 
 import com.example.zeldacompendium.data.remote.CompendiumApi
-import com.example.zeldacompendium.repository.CompendiumRepository
-import com.example.zeldacompendium.utils.Constants.BASE_URL
+import com.example.zeldacompendium.domain.repository.CompendiumRepository
+import com.example.zeldacompendium.data.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

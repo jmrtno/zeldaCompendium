@@ -1,11 +1,9 @@
-package com.example.zeldacompendium.compendiumbreath.components
+package com.example.zeldacompendium.ui.tears.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,17 +14,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.compendiumbreath.CompendiumBreathViewModel
+import com.example.zeldacompendium.ui.SegmentedControl
+import com.example.zeldacompendium.ui.tears.CompendiumTearsViewModel
+
 @Composable
 fun CategorySelector(
-   viewModel: CompendiumBreathViewModel = hiltViewModel(),
-   paddingValues: PaddingValues
+   viewModel: CompendiumTearsViewModel = hiltViewModel(),
 ) {
    LaunchedEffect(key1 = true) {
       viewModel.loadCompendium()
    }
    Column(
-      modifier = Modifier.padding(paddingValues)
    ){
 
       val items = listOf(

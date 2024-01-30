@@ -1,5 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
-package com.example.zeldacompendium.compendiumtears
+package com.example.zeldacompendium.ui.breath
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -14,14 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.zeldacompendium.compendiumtears.components.CategorySelector
+import com.example.zeldacompendium.ui.breath.components.CategorySelector
 
 @Composable
-fun CompendiumTearsScreen(
+fun CompendiumBreathScreen(
    navController: NavController,
-   viewModel: CompendiumTearsViewModel = hiltViewModel()
 ){
    Scaffold(
       topBar = {
@@ -31,7 +29,7 @@ fun CompendiumTearsScreen(
             ),
             title = {
                Text(
-                  "Compendium TOTK",
+                  "Compendium BOTW",
                   maxLines = 1,
                   overflow = TextOverflow.Ellipsis
                )

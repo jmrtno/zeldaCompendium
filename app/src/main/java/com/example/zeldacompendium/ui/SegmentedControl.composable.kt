@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.compendiumbreath.components
+package com.example.zeldacompendium.ui
 
 
 import androidx.compose.foundation.Image

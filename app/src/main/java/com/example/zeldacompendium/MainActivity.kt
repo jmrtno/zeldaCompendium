@@ -6,9 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.zeldacompendium.compendiumbreath.CompendiumBreathScreen
-import com.example.zeldacompendium.compendiumtears.CompendiumTearsScreen
-import com.example.zeldacompendium.selectcompendium.SelectCompendiumScreen
+import com.example.zeldacompendium.ui.breath.CompendiumBreathScreen
+import com.example.zeldacompendium.ui.tears.CompendiumTearsScreen
+import com.example.zeldacompendium.ui.selectgame.SelectCompendiumScreen
 import com.example.zeldacompendium.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint
 
