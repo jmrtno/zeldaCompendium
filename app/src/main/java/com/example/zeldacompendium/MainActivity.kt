@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.zeldacompendium.ui.breath.CompendiumBreathScreen
 import com.example.zeldacompendium.ui.tears.CompendiumTearsScreen
-import com.example.zeldacompendium.ui.selectgame.SelectCompendiumScreen
+import com.example.zeldacompendium.ui.selectgame.SelectGameContainer
 import com.example.zeldacompendium.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                startDestination = "compendium_navigation"
             ) {
                composable("compendium_navigation"){
-                  SelectCompendiumScreen(navController = navController)
+                  SelectGameContainer(navController = navController)
                }
                composable("compendium_tears_screen") {
                   CompendiumTearsScreen(
