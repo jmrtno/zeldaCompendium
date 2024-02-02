@@ -55,8 +55,8 @@ fun ImageButton(
          Image(
             modifier = Modifier.matchParentSize(),
             painter = painterResource(backgroundDrawableId),
-            contentDescription = "hola",
-            contentScale = ContentScale.FillBounds,
+            contentDescription = "",
+            contentScale = ContentScale.None,
          )
          Row(
             horizontalArrangement = Arrangement.Center,
@@ -78,7 +78,7 @@ fun ImageButtonPreview(
       modifier = Modifier
          .padding(16.dp),
       shape = RoundedCornerShape(5.dp),
-      border = BorderStroke(2.dp, Color(0xFF946D48)),
+      border = BorderStroke(3.dp, Color(0xFF946D48)),
       contentPadding = contentPadding,
    ) {
       Text(text = "TOTK", color = Color(0xFFBB8F0B))

@@ -49,7 +49,7 @@ fun CompendiumNavigation(
       Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
          ImageButton(
             backgroundDrawableId = R.drawable.button_bg,
-            border = BorderStroke(2.dp, Color(0xFF946D48)),
+            border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
                navController.navigate(
                   "compendium_breath_screen"
@@ -61,7 +61,7 @@ fun CompendiumNavigation(
 
          ImageButton(
             backgroundDrawableId = R.drawable.button_bg,
-            border = BorderStroke(2.dp, Color(0xFF946D48)),
+            border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
                navController.navigate(
                   "compendium_tears_screen"
