@@ -1,11 +1,9 @@
 package com.example.zeldacompendium
 
 import android.app.Application
-import android.os.strictmode.DiskReadViolation
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
-import coil.memory.MemoryCache
 import coil.request.CachePolicy
 import coil.util.DebugLogger
 import dagger.hilt.android.HiltAndroidApp

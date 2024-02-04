@@ -1,4 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.zeldacompendium.ui.tears
 
 import androidx.compose.foundation.Image
@@ -25,10 +26,10 @@ import com.example.zeldacompendium.R
 import com.example.zeldacompendium.ui.tears.components.CategorySelector
 
 @Composable
-fun CompendiumTearsScreen(
+fun TearsContainer(
    navController: NavController,
    viewModel: CompendiumTearsViewModel = hiltViewModel()
-){
+) {
    Scaffold(
       topBar = {
          CenterAlignedTopAppBar(
@@ -61,7 +62,7 @@ fun CompendiumTearsScreen(
       ) {
          Image(
             painter = painterResource(id = R.drawable.logo_tears),
-            contentDescription = "Zelda Logo",
+            contentDescription = "Zelda totk Logo",
             modifier = Modifier
                .fillMaxWidth()
          )

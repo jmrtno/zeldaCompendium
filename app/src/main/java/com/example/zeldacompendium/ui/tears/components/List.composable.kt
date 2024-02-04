@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -66,21 +67,20 @@ fun CompendiumItem(
 ) {
    Row(
       modifier = modifier
+         .fillMaxWidth()
          .background(MaterialTheme.colorScheme.surface)
          .height(40.dp)
          .clickable {
 
-         },
+         }
+         .padding(horizontal = 16.dp),
       verticalAlignment = Alignment.CenterVertically
    ) {
-      Column {
-         Text(
-            text = entry.compendiumName,
-            fontSize = 22.sp,
-            textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
-         )
-      }
+      Text(
+         text = entry.compendiumName,
+         fontSize = 22.sp,
+         textAlign = TextAlign.Start
+      )
    }
 }
 

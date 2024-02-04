@@ -3,13 +3,11 @@ package com.example.zeldacompendium
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.zeldacompendium.ui.breath.CompendiumBreathScreen
-import com.example.zeldacompendium.ui.tears.CompendiumTearsScreen
+import com.example.zeldacompendium.ui.breath.BreathContainer
+import com.example.zeldacompendium.ui.tears.TearsContainer
 import com.example.zeldacompendium.ui.selectgame.SelectGameContainer
 import com.example.zeldacompendium.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,12 +28,12 @@ class MainActivity : ComponentActivity() {
                   SelectGameContainer(navController = navController)
                }
                composable("compendium_tears_screen") {
-                  CompendiumTearsScreen(
+                  TearsContainer(
                      navController = navController
                   )
                }
                composable("compendium_breath_screen") {
-                  CompendiumBreathScreen(
+                  BreathContainer(
                      navController = navController
                   )
                }

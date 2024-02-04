@@ -22,14 +22,11 @@ import com.example.zeldacompendium.ui.SegmentedControl
 @Composable
 fun CategorySelector(
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
-   paddingValues: PaddingValues
 ) {
    LaunchedEffect(key1 = true) {
       viewModel.loadCompendium()
    }
-   Column(
-      modifier = Modifier.padding(paddingValues)
-   ){
+   Column{
 
       val items = listOf(
          R.drawable.creatures,

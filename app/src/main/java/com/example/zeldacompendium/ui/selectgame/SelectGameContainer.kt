@@ -21,6 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.ui.ImageButton
+import com.example.zeldacompendium.ui.selectgame.component.SetFrame
 
 @Composable
 fun SelectGameContainer(
@@ -32,12 +33,12 @@ fun SelectGameContainer(
    ) {
       SetBackgroundImage()
       SetFrame()
-      CompendiumNavigation(navController = navController)
+      GameNavigation(navController = navController)
    }
 }
 
 @Composable
-fun CompendiumNavigation(
+fun GameNavigation(
    navController: NavController
 ) {
    Box(
@@ -55,7 +56,7 @@ fun CompendiumNavigation(
                )
             }
          ) {
-            Text(text = "BOTW", color = Color(0xFFBB8F0B))
+            Text(text = "BOTW", color = Color(0xFF19FFFF))
          }
 
          ImageButton(
@@ -67,7 +68,7 @@ fun CompendiumNavigation(
                )
             }
          ) {
-            Text(text = "TOTK", color = Color(0xFFBB8F0B))
+            Text(text = "TOTK", color = Color(0xFF19FFFF))
          }
       }
    }
@@ -82,45 +83,6 @@ fun SetBackgroundImage() {
          modifier = Modifier.matchParentSize(),
          painter = painterResource(R.drawable.main_bg),
          contentDescription = "bg",
-         contentScale = ContentScale.None,
-      )
-   }
-}
-
-@Composable
-fun SetFrame(){
-   Box(
-      modifier = Modifier.fillMaxSize(),
-   ) {
-      Image(
-         alignment = Alignment.TopStart,
-         painter = painterResource(R.drawable.up_frame_big),
-         contentDescription = "up_frame_big",
-         contentScale = ContentScale.None,
-      )
-
-      Image(
-         alignment = Alignment.TopEnd,
-         painter = painterResource(R.drawable.right_up_frame),
-         contentDescription = "right_up_frame",
-         contentScale = ContentScale.None,
-      )
-
-      Image(
-         modifier = Modifier
-            .align(Alignment.BottomEnd),
-         alignment = Alignment.BottomEnd,
-         painter = painterResource(R.drawable.down_frame_big),
-         contentDescription = "down_frame_big",
-         contentScale = ContentScale.None,
-      )
-
-      Image(
-         modifier = Modifier
-            .align(Alignment.BottomStart),
-         alignment = Alignment.BottomStart,
-         painter = painterResource(R.drawable.left_down_frame),
-         contentDescription = "left_down_frame",
          contentScale = ContentScale.None,
       )
    }

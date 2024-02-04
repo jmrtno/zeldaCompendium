@@ -81,6 +81,6 @@ fun ImageButtonPreview(
       border = BorderStroke(3.dp, Color(0xFF946D48)),
       contentPadding = contentPadding,
    ) {
-      Text(text = "TOTK", color = Color(0xFFBB8F0B))
+      Text(text = "TOTK", color = Color(0xFF19ffff))
    }
 }
