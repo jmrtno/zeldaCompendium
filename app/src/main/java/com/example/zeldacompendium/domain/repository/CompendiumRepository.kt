@@ -28,13 +28,4 @@ class CompendiumRepository @Inject constructor(
       }
       return Resource.Success(response)
    }
-
-   suspend fun getCategoriesBreath(categoryName: String): Resource<Data> {
-      val response = try {
-         api.getCategoriesBreath(categoryName)
-      } catch (e: Exception) {
-         return Resource.Error("An unknown error occurred.")
-      }
-      return Resource.Success(response)
-   }
 }

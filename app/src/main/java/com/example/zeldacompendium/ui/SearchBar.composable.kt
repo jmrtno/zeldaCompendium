@@ -32,7 +32,7 @@ fun SearchBar(
       mutableStateOf(hint != "")
    }
 
-   Box(modifier = modifier) {
+   Box(modifier = modifier.padding(horizontal = 15.dp)) {
       BasicTextField(
          value = text,
          onValueChange = {

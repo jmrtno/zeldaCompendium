@@ -1,31 +1,30 @@
 package com.example.zeldacompendium.ui.breath.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
+import com.example.zeldacompendium.ui.SearchBar
 import com.example.zeldacompendium.ui.SegmentedControl
 import com.example.zeldacompendium.ui.breath.CompendiumBreathViewModel
 
 @Composable
-fun CategorySelector(
-   viewModel: CompendiumBreathViewModel = hiltViewModel(),
-) {
-   LaunchedEffect(key1 = true) {
-      viewModel.loadCompendium()
-   }
+fun CategorySelector(onItemSelected: (Int) -> Unit) {
    Column{
-
       var selectedIndex by remember { mutableStateOf(0) }
 
       val items = listOf(
@@ -44,19 +43,11 @@ fun CategorySelector(
          R.drawable.treasures_hint
       )
 
-      val filteredList = when (selectedIndex) {
-         0 -> viewModel.compendiumList.value.filter { it.category == "creatures" }
-         1 -> viewModel.compendiumList.value.filter { it.category == "monsters" }
-         2 -> viewModel.compendiumList.value.filter { it.category == "equipment" }
-         3 -> viewModel.compendiumList.value.filter { it.category == "materials" }
-         4 -> viewModel.compendiumList.value.filter { it.category == "treasure" }
-         else -> emptyList()
-      }
+      SearchBar(modifier = Modifier.padding(top = 15.dp))
 
       Row(
          modifier = Modifier
             .fillMaxWidth(),
-         verticalAlignment = Alignment.CenterVertically,
          horizontalArrangement = Arrangement.Center
       ) {
          SegmentedControl(
@@ -65,9 +56,8 @@ fun CategorySelector(
             defaultSelectedItemIndex = 0
          ) {
             selectedIndex = it
+            onItemSelected(it)
          }
       }
-
-      CompendiumList(compendiumList = filteredList)
    }
 }
