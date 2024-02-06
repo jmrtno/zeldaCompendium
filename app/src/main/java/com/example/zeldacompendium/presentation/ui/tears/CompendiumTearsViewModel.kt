@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.ui.tears
+package com.example.zeldacompendium.presentation.ui.tears
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

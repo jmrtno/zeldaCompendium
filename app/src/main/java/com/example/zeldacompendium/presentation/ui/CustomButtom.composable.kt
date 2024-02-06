@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.ui
+package com.example.zeldacompendium.presentation.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke

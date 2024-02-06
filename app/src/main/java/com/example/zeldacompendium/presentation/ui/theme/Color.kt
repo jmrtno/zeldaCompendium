@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.ui.theme
+package com.example.zeldacompendium.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

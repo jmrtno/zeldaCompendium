@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.ui.selectgame
+package com.example.zeldacompendium.presentation.ui.selectgame
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.ui.ImageButton
-import com.example.zeldacompendium.ui.selectgame.component.SetFrame
+import com.example.zeldacompendium.presentation.ui.ImageButton
+import com.example.zeldacompendium.presentation.ui.selectgame.component.SetFrame
 
 @Composable
 fun SelectGameContainer(

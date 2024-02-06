@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.ui.breath
+package com.example.zeldacompendium.presentation.ui.breath
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

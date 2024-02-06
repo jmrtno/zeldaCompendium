@@ -1,9 +1,10 @@
-package com.example.zeldacompendium.ui.tears.components
+package com.example.zeldacompendium.presentation.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -12,21 +13,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.ui.SegmentedControl
-import com.example.zeldacompendium.ui.tears.CompendiumTearsViewModel
+import com.example.zeldacompendium.presentation.ui.SegmentedControl
+import com.example.zeldacompendium.presentation.ui.tears.CompendiumTearsViewModel
 
 @Composable
-fun CategorySelector(
-   viewModel: CompendiumTearsViewModel = hiltViewModel(),
-) {
-   LaunchedEffect(key1 = true) {
-      viewModel.loadCompendium()
-   }
-   Column(
-   ){
-
+fun CategorySelector(onItemSelected: (Int) -> Unit){
+   Column{
+      var selectedIndex by remember { mutableStateOf(0) }
       val items = listOf(
          R.drawable.creatures,
          R.drawable.monsters,
@@ -42,10 +38,13 @@ fun CategorySelector(
          R.drawable.materials_hint,
          R.drawable.treasures_hint
       )
-      var selectedIndex by remember { mutableStateOf(0) }
+
+      SearchBar(modifier = Modifier.padding(top = 15.dp))
+
       Row(
          modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(vertical = 15.dp),
          verticalAlignment = Alignment.CenterVertically,
          horizontalArrangement = Arrangement.Center
       ) {
@@ -55,17 +54,8 @@ fun CategorySelector(
             defaultSelectedItemIndex = 0
          ) {
             selectedIndex = it
+            onItemSelected(it)
          }
       }
-      val filteredList = when (selectedIndex) {
-         0 -> viewModel.compendiumList.value.filter { it.category == "creatures" }
-         1 -> viewModel.compendiumList.value.filter { it.category == "monsters" }
-         2 -> viewModel.compendiumList.value.filter { it.category == "equipment" }
-         3 -> viewModel.compendiumList.value.filter { it.category == "materials" }
-         4 -> viewModel.compendiumList.value.filter { it.category == "treasure" }
-         else -> emptyList()
-      }
-
-      CompendiumList(compendiumList = filteredList)
    }
 }
