@@ -62,7 +62,6 @@ fun CompendiumList(
          Divider(color = Color.LightGray)
       }
    }
-/*
    Box(
       contentAlignment = Alignment.Center,
       modifier = Modifier.fillMaxSize()
@@ -75,7 +74,7 @@ fun CompendiumList(
             viewModel.loadCompendium()
          }
       }
-   }*/
+   }
 }
 
 @Composable

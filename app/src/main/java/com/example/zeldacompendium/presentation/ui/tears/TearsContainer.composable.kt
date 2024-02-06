@@ -5,6 +5,7 @@ package com.example.zeldacompendium.presentation.ui.tears
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -23,18 +24,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
-import com.example.zeldacompendium.presentation.ui.tears.components.CompendiumList
 import com.example.zeldacompendium.presentation.ui.CategorySelector
+import com.example.zeldacompendium.presentation.ui.selectgame.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.tears.components.CompendiumList
 
 @Composable
 fun TearsContainer(
@@ -47,15 +47,10 @@ fun TearsContainer(
       topBar = {
          CenterAlignedTopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
+               containerColor = Color.Transparent,
                titleContentColor = MaterialTheme.colorScheme.primary,
             ),
-            title = {
-               Text(
-                  "Compendium TOTK",
-                  maxLines = 1,
-                  overflow = TextOverflow.Ellipsis
-               )
-            },
+            title = { Text("") },
             navigationIcon = {
                IconButton(onClick = { navController.popBackStack() }) {
                   Icon(
@@ -75,6 +70,7 @@ fun TearsContainer(
          }
       }
    ) { padding ->
+      SetBackgroundImage()
       Column(
          modifier = Modifier.padding(padding)
       ) {
@@ -84,6 +80,7 @@ fun TearsContainer(
             modifier = Modifier
                .fillMaxWidth()
                .size(100.dp)
+               .offset(y = (-30).dp)
          )
          val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList)
