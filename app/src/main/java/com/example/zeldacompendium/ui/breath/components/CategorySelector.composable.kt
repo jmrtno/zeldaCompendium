@@ -2,10 +2,8 @@ package com.example.zeldacompendium.ui.breath.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.ui.breath.CompendiumBreathViewModel
 import com.example.zeldacompendium.ui.SegmentedControl
+import com.example.zeldacompendium.ui.breath.CompendiumBreathViewModel
 
 @Composable
 fun CategorySelector(
@@ -27,6 +25,8 @@ fun CategorySelector(
       viewModel.loadCompendium()
    }
    Column{
+
+      var selectedIndex by remember { mutableStateOf(0) }
 
       val items = listOf(
          R.drawable.creatures,
@@ -43,7 +43,16 @@ fun CategorySelector(
          R.drawable.materials_hint,
          R.drawable.treasures_hint
       )
-      var selectedIndex by remember { mutableStateOf(0) }
+
+      val filteredList = when (selectedIndex) {
+         0 -> viewModel.compendiumList.value.filter { it.category == "creatures" }
+         1 -> viewModel.compendiumList.value.filter { it.category == "monsters" }
+         2 -> viewModel.compendiumList.value.filter { it.category == "equipment" }
+         3 -> viewModel.compendiumList.value.filter { it.category == "materials" }
+         4 -> viewModel.compendiumList.value.filter { it.category == "treasure" }
+         else -> emptyList()
+      }
+
       Row(
          modifier = Modifier
             .fillMaxWidth(),
@@ -57,14 +66,6 @@ fun CategorySelector(
          ) {
             selectedIndex = it
          }
-      }
-      val filteredList = when (selectedIndex) {
-         0 -> viewModel.compendiumList.value.filter { it.category == "creatures" }
-         1 -> viewModel.compendiumList.value.filter { it.category == "monsters" }
-         2 -> viewModel.compendiumList.value.filter { it.category == "equipment" }
-         3 -> viewModel.compendiumList.value.filter { it.category == "materials" }
-         4 -> viewModel.compendiumList.value.filter { it.category == "treasure" }
-         else -> emptyList()
       }
 
       CompendiumList(compendiumList = filteredList)
