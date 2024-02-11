@@ -3,6 +3,7 @@ package com.example.zeldacompendium.presentation.ui.tears
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.zeldacompendium.presentation.ui.navigation.AppNavigator
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.domain.repository.CompendiumRepository
 import com.example.zeldacompendium.data.utils.Resource
@@ -14,16 +15,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CompendiumTearsViewModel @Inject constructor(
-    private val repository: CompendiumRepository
+    private val repository: CompendiumRepository,
+    private val appNavigator: AppNavigator
 ): ViewModel() {
 
     var compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
-
-    init {
-        loadCompendium()
-    }
 
     fun loadCompendium(){
         viewModelScope.launch {
@@ -51,5 +49,9 @@ class CompendiumTearsViewModel @Inject constructor(
 
             }
         }
+    }
+
+    fun onBackButtonClicked() {
+        appNavigator.tryNavigateBack()
     }
 }

@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui
+package com.example.zeldacompendium.presentation.ui.commons
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -31,7 +31,6 @@ fun SearchBar(
    var isHintDisplayed by remember {
       mutableStateOf(hint != "")
    }
-
    Box(modifier = modifier.padding(horizontal = 15.dp)) {
       BasicTextField(
          value = text,

@@ -31,17 +31,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
-import com.example.zeldacompendium.presentation.ui.CategorySelector
+import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
 import com.example.zeldacompendium.presentation.ui.breath.components.CompendiumList
-import com.example.zeldacompendium.presentation.ui.selectgame.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.home.SetBackgroundImage
 
 @Composable
 fun BreathContainer(
-   navController: NavController,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
@@ -58,7 +56,7 @@ fun BreathContainer(
             ),
             title = { Text("") },
             navigationIcon = {
-               IconButton(onClick = { navController.popBackStack() }) {
+               IconButton(onClick = { viewModel.onBackButtonClicked() }) {
                   Icon(
                      imageVector = Icons.Filled.ArrowBack,
                      contentDescription = "Localized description"

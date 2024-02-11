@@ -3,13 +3,7 @@ package com.example.zeldacompendium
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.zeldacompendium.presentation.ui.breath.BreathContainer
-import com.example.zeldacompendium.presentation.ui.tears.TearsContainer
-import com.example.zeldacompendium.presentation.ui.selectgame.SelectGameContainer
-import com.example.zeldacompendium.presentation.ui.theme.ZeldaCompendiumTheme
+import com.example.zeldacompendium.presentation.ui.main.MainContainer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,27 +12,7 @@ class MainActivity : ComponentActivity() {
       super.onCreate(savedInstanceState)
       window.statusBarColor = getColor(R.color.black)
       setContent {
-         ZeldaCompendiumTheme {
-            val navController = rememberNavController()
-            NavHost(
-               navController = navController,
-               startDestination = "compendium_navigation"
-            ) {
-               composable("compendium_navigation"){
-                  SelectGameContainer(navController = navController)
-               }
-               composable("compendium_tears_screen") {
-                  TearsContainer(
-                     navController = navController
-                  )
-               }
-               composable("compendium_breath_screen") {
-                  BreathContainer(
-                     navController = navController
-                  )
-               }
-            }
-         }
+         MainContainer()
       }
    }
 }

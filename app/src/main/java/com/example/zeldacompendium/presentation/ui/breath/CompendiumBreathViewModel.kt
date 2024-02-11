@@ -12,20 +12,18 @@ import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 import androidx.compose.runtime.State
+import com.example.zeldacompendium.presentation.ui.navigation.AppNavigator
 
 @HiltViewModel
 class CompendiumBreathViewModel @Inject constructor(
-   private val repository: CompendiumRepository
+   private val repository: CompendiumRepository,
+   private val appNavigator: AppNavigator
 ): ViewModel() {
 
    private val _compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
    val compendiumList: State<List<CompendiumListEntry>> = _compendiumList
    var loadError = mutableStateOf("")
    var isLoading = mutableStateOf(false)
-
-   init {
-      loadCompendium()
-   }
 
    fun loadCompendium() {
       viewModelScope.launch {
@@ -61,5 +59,9 @@ class CompendiumBreathViewModel @Inject constructor(
 
          }
       }
+   }
+
+   fun onBackButtonClicked() {
+      appNavigator.tryNavigateBack()
    }
 }

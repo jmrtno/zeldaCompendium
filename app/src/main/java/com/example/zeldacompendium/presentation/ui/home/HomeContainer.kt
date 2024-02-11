@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.selectgame
+package com.example.zeldacompendium.presentation.ui.home
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -17,29 +17,26 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.presentation.ui.ImageButton
-import com.example.zeldacompendium.presentation.ui.selectgame.component.SetFrame
+import com.example.zeldacompendium.presentation.ui.commons.ImageButton
+import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 
 @Composable
-fun SelectGameContainer(
-   navController: NavController
-) {
+fun HomeContainer(){
    Surface(
       color = MaterialTheme.colorScheme.surface,
       modifier = Modifier.fillMaxSize()
    ) {
       SetBackgroundImage()
       SetFrame()
-      GameNavigation(navController = navController)
+      GameNavigation()
    }
 }
 
 @Composable
 fun GameNavigation(
-   navController: NavController
+   homeViewModel: HomeViewModel = hiltViewModel()
 ) {
    Box(
       modifier = Modifier
@@ -51,9 +48,7 @@ fun GameNavigation(
             backgroundDrawableId = R.drawable.button_bg,
             border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
-               navController.navigate(
-                  "compendium_breath_screen"
-               )
+               homeViewModel.onNavigateToBreathButtonClicked()
             }
          ) {
             Text(text = "BOTW", color = Color(0xFF19FFFF))
@@ -63,9 +58,7 @@ fun GameNavigation(
             backgroundDrawableId = R.drawable.button_bg,
             border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
-               navController.navigate(
-                  "compendium_tears_screen"
-               )
+               homeViewModel.onNavigateToTearsButtonClicked()
             }
          ) {
             Text(text = "TOTK", color = Color(0xFF19FFFF))
@@ -86,11 +79,4 @@ fun SetBackgroundImage() {
          contentScale = ContentScale.None,
       )
    }
-}
-
-@Preview
-@Composable
-fun SelectGameContainerPreview() {
-   val navController = rememberNavController()
-   SelectGameContainer(navController = navController)
 }

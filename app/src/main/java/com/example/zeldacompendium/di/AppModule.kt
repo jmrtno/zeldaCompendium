@@ -1,5 +1,7 @@
 package com.example.zeldacompendium.di
 
+import com.example.zeldacompendium.presentation.ui.navigation.AppNavigator
+import com.example.zeldacompendium.presentation.ui.navigation.AppNavigatorImpl
 import com.example.zeldacompendium.data.remote.CompendiumApi
 import com.example.zeldacompendium.domain.repository.CompendiumRepository
 import com.example.zeldacompendium.data.utils.Constants.BASE_URL
@@ -29,5 +31,11 @@ object AppModule {
             .baseUrl(BASE_URL)
             .build()
             .create(CompendiumApi:: class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAppNavigator(): AppNavigator {
+        return AppNavigatorImpl()
     }
 }

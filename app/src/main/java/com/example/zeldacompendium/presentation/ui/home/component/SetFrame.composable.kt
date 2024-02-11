@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.selectgame.component
+package com.example.zeldacompendium.presentation.ui.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
