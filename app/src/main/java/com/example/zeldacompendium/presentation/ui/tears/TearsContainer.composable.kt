@@ -4,6 +4,7 @@ package com.example.zeldacompendium.presentation.ui.tears
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,6 +42,9 @@ fun TearsContainer(
    viewModel: CompendiumTearsViewModel = hiltViewModel(),
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
+   LaunchedEffect(key1 = true) {
+      viewModel.loadCompendium()
+   }
    var selectedIndex by remember { mutableStateOf(0) }
    Scaffold(
       topBar = {
@@ -70,7 +75,9 @@ fun TearsContainer(
    ) { padding ->
       SetBackgroundImage()
       Column(
-         modifier = Modifier.padding(padding)
+         modifier = Modifier
+            .padding(padding)
+            .fillMaxSize(),
       ) {
          Image(
             painter = painterResource(id = R.drawable.logo_tears),
