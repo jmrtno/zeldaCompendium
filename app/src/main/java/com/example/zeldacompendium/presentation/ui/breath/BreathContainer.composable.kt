@@ -59,6 +59,7 @@ fun BreathContainer(
                IconButton(onClick = { viewModel.onBackButtonClicked() }) {
                   Icon(
                      imageVector = Icons.Filled.ArrowBack,
+                     tint = Color(0xFF19FFFF),
                      contentDescription = "Localized description"
                   )
                }
