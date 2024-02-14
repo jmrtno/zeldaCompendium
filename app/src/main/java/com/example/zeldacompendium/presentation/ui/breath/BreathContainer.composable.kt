@@ -4,7 +4,6 @@ package com.example.zeldacompendium.presentation.ui.breath
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -18,7 +17,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -35,7 +33,7 @@ import com.example.zeldacompendium.R
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
 import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
-import com.example.zeldacompendium.presentation.ui.breath.components.CompendiumList
+import com.example.zeldacompendium.presentation.ui.breath.components.list.CompendiumList
 import com.example.zeldacompendium.presentation.ui.home.SetBackgroundImage
 
 @Composable

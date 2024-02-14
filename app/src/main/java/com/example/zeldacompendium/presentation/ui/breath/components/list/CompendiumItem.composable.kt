@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.breath.components
+package com.example.zeldacompendium.presentation.ui.breath.components.list
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
