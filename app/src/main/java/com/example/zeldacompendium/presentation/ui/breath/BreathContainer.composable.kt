@@ -54,7 +54,7 @@ fun BreathContainer(
                containerColor = Color.Transparent,
                titleContentColor = MaterialTheme.colorScheme.primary,
             ),
-            title = { Text("") },
+            title = { },
             navigationIcon = {
                IconButton(onClick = { viewModel.onBackButtonClicked() }) {
                   Icon(
@@ -86,7 +86,6 @@ fun BreathContainer(
       Column(
          modifier = Modifier
             .padding(padding)
-            .fillMaxSize(),
       ) {
          Image(
             painter = painterResource(id = R.drawable.logo_botw),
@@ -94,7 +93,7 @@ fun BreathContainer(
             modifier = Modifier
                .fillMaxWidth()
                .size(100.dp)
-               .offset(y = (-30).dp)
+               .offset(y = (-40).dp)
          )
          val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList)
