@@ -25,50 +25,59 @@ import com.example.zeldacompendium.R
 fun ClickableGlowingCard(
    glowingColor: Color,
    modifier: Modifier = Modifier,
-   imageDrawableResId: Int = R.drawable.button_bg,
+   //imageDrawableResId: Int = R.drawable.button_bg,
+   containerColor: Color = Color(0XFF0C0D09),
    cornersRadius: Dp = 0.dp,
-   glowingRadius: Dp = 15.dp,
+   glowingRadius: Dp = 10.dp,
    xShifting: Dp = 0.dp,
    yShifting: Dp = 0.dp,
    onClick: () -> Unit = {},
    content: @Composable BoxScope.() -> Unit
 ) {
-   Box(modifier = modifier.drawBehind {
-      val canvasSize = size
-      drawContext.canvas.nativeCanvas.apply {
-         drawRoundRect(0f, // Left
-            0f, // Top
-            canvasSize.width, // Right
-            canvasSize.height, // Bottom
-            cornersRadius.toPx(), // Radius X
-            cornersRadius.toPx(), // Radius Y
-            Paint().apply {
-               isAntiAlias = true
-               setShadowLayer(
-                  glowingRadius.toPx(),
-                  xShifting.toPx(),
-                  yShifting.toPx(),
-                  glowingColor.copy(alpha = 1f).toArgb()
-               )
-            }
-         )
+   for (i in 1..5) {
+      Box(modifier = modifier.drawBehind {
+         val canvasSize = size
+         drawContext.canvas.nativeCanvas.apply {
+            drawRoundRect(0f, // Left
+               0f, // Top
+               canvasSize.width, // Right
+               canvasSize.height, // Bottom
+               cornersRadius.toPx(), // Radius X
+               cornersRadius.toPx(), // Radius Y
+               Paint().apply {
+                  color = containerColor.toArgb()
+                  isAntiAlias = true
+                  setShadowLayer(
+                     glowingRadius.toPx(),
+                     xShifting.toPx(),
+                     yShifting.toPx(),
+                     glowingColor.copy(alpha = 0.2f * i).toArgb()
+                  )
+               }
+            )
+         }
       }
-   }
-   ) {
-      Box(
-         modifier = Modifier
-            .clip(RoundedCornerShape(cornersRadius))
-            .clickable { onClick() }
       ) {
-         Image(
+         Box(
             modifier = Modifier
                .fillMaxSize()
-               .border(3.dp, Color(0xFF946D48), shape = RoundedCornerShape(cornersRadius)),
-            painter = painterResource(id = imageDrawableResId),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
-         )
-         content()
+               .clip(RoundedCornerShape(cornersRadius))
+               .border(3.dp, Color(0xFF946D48), RoundedCornerShape(10.dp))
+               .clickable { onClick() }
+         ) {
+            // para imagen de fondo añadir aqui
+            /*
+            Image(
+               modifier = Modifier
+                  .fillMaxSize()
+                  .border(3.dp, Color(0xFF946D48), shape = RoundedCornerShape(cornersRadius)),
+               painter = painterResource(id = imageDrawableResId),
+               contentDescription = null,
+               contentScale = ContentScale.Crop
+            )
+            */
+            content()
+         }
       }
    }
 }

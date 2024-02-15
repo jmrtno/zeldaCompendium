@@ -15,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.presentation.ui.commons.ImageButton
+import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
 import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 
 @Composable
@@ -63,19 +65,5 @@ fun GameNavigation(
             Text(text = "TOTK", color = Color(0xFF19FFFF))
          }
       }
-   }
-}
-
-@Composable
-fun SetBackgroundImage() {
-   Box(
-      modifier = Modifier.fillMaxSize(),
-   ) {
-      Image(
-         modifier = Modifier.matchParentSize(),
-         painter = painterResource(R.drawable.main_bg),
-         contentDescription = "bg",
-         contentScale = ContentScale.None,
-      )
    }
 }

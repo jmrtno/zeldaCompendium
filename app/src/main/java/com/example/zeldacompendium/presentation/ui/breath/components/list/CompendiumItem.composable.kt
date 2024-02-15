@@ -75,7 +75,7 @@ fun CompendiumItem(
       }
       Box(modifier = modifier.fillMaxWidth()) {
          ClickableGlowingCard(
-            glowingColor = Color.Cyan,
+            glowingColor = Color(0xFF005CBA),
             modifier = Modifier
                .fillMaxWidth()
                .height(75.dp)

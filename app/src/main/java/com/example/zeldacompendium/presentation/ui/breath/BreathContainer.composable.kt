@@ -34,7 +34,7 @@ import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
 import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
 import com.example.zeldacompendium.presentation.ui.breath.components.list.CompendiumList
-import com.example.zeldacompendium.presentation.ui.home.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
 
 @Composable
 fun BreathContainer(

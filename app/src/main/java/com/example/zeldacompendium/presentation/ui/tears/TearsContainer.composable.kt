@@ -34,7 +34,7 @@ import com.example.zeldacompendium.R
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
 import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
-import com.example.zeldacompendium.presentation.ui.home.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
 import com.example.zeldacompendium.presentation.ui.tears.components.list.CompendiumList
 
 @Composable
