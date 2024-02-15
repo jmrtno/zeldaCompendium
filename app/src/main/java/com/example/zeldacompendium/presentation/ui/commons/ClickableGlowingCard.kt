@@ -1,8 +1,9 @@
-package com.example.zeldacompendium.presentation.ui.breath.components.list
+package com.example.zeldacompendium.presentation.ui.commons
 
 import android.graphics.Paint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +30,7 @@ fun ClickableGlowingCard(
    glowingRadius: Dp = 15.dp,
    xShifting: Dp = 0.dp,
    yShifting: Dp = 0.dp,
-   onClick: () -> Unit,
+   onClick: () -> Unit = {},
    content: @Composable BoxScope.() -> Unit
 ) {
    Box(modifier = modifier.drawBehind {
@@ -55,7 +56,9 @@ fun ClickableGlowingCard(
    }
    ) {
       Box(
-         modifier = Modifier.clip(RoundedCornerShape(cornersRadius))
+         modifier = Modifier
+            .clip(RoundedCornerShape(cornersRadius))
+            .clickable { onClick() }
       ) {
          Image(
             modifier = Modifier

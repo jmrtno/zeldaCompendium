@@ -1,16 +1,12 @@
 package com.example.zeldacompendium.presentation.ui.breath.components.list
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -18,24 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.PaintingStyle
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.drawscope.inset
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -43,6 +27,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
+import com.example.zeldacompendium.presentation.ui.commons.ClickableGlowingCard
 
 @Composable
 fun CompendiumItem(
@@ -51,7 +36,6 @@ fun CompendiumItem(
 ) {
    Box(modifier = modifier
       .padding(top = 30.dp)
-      .clickable { }
    ) {
       Column(
          modifier = modifier
@@ -96,8 +80,7 @@ fun CompendiumItem(
                .fillMaxWidth()
                .height(75.dp)
                .padding(horizontal = 15.dp),
-            cornersRadius = 10.dp,
-            onClick = { }
+            cornersRadius = 10.dp
          ) {}
          Row(
             modifier = modifier
