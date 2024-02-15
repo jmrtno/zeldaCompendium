@@ -90,7 +90,7 @@ fun BreathContainer(
             contentDescription = "Zelda botw Logo",
             modifier = Modifier
                .fillMaxWidth()
-               .size(100.dp)
+               .size(120.dp)
                .offset(y = (-40).dp)
          )
          val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)

@@ -1,27 +1,41 @@
 package com.example.zeldacompendium.presentation.ui.breath.components.list
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.PaintingStyle
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.drawscope.inset
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -36,7 +50,7 @@ fun CompendiumItem(
    modifier: Modifier = Modifier,
 ) {
    Box(modifier = modifier
-      .padding(top = 12.dp)
+      .padding(top = 30.dp)
       .clickable { }
    ) {
       Column(
@@ -45,7 +59,8 @@ fun CompendiumItem(
             .padding(horizontal = 40.dp),
       ) {
          Box(
-            modifier = modifier.offset(y = (-12).dp),
+            modifier = modifier
+               .offset(y = (-22).dp),
             contentAlignment = Alignment.Center
          ) {
             AsyncImage(
@@ -68,34 +83,41 @@ fun CompendiumItem(
          }
          Text(
             modifier = modifier
-               .offset(y = (-13).dp),
+               .offset(y = (-19).dp),
             text = entry.compendiumName,
             fontSize = 18.sp,
             color = Color.LightGray
          )
       }
-      Row(
-         modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp, horizontal = 20.dp)
-            .height(75.dp)
-            .border(
-               BorderStroke(2.dp, Color(0xFF946D48)),
-               shape = RoundedCornerShape(10.dp)
+      Box(modifier = modifier.fillMaxWidth()) {
+         ClickableGlowingCard(
+            glowingColor = Color.Cyan,
+            modifier = Modifier
+               .fillMaxWidth()
+               .height(75.dp)
+               .padding(horizontal = 15.dp),
+            cornersRadius = 10.dp,
+            onClick = { }
+         ) {}
+         Row(
+            modifier = modifier
+               .fillMaxWidth()
+               .padding(horizontal = 15.dp)
+               .height(75.dp)
+               .padding(end = 15.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
+         ) {
+            Text(
+               text = "#${entry.number}",
+               fontSize = 25.sp,
+               color = Color.White.copy(alpha = 0.4f)
             )
-            .padding(end = 15.dp),
-         verticalAlignment = Alignment.CenterVertically,
-         horizontalArrangement = Arrangement.End
-      ) {
-         Text(
-            text = "#${entry.number}",
-            fontSize = 25.sp,
-            color = Color.White.copy(alpha = 0.4f)
-         )
+         }
       }
+
    }
 }
-
 
 @Preview
 @Composable
