@@ -40,7 +40,7 @@ fun CategorySelector(onItemSelected: (Int) -> Unit){
       Row(
          modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 15.dp),
+            .padding(bottom = 50.dp, top = 15.dp),
          verticalAlignment = Alignment.CenterVertically,
          horizontalArrangement = Arrangement.Center
       ) {

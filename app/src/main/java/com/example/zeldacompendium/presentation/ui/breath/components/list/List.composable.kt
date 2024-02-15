@@ -35,7 +35,6 @@ fun CompendiumList(
    Column(
       modifier = Modifier
          .fillMaxWidth()
-         .verticalScroll(rememberScrollState())
    ) {
       compendiumList.forEachIndexed { index, _ ->
          CompendiumItem(entry = compendiumList[index])

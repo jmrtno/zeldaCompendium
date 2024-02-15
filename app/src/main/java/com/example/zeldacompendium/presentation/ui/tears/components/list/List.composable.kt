@@ -1,8 +1,5 @@
 package com.example.zeldacompendium.presentation.ui.tears.components.list
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -30,31 +26,30 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.data.models.CompendiumListEntry
+import com.example.zeldacompendium.presentation.ui.commons.ClickableGlowingCard
 import com.example.zeldacompendium.presentation.ui.tears.CompendiumTearsViewModel
 
 @Composable
 fun CompendiumList(
    compendiumList: List<CompendiumListEntry>,
    viewModel: CompendiumTearsViewModel = hiltViewModel(),
-){
+) {
    val loadError by remember { viewModel.loadError }
    val isLoading by remember { viewModel.isLoading }
 
-   LazyColumn(modifier = Modifier.fillMaxWidth()) {
-      val itemCount = compendiumList.size
-      items(itemCount) {
-         CompendiumItem(entry = compendiumList[it])
+   Column(modifier = Modifier.fillMaxWidth()) {
+      compendiumList.forEachIndexed{ index, _ ->
+         CompendiumItem(entry = compendiumList[index])
       }
    }
-
    Box(
+      modifier = Modifier.fillMaxSize(),
       contentAlignment = Alignment.Center,
-      modifier = Modifier.fillMaxSize()
    ) {
       if (isLoading) {
          CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
       }
-      if(loadError.isNotEmpty()) {
+      if (loadError.isNotEmpty()) {
          RetrySection(error = loadError) {
             viewModel.loadCompendium()
          }
@@ -67,38 +62,39 @@ fun CompendiumItem(
    entry: CompendiumListEntry,
    modifier: Modifier = Modifier,
 ) {
-   Row(
-      modifier = modifier
-         .fillMaxWidth()
-         .clickable {
-
-         }
-         .padding(vertical = 10.dp, horizontal = 10.dp)
-         .height(70.dp)
-         .border(
-            BorderStroke(2.dp, Color(0xFF946D48)),
-            shape = RoundedCornerShape(10.dp)
+   Box(modifier = modifier
+      .fillMaxWidth()
+      .padding(15.dp)) {
+      ClickableGlowingCard(
+         glowingColor = Color(0xFF005CBA),
+         modifier = Modifier
+            .height(75.dp),
+         cornersRadius = 10.dp
+      ) {}
+      Row(
+         modifier = modifier
+            .height(70.dp)
+            .padding(horizontal = 15.dp),
+         verticalAlignment = Alignment.CenterVertically,
+      ) {
+         Text(
+            modifier = modifier.weight(1.0f),
+            maxLines = 1,
+            text = entry.compendiumName,
+            fontSize = 18.sp,
+            textAlign = TextAlign.Start,
+            color = Color.LightGray,
+            overflow = TextOverflow.Ellipsis
          )
-         .padding(horizontal = 15.dp),
-      verticalAlignment = Alignment.CenterVertically,
-   ) {
-      Text(
-         modifier = modifier.weight(1.0f),
-         maxLines = 1,
-         text = entry.compendiumName,
-         fontSize = 18.sp,
-         textAlign = TextAlign.Start,
-         color = Color.LightGray,
-         overflow = TextOverflow.Ellipsis
-      )
-      Text(
-         modifier = modifier.weight(0.3f),
-         text = "#${entry.number}",
-         textAlign = TextAlign.End,
-         maxLines = 1,
-         fontSize = 25.sp,
-         color = Color.White.copy(alpha = 0.4f)
-      )
+         Text(
+            modifier = modifier.weight(0.3f),
+            text = "#${entry.number}",
+            textAlign = TextAlign.End,
+            maxLines = 1,
+            fontSize = 25.sp,
+            color = Color.White.copy(alpha = 0.4f)
+         )
+      }
    }
 }
 
@@ -106,7 +102,7 @@ fun CompendiumItem(
 fun RetrySection(
    error: String,
    onRetry: () -> Unit
-){
+) {
    Column {
       Text(error, color = Color.Red, fontSize = 18.sp)
       Spacer(modifier = Modifier.height(8.dp))

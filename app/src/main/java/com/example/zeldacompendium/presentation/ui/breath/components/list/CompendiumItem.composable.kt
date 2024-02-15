@@ -73,19 +73,16 @@ fun CompendiumItem(
             color = Color.LightGray
          )
       }
-      Box(modifier = modifier.fillMaxWidth()) {
+      Box(modifier = modifier.fillMaxWidth().padding(horizontal = 15.dp)) {
          ClickableGlowingCard(
             glowingColor = Color(0xFF005CBA),
             modifier = Modifier
-               .fillMaxWidth()
-               .height(75.dp)
-               .padding(horizontal = 15.dp),
+               .height(75.dp),
             cornersRadius = 10.dp
          ) {}
          Row(
             modifier = modifier
                .fillMaxWidth()
-               .padding(horizontal = 15.dp)
                .height(75.dp)
                .padding(end = 15.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -98,7 +95,6 @@ fun CompendiumItem(
             )
          }
       }
-
    }
 }
 

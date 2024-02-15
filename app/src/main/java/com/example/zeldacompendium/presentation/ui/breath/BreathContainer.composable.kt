@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
@@ -35,6 +37,7 @@ import com.example.zeldacompendium.domain.CompendiumFilterImpl
 import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
 import com.example.zeldacompendium.presentation.ui.breath.components.list.CompendiumList
 import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 
 @Composable
 fun BreathContainer(
@@ -81,9 +84,11 @@ fun BreathContainer(
       }
    ) { padding ->
       SetBackgroundImage()
+      SetFrame()
       Column(
          modifier = Modifier
             .padding(padding)
+            .verticalScroll(rememberScrollState())
       ) {
          Image(
             painter = painterResource(id = R.drawable.logo_botw),
@@ -91,7 +96,6 @@ fun BreathContainer(
             modifier = Modifier
                .fillMaxWidth()
                .size(120.dp)
-               .offset(y = (-40).dp)
          )
          val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList)

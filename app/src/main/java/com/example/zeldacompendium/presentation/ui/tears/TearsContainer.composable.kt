@@ -6,9 +6,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -35,6 +36,7 @@ import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
 import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
 import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 import com.example.zeldacompendium.presentation.ui.tears.components.list.CompendiumList
 
 @Composable
@@ -75,20 +77,22 @@ fun TearsContainer(
       }
    ) { padding ->
       SetBackgroundImage()
+      SetFrame()
       Column(
          modifier = Modifier
             .padding(padding)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
       ) {
          Image(
             painter = painterResource(id = R.drawable.logo_tears),
             contentDescription = "Zelda totk Logo",
             modifier = Modifier
                .fillMaxWidth()
-               .size(100.dp)
-               .offset(y = (-30).dp)
+               .size(120.dp)
          )
-         val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
+         val filteredList =
+            compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList)
       }
    }
