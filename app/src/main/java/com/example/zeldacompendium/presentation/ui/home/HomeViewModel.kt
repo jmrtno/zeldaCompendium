@@ -17,5 +17,4 @@ class HomeViewModel @Inject constructor(
    fun onNavigateToTearsButtonClicked() {
       appNavigator.tryNavigateTo(Destination.TearsScreen())
    }
-
 }

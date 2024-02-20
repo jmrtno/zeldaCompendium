@@ -14,11 +14,11 @@ sealed class Destination(protected val route: String, vararg params: String) {
    object HomeScreen : NoArgumentsDestination(HOME_ROUTE)
    object BreathScreen : NoArgumentsDestination(BREATH_ROUTE)
    object TearsScreen : NoArgumentsDestination(TEARS_ROUTE)
-   object DetailScreeen : NoArgumentsDestination(DETAIL_ROUTE)
 
-   object UserDetailsScreen : Destination(ITEM_DETAIL_ROUTE, NAME_KEY) {
-      operator fun invoke(name: String): String = route.appendParams(
-         NAME_KEY to name
+   object ItemDetailsScreen : Destination(ITEM_DETAIL_ROUTE, NAME_KEY, CATEGORY) {
+      operator fun invoke(name: String, category: String): String = route.appendParams(
+         NAME_KEY to name,
+         CATEGORY to category
       )
    }
 
@@ -26,9 +26,9 @@ sealed class Destination(protected val route: String, vararg params: String) {
       private const val HOME_ROUTE = "home"
       private const val BREATH_ROUTE = "breath"
       private const val TEARS_ROUTE = "tears"
-      private const val DETAIL_ROUTE = "details"
       private const val ITEM_DETAIL_ROUTE = "item_details"
       private const val NAME_KEY = "name"
+      private const val  CATEGORY = "category"
    }
 }
 

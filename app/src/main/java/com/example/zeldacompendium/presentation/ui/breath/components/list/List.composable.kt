@@ -1,5 +1,6 @@
 package com.example.zeldacompendium.presentation.ui.breath.components.list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.breath.CompendiumBreathViewModel
+import com.example.zeldacompendium.presentation.ui.home.HomeViewModel
 
 @Composable
 fun CompendiumList(
@@ -32,12 +34,12 @@ fun CompendiumList(
    val loadError by remember { viewModel.loadError }
    val isLoading by remember { viewModel.isLoading }
 
-   Column(
-      modifier = Modifier
-         .fillMaxWidth()
-   ) {
-      compendiumList.forEachIndexed { index, _ ->
-         CompendiumItem(entry = compendiumList[index])
+   Column {
+      compendiumList.forEachIndexed { index, item ->
+         CompendiumItem(
+            modifier = Modifier.clickable { viewModel.onItemRowClicked(item.compendiumName, item.category) },
+            entry = compendiumList[index]
+         )
       }
    }
    Box(

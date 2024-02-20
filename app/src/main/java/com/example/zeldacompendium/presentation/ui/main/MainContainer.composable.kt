@@ -16,6 +16,7 @@ import com.example.zeldacompendium.presentation.ui.navigation.NavHost
 import com.example.zeldacompendium.presentation.ui.navigation.NavigationIntent
 import com.example.zeldacompendium.presentation.ui.navigation.composable
 import com.example.zeldacompendium.presentation.ui.breath.BreathContainer
+import com.example.zeldacompendium.presentation.ui.detail.DetailScreen
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
 import com.example.zeldacompendium.presentation.ui.tears.TearsContainer
 import com.example.zeldacompendium.presentation.ui.theme.ZeldaCompendiumTheme
@@ -48,6 +49,9 @@ fun MainContainer(
             }
             composable(destination = Destination.TearsScreen){
                TearsContainer()
+            }
+            composable(destination = Destination.ItemDetailsScreen) {
+               DetailScreen()
             }
          }
       }

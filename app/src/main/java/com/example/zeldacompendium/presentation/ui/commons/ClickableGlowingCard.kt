@@ -31,7 +31,6 @@ fun ClickableGlowingCard(
    glowingRadius: Dp = 10.dp,
    xShifting: Dp = 0.dp,
    yShifting: Dp = 0.dp,
-   onClick: () -> Unit = {},
    content: @Composable BoxScope.() -> Unit
 ) {
    for (i in 1..5) {
@@ -63,7 +62,6 @@ fun ClickableGlowingCard(
                .fillMaxSize()
                .clip(RoundedCornerShape(cornersRadius))
                .border(3.dp, Color(0xFF946D48), RoundedCornerShape(10.dp))
-               .clickable { onClick() }
          ) {
             // para imagen de fondo añadir aqui
             /*

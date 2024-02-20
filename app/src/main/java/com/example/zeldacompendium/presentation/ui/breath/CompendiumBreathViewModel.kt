@@ -12,7 +12,9 @@ import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 import androidx.compose.runtime.State
+import com.example.zeldacompendium.data.remote.responses.Data
 import com.example.zeldacompendium.presentation.ui.navigation.AppNavigator
+import com.example.zeldacompendium.presentation.ui.navigation.Destination
 
 @HiltViewModel
 class CompendiumBreathViewModel @Inject constructor(
@@ -63,5 +65,13 @@ class CompendiumBreathViewModel @Inject constructor(
 
    fun onBackButtonClicked() {
       appNavigator.tryNavigateBack()
+   }
+   fun onItemRowClicked(name: String, category: String) {
+      appNavigator.tryNavigateTo(
+         Destination.ItemDetailsScreen(
+            name = name,
+            category = category
+         )
+      )
    }
 }

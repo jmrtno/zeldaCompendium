@@ -23,19 +23,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
+import com.example.zeldacompendium.presentation.ui.detail.DetailScreen
 import com.example.zeldacompendium.presentation.ui.commons.ClickableGlowingCard
+import com.example.zeldacompendium.presentation.ui.home.HomeViewModel
 
 @Composable
 fun CompendiumItem(
-   entry: CompendiumListEntry,
    modifier: Modifier = Modifier,
+   entry: CompendiumListEntry
 ) {
-   Box(modifier = modifier
-      .padding(top = 30.dp)
+   Box(
+      modifier = modifier
+         .padding(top = 30.dp)
    ) {
       Column(
          modifier = modifier
@@ -73,7 +77,11 @@ fun CompendiumItem(
             color = Color.LightGray
          )
       }
-      Box(modifier = modifier.fillMaxWidth().padding(horizontal = 15.dp)) {
+      Box(
+         modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 15.dp)
+      ) {
          ClickableGlowingCard(
             glowingColor = Color(0xFF005CBA),
             modifier = Modifier
