@@ -22,7 +22,6 @@ class ZeldaCompendiumApp : Application(), ImageLoaderFactory {
                     .build()
             }
             .respectCacheHeaders(false)
-            .logger(DebugLogger())
             .build()
     }
     override fun onCreate() {

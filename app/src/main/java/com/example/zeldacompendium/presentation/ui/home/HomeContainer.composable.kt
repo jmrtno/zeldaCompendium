@@ -18,26 +18,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.presentation.ui.commons.ImageButton
 import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
 import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 
 @Composable
-fun HomeContainer(){
+fun HomeContainer(
+   navController: NavController,
+){
    Surface(
       color = MaterialTheme.colorScheme.surface,
       modifier = Modifier.fillMaxSize()
    ) {
       SetBackgroundImage()
       SetFrame()
-      GameNavigation()
+      GameNavigation(navController = navController)
    }
 }
 
 @Composable
 fun GameNavigation(
-   homeViewModel: HomeViewModel = hiltViewModel()
+   navController: NavController,
 ) {
    Box(
       modifier = Modifier
@@ -49,7 +52,9 @@ fun GameNavigation(
             backgroundDrawableId = R.drawable.button_bg,
             border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
-               homeViewModel.onNavigateToBreathButtonClicked()
+               navController.navigate(
+                  "compendium_breath_screen"
+               )
             }
          ) {
             Text(text = "BOTW", color = Color(0xFF19FFFF))
@@ -59,7 +64,9 @@ fun GameNavigation(
             backgroundDrawableId = R.drawable.button_bg,
             border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
-               homeViewModel.onNavigateToTearsButtonClicked()
+               navController.navigate(
+                  "compendium_tears_screen"
+               )
             }
          ) {
             Text(text = "TOTK", color = Color(0xFF19FFFF))

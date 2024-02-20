@@ -1,7 +1,5 @@
 package com.example.zeldacompendium.di
 
-import com.example.zeldacompendium.presentation.ui.navigation.AppNavigator
-import com.example.zeldacompendium.presentation.ui.navigation.AppNavigatorImpl
 import com.example.zeldacompendium.data.remote.CompendiumApi
 import com.example.zeldacompendium.domain.repository.CompendiumRepository
 import com.example.zeldacompendium.data.utils.Constants.BASE_URL
@@ -9,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -25,17 +24,26 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePokeApi(): CompendiumApi {
-        return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
-            .create(CompendiumApi:: class.java)
+    fun provideLoggingInterceptor(): LoggingInterceptor {
+        return LoggingInterceptor()
     }
 
     @Singleton
     @Provides
-    fun provideAppNavigator(): AppNavigator {
-        return AppNavigatorImpl()
+    fun provideOkHttpClient(loggingInterceptor: LoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCompendiumApi(okHttpClient: OkHttpClient): CompendiumApi {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .build()
+            .create(CompendiumApi::class.java)
     }
 }

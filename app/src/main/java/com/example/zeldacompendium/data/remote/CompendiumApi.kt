@@ -12,4 +12,9 @@ interface CompendiumApi {
 
     @GET("all?game=1")
     suspend fun getBreathAllEntries(): CompendiumList
+
+    @GET("entry/{id}")
+    suspend fun getItemInfo(
+        @Path("id") id: Int
+    ): Data
 }

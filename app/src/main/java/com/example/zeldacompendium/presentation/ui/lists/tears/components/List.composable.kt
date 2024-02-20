@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.tears.components.list
+package com.example.zeldacompendium.presentation.ui.lists.tears.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,9 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.presentation.ui.detail.DetailScreen
 import com.example.zeldacompendium.presentation.ui.commons.ClickableGlowingCard
-import com.example.zeldacompendium.presentation.ui.tears.CompendiumTearsViewModel
+import com.example.zeldacompendium.presentation.ui.lists.tears.CompendiumTearsViewModel
 
 @Composable
 fun CompendiumList(
@@ -88,7 +87,7 @@ fun CompendiumItem(
          )
          Text(
             modifier = modifier.weight(0.3f),
-            text = "#${entry.number}",
+            text = "#${entry.id}",
             textAlign = TextAlign.End,
             maxLines = 1,
             fontSize = 25.sp,
@@ -122,7 +121,7 @@ fun CompendiumItePreview() {
       entry = CompendiumListEntry(
          category = "creatures",
          imageURL = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/128/image",
-         number = 345,
+         id = 345,
          compendiumName = "asdasdas dasdasd asdas fgd dfgdfgdfgd asdasdasdasd"
       )
    )

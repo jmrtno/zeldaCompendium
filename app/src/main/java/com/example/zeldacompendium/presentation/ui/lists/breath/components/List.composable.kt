@@ -1,14 +1,10 @@
-package com.example.zeldacompendium.presentation.ui.breath.components.list
+package com.example.zeldacompendium.presentation.ui.lists.breath.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -22,22 +18,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.presentation.ui.breath.CompendiumBreathViewModel
-import com.example.zeldacompendium.presentation.ui.home.HomeViewModel
+import com.example.zeldacompendium.presentation.ui.lists.breath.CompendiumBreathViewModel
 
 @Composable
 fun CompendiumList(
    compendiumList: List<CompendiumListEntry>,
+   navController: NavController,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
 ) {
    val loadError by remember { viewModel.loadError }
    val isLoading by remember { viewModel.isLoading }
 
    Column {
-      compendiumList.forEachIndexed { index, item ->
+      compendiumList.forEachIndexed { index, _ ->
          CompendiumItem(
-            modifier = Modifier.clickable { viewModel.onItemRowClicked(item.compendiumName, item.category) },
+            navController = navController,
             entry = compendiumList[index]
          )
       }

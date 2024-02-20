@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.breath
+package com.example.zeldacompendium.presentation.ui.lists.breath
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -12,21 +12,17 @@ import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 import androidx.compose.runtime.State
-import com.example.zeldacompendium.data.remote.responses.Data
-import com.example.zeldacompendium.presentation.ui.navigation.AppNavigator
-import com.example.zeldacompendium.presentation.ui.navigation.Destination
 
 @HiltViewModel
 class CompendiumBreathViewModel @Inject constructor(
    private val repository: CompendiumRepository,
-   private val appNavigator: AppNavigator
 ): ViewModel() {
 
    private val _compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
    val compendiumList: State<List<CompendiumListEntry>> = _compendiumList
+
    var loadError = mutableStateOf("")
    var isLoading = mutableStateOf(false)
-
    fun loadCompendium() {
       viewModelScope.launch {
          isLoading.value = true
@@ -61,17 +57,5 @@ class CompendiumBreathViewModel @Inject constructor(
 
          }
       }
-   }
-
-   fun onBackButtonClicked() {
-      appNavigator.tryNavigateBack()
-   }
-   fun onItemRowClicked(name: String, category: String) {
-      appNavigator.tryNavigateTo(
-         Destination.ItemDetailsScreen(
-            name = name,
-            category = category
-         )
-      )
    }
 }

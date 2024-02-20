@@ -1,5 +1,6 @@
 package com.example.zeldacompendium.domain.repository
 
+import android.util.Log
 import com.example.zeldacompendium.data.remote.CompendiumApi
 import com.example.zeldacompendium.data.remote.responses.CompendiumList
 import com.example.zeldacompendium.data.remote.responses.Data
@@ -25,6 +26,16 @@ class CompendiumRepository @Inject constructor(
          api.getBreathAllEntries()
       } catch (e: Exception) {
          return Resource.Error("An unknown error occurred.")
+      }
+      return Resource.Success(response)
+   }
+
+   suspend fun getItemInfo(id: Int) : Resource<Data> {
+      val response = try {
+         Log.d("getItemInfo",api.getItemInfo(id).toString())
+         api.getItemInfo(id)
+      } catch (e: Exception) {
+         return Resource.Error("An unknow error ocurred.")
       }
       return Resource.Success(response)
    }
