@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.zeldacompendium.data.remote.CompendiumApi
 import com.example.zeldacompendium.data.remote.responses.CompendiumList
 import com.example.zeldacompendium.data.remote.responses.Data
+import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Resource
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
@@ -29,13 +30,11 @@ class CompendiumRepository @Inject constructor(
       }
       return Resource.Success(response)
    }
-
-   suspend fun getItemInfo(id: Int) : Resource<Data> {
+   suspend fun getItemInfo(itemId: Int): Resource<ItemDetailModel>{
       val response = try {
-         Log.d("getItemInfo",api.getItemInfo(id).toString())
-         api.getItemInfo(id)
+         api.getItemInfo(itemId)
       } catch (e: Exception) {
-         return Resource.Error("An unknow error ocurred.")
+         return Resource.Error("An unknow error occurred.")
       }
       return Resource.Success(response)
    }

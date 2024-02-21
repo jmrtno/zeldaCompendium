@@ -39,7 +39,6 @@ fun CompendiumItem(
    Box(modifier = modifier
       .padding(top = 30.dp)
       .clickable {
-         Log.d("clickOnItem",entry.id.toString())
          navController.navigate(
             "item_detail_screen/${entry.id}"
          )

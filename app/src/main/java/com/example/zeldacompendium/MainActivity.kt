@@ -1,7 +1,6 @@
 package com.example.zeldacompendium
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
@@ -10,13 +9,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.zeldacompendium.presentation.ui.detail.CompendiumDetailCard
+import com.example.zeldacompendium.presentation.ui.detail.ItemDetailScreen
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
 import com.example.zeldacompendium.presentation.ui.lists.breath.BreathContainer
 import com.example.zeldacompendium.presentation.ui.lists.tears.TearsContainer
 import com.example.zeldacompendium.presentation.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -44,21 +42,17 @@ class MainActivity : ComponentActivity() {
                   )
                }
                composable(
-                  "item_detail_screen/{id}",
+                  "item_detail_screen/{itemId}",
                   arguments = listOf(
-                     navArgument("id") {
+                     navArgument("itemId") {
                         type = NavType.IntType
                      }
                   )
                ) {
-                  val id = remember {
-                     it.arguments?.getInt("id")
+                  val itemId = remember {
+                     it.arguments?.getInt("itemId")
                   }
-                  if (id != null) {
-                     CompendiumDetailCard(
-                        id = id,
-                     )
-                  }
+                  ItemDetailScreen(itemId = itemId ?: 0, navController = navController)
                }
             }
          }
