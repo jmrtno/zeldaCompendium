@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui
+package com.example.zeldacompendium.presentation.ui.commons
 
 
 import androidx.compose.foundation.Image

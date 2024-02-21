@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.breath
+package com.example.zeldacompendium.presentation.ui.lists.breath
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -15,18 +15,14 @@ import androidx.compose.runtime.State
 
 @HiltViewModel
 class CompendiumBreathViewModel @Inject constructor(
-   private val repository: CompendiumRepository
+   private val repository: CompendiumRepository,
 ): ViewModel() {
 
    private val _compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
    val compendiumList: State<List<CompendiumListEntry>> = _compendiumList
+
    var loadError = mutableStateOf("")
    var isLoading = mutableStateOf(false)
-
-   init {
-      loadCompendium()
-   }
-
    fun loadCompendium() {
       viewModelScope.launch {
          isLoading.value = true

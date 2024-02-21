@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -23,11 +24,26 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePokeApi(): CompendiumApi {
+    fun provideLoggingInterceptor(): LoggingInterceptor {
+        return LoggingInterceptor()
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(loggingInterceptor: LoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCompendiumApi(okHttpClient: OkHttpClient): CompendiumApi {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
+            .client(okHttpClient)
             .build()
-            .create(CompendiumApi:: class.java)
+            .create(CompendiumApi::class.java)
     }
 }

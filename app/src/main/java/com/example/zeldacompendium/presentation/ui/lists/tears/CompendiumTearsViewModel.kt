@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.tears
+package com.example.zeldacompendium.presentation.ui.lists.tears
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -14,16 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CompendiumTearsViewModel @Inject constructor(
-    private val repository: CompendiumRepository
+    private val repository: CompendiumRepository,
 ): ViewModel() {
 
     var compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
-
-    init {
-        loadCompendium()
-    }
 
     fun loadCompendium(){
         viewModelScope.launch {

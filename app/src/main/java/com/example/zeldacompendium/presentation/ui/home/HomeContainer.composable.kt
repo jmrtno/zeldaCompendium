@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.selectgame
+package com.example.zeldacompendium.presentation.ui.home
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -17,16 +17,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.presentation.ui.ImageButton
-import com.example.zeldacompendium.presentation.ui.selectgame.component.SetFrame
+import com.example.zeldacompendium.presentation.ui.commons.ImageButton
+import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 
 @Composable
-fun SelectGameContainer(
-   navController: NavController
-) {
+fun HomeContainer(
+   navController: NavController,
+){
    Surface(
       color = MaterialTheme.colorScheme.surface,
       modifier = Modifier.fillMaxSize()
@@ -39,7 +40,7 @@ fun SelectGameContainer(
 
 @Composable
 fun GameNavigation(
-   navController: NavController
+   navController: NavController,
 ) {
    Box(
       modifier = Modifier
@@ -72,25 +73,4 @@ fun GameNavigation(
          }
       }
    }
-}
-
-@Composable
-fun SetBackgroundImage() {
-   Box(
-      modifier = Modifier.fillMaxSize(),
-   ) {
-      Image(
-         modifier = Modifier.matchParentSize(),
-         painter = painterResource(R.drawable.main_bg),
-         contentDescription = "bg",
-         contentScale = ContentScale.None,
-      )
-   }
-}
-
-@Preview
-@Composable
-fun SelectGameContainerPreview() {
-   val navController = rememberNavController()
-   SelectGameContainer(navController = navController)
 }
