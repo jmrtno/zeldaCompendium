@@ -45,9 +45,7 @@ fun BreathContainer(
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
-   LaunchedEffect(key1 = true) {
-      viewModel.loadCompendium()
-   }
+
    var selectedIndex by remember { mutableIntStateOf(0) }
    Scaffold(
       topBar = {
@@ -89,15 +87,8 @@ fun BreathContainer(
       Column(
          modifier = Modifier
             .padding(padding)
-            .verticalScroll(rememberScrollState())
       ) {
-         Image(
-            painter = painterResource(id = R.drawable.logo_botw),
-            contentDescription = "Zelda botw Logo",
-            modifier = Modifier
-               .fillMaxWidth()
-               .size(120.dp)
-         )
+
          val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList, navController = navController)
       }

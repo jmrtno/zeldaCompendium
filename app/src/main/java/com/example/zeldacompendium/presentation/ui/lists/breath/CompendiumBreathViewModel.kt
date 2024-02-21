@@ -18,12 +18,16 @@ class CompendiumBreathViewModel @Inject constructor(
    private val repository: CompendiumRepository,
 ): ViewModel() {
 
-   private val _compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
-   val compendiumList: State<List<CompendiumListEntry>> = _compendiumList
-
+   var compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
+   // Utilizar un conjunto para realizar un seguimiento de elementos únicos
+   private val uniqueEntriesSet = mutableSetOf<CompendiumListEntry>()
    var loadError = mutableStateOf("")
    var isLoading = mutableStateOf(false)
-   fun loadCompendium() {
+
+   init {
+      loadBreathList()
+   }
+   fun loadBreathList() {
       viewModelScope.launch {
          isLoading.value = true
          when (val data = repository.getBreathAllEntries()) {
@@ -39,13 +43,13 @@ class CompendiumBreathViewModel @Inject constructor(
                      ) else it.toString()
                   }, entry.category, url, entry.id)
                }
+
+               // Filtrar elementos duplicados antes de agregar a la lista
+               val uniqueNewEntries = compendiumEntries.filter { uniqueEntriesSet.add(it) }
+
                loadError.value = ""
                isLoading.value = false
-               // Convertir la lista a un conjunto para eliminar duplicados
-               val uniqueSet = compendiumEntries.toSet()
-
-               // Asignar la lista única al _compendiumList
-               _compendiumList.value = uniqueSet.toList()
+               compendiumList.value += uniqueNewEntries
             }
 
             is Resource.Error -> {

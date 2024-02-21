@@ -1,9 +1,7 @@
 package com.example.zeldacompendium.presentation.ui.commons
 
 import android.graphics.Paint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,14 +13,11 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.zeldacompendium.R
 
 @Composable
-fun ClickableGlowingCard(
+fun GlowingCard(
    glowingColor: Color,
    modifier: Modifier = Modifier,
    //imageDrawableResId: Int = R.drawable.button_bg,

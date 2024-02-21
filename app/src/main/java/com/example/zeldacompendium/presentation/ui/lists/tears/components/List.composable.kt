@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.presentation.ui.commons.ClickableGlowingCard
+import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
 import com.example.zeldacompendium.presentation.ui.lists.tears.CompendiumTearsViewModel
 
 @Composable
@@ -64,7 +64,7 @@ fun CompendiumItem(
    Box(modifier = modifier
       .fillMaxWidth()
       .padding(15.dp)) {
-      ClickableGlowingCard(
+      GlowingCard(
          glowingColor = Color(0xFF005CBA),
          modifier = Modifier
             .height(75.dp),

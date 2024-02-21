@@ -41,19 +41,6 @@ class MainActivity : ComponentActivity() {
                      navController = navController
                   )
                }
-               composable(
-                  "item_detail_screen/{itemId}",
-                  arguments = listOf(
-                     navArgument("itemId") {
-                        type = NavType.IntType
-                     }
-                  )
-               ) {
-                  val itemId = remember {
-                     it.arguments?.getInt("itemId")
-                  }
-                  ItemDetailScreen(itemId = itemId ?: 0, navController = navController)
-               }
             }
          }
       }
