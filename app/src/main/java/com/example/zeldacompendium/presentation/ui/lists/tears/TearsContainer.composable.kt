@@ -46,9 +46,6 @@ fun TearsContainer(
    viewModel: CompendiumTearsViewModel = hiltViewModel(),
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
-   LaunchedEffect(key1 = true) {
-      viewModel.loadCompendium()
-   }
    var selectedIndex by remember { mutableStateOf(0) }
    Scaffold(
       topBar = {
@@ -59,7 +56,7 @@ fun TearsContainer(
             ),
             title = { Text("") },
             navigationIcon = {
-               IconButton(onClick = { navController.popBackStack() }) {
+               IconButton(onClick = { navController.navigateUp() }) {
                   Icon(
                      imageVector = Icons.Filled.ArrowBack,
                      tint = Color(0xFF19FFFF),
@@ -84,15 +81,7 @@ fun TearsContainer(
          modifier = Modifier
             .padding(padding)
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
       ) {
-         Image(
-            painter = painterResource(id = R.drawable.logo_tears),
-            contentDescription = "Zelda totk Logo",
-            modifier = Modifier
-               .fillMaxWidth()
-               .size(120.dp)
-         )
          val filteredList =
             compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList)

@@ -56,7 +56,7 @@ fun BreathContainer(
             ),
             title = { },
             navigationIcon = {
-               IconButton(onClick = { navController.popBackStack() }) {
+               IconButton(onClick = { navController.navigateUp() }) {
                   Icon(
                      imageVector = Icons.Filled.ArrowBack,
                      tint = Color(0xFF19FFFF),
@@ -90,7 +90,7 @@ fun BreathContainer(
       ) {
 
          val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
-         CompendiumList(compendiumList = filteredList, navController = navController)
+         CompendiumList(compendiumList = filteredList)
       }
    }
 }
