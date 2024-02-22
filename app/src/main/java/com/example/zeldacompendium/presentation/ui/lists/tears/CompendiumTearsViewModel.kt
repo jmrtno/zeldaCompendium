@@ -21,6 +21,10 @@ class CompendiumTearsViewModel @Inject constructor(
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
 
+    init {
+       loadCompendium()
+    }
+
     fun loadCompendium(){
         viewModelScope.launch {
             isLoading.value = true
