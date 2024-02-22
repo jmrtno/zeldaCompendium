@@ -35,7 +35,6 @@ import com.example.zeldacompendium.presentation.ui.lists.breath.CompendiumBreath
 @Composable
 fun CompendiumList(
    compendiumList: List<CompendiumListEntry>,
-   navController: NavController,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
 ) {
 
@@ -64,8 +63,8 @@ fun CompendiumList(
       }
    }
    Box(
+      modifier = Modifier.fillMaxSize(),
       contentAlignment = Alignment.Center,
-      modifier = Modifier.fillMaxSize()
    ) {
       if (isLoading) {
          CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
