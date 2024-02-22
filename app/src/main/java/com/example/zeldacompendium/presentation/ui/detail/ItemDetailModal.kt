@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
@@ -31,11 +29,10 @@ import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Resource
 import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
-import com.example.zeldacompendium.presentation.ui.lists.breath.components.ItemImage
 import java.util.Locale
 
 @Composable
-fun ItemDetailScreen(
+fun ItemDetailModal(
    itemId: Int,
    viewModel: ItemDetailViewModel = hiltViewModel()
 ) {
@@ -74,7 +71,6 @@ fun ItemDetailStateWrapper(
             itemInfo = itemInfo.data!!
          )
       }
-
       is Resource.Error -> {
          Text(
             text = itemInfo.message!!,
@@ -82,7 +78,6 @@ fun ItemDetailStateWrapper(
             modifier = modifier
          )
       }
-
       is Resource.Loading -> {
          CircularProgressIndicator(
             color = MaterialTheme.colorScheme.primary,
@@ -112,7 +107,7 @@ fun ItemDetailSection(
          color = Color.White
       )
       Box(
-         modifier = Modifier.padding(top = 35.dp),
+         modifier = Modifier.padding(top = 15.dp),
          contentAlignment = Alignment.Center
       ) {
          AsyncImage(
@@ -135,10 +130,10 @@ fun ItemDetailSection(
          GlowingCard(
             modifier = Modifier
                .padding(
-                  top = 40.dp,
+                  top = 25.dp,
                   start = 30.dp,
                   end = 30.dp,
-                  bottom = 60.dp
+                  bottom = 35.dp
                ),
             glowingColor = Color(0xFF005CBA),
             cornersRadius = 10.dp
