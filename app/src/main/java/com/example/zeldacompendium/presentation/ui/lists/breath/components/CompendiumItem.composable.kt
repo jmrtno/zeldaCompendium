@@ -39,7 +39,7 @@ import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.ItemDetailScreen
+import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModal
 
 @Composable
 fun CompendiumItem(
@@ -88,7 +88,7 @@ fun CompendiumItem(
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState
       ) {
-         ItemDetailScreen(itemId = entry.id)
+         ItemDetailModal(itemId = entry.id)
       }
    }
 }
@@ -147,10 +147,6 @@ fun ItemBg(
 @Preview
 @Composable
 fun CompendiumItePreview() {
-   var showBottomSheet by remember { mutableStateOf(false) }
-   ModalBottomSheet(onDismissRequest = { showBottomSheet = false }) {
-
-   }
    /*
    CompendiumItem(
       entry = CompendiumListEntry(
@@ -160,6 +156,5 @@ fun CompendiumItePreview() {
          compendiumName = "asdasdas dasdasd asdas"
       )
    )
-
     */
 }
