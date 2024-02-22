@@ -3,13 +3,9 @@ package com.example.zeldacompendium
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.remember
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.example.zeldacompendium.presentation.ui.detail.ItemDetailScreen
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
 import com.example.zeldacompendium.presentation.ui.lists.breath.BreathContainer
 import com.example.zeldacompendium.presentation.ui.lists.tears.TearsContainer
