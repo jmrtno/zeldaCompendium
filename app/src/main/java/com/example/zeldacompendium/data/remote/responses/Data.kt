@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Data(
     val category: String,
-    @SerializedName("common_locations") val commonLocations: List<String>,
+    @SerializedName("common_locations") val commonLocations: List<String>?,
     @SerializedName("cooking_effect") val cookingEffect: String,
     val description: String,
     val dlc: Boolean,
