@@ -83,7 +83,7 @@ fun CompendiumItem(
          scrimColor = Color.Transparent,
          windowInsets = WindowInsets(left = 15.dp,
             right = 15.dp,
-            top = 60.dp,
+            top = 85.dp,
             bottom = 60.dp),
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState
