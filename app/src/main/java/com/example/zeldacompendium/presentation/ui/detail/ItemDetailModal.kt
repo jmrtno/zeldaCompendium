@@ -10,11 +10,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +36,6 @@ import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Resource
-import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
 import java.util.Locale
 
 @Composable
@@ -102,6 +100,7 @@ fun ItemDetailStateWrapper(
 fun ItemDetailSection(
    itemInfo: ItemDetailModel,
 ) {
+
    Column(
       verticalArrangement = Arrangement.SpaceEvenly,
       horizontalAlignment = Alignment.CenterHorizontally
@@ -114,7 +113,6 @@ fun ItemDetailSection(
          verticalAlignment = Alignment.CenterVertically
       ) {
          Box(
-            modifier = Modifier.padding(top = 15.dp),
             contentAlignment = Alignment.Center
          ) {
             AsyncImage(
@@ -156,81 +154,46 @@ fun ItemDetailSection(
       Column(
          modifier = Modifier
             .fillMaxWidth()
-            .padding(30.dp)
+            .padding(15.dp)
       ) {
-         Box(
-            modifier = Modifier.weight(0.3f),
-            contentAlignment = Alignment.Center
+         LazyColumn(
+            modifier = Modifier
+               .padding(7.dp)
+               .height(100.dp)
          ) {
-            GlowingCard(
-               glowingColor = Color(0xFF005CBA),
-               cornersRadius = 10.dp
-            ) {
+            item {
                Text(
-                  modifier = Modifier
-                     .padding(11.dp)
-                     .verticalScroll(rememberScrollState()),
                   text = itemInfo.data.description,
+                  lineHeight = 18.sp,
                   fontSize = 14.sp,
                   color = Color.White
                )
             }
          }
-         Row(
-            modifier = Modifier
-               .weight(0.5f)
-               .padding(top = 30.dp)
-         ) {
-            Box(
-               modifier = Modifier
-                  .weight(0.5f)
-                  .padding(end = 10.dp),
-               contentAlignment = Alignment.Center
-            ) {
-               GlowingCard(
-                  glowingColor = Color(0xFF005CBA),
-                  cornersRadius = 10.dp
-               ) {
-
-               }
+         LazyColumn(contentPadding = PaddingValues(11.dp)) {
+            val locationCount = itemInfo.data.commonLocations
+            item {
+               Text(
+                  text = "Locations",
+                  fontWeight = FontWeight.Bold,
+                  fontStyle = FontStyle.Italic,
+                  color = Color.LightGray.copy(alpha = 0.5f)
+               )
+               HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
             }
-            Box(
-               modifier = Modifier
-                  .weight(0.5f)
-                  .padding(start = 10.dp),
-               contentAlignment = Alignment.Center
-            ) {
-               GlowingCard(
-                  glowingColor = Color(0xFF005CBA),
-                  cornersRadius = 10.dp
-               ) {
-                  LazyColumn(contentPadding = PaddingValues(11.dp)) {
-                     val locationCount = itemInfo.data.commonLocations
-                     item {
-                        Text(
-                           text = "Locations",
-                           fontWeight = FontWeight.Bold,
-                           fontStyle = FontStyle.Italic,
-                           color = Color.LightGray.copy(alpha = 0.5f)
-                        )
-                        HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
-                     }
-                     if (!locationCount.isNullOrEmpty()) {
-                        items(locationCount.size) {
-                           Text(
-                              text = itemInfo.data.commonLocations[it],
-                              color = Color.White
-                           )
-                        }
-                     } else {
-                        item {
-                           Text(
-                              text = "Not defined",
-                              color = Color.White
-                           )
-                        }
-                     }
-                  }
+            if (!locationCount.isNullOrEmpty()) {
+               items(locationCount.size) {
+                  Text(
+                     text = itemInfo.data.commonLocations[it],
+                     color = Color.White
+                  )
+               }
+            } else {
+               item {
+                  Text(
+                     text = "Not defined",
+                     color = Color.White
+                  )
                }
             }
          }

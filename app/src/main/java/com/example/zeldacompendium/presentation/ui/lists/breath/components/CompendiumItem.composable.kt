@@ -75,16 +75,19 @@ fun CompendiumItem(
       )
    }
    if (showBottomSheet) {
+
       ModalBottomSheet(
          onDismissRequest = {
             showBottomSheet = false
          },
          containerColor = Color(0XFF0C0D09).copy(alpha = 0.95f),
          scrimColor = Color.Transparent,
-         windowInsets = WindowInsets(left = 15.dp,
+         windowInsets = WindowInsets(
+            left = 15.dp,
             right = 15.dp,
             top = 85.dp,
-            bottom = 60.dp),
+            bottom = 60.dp
+         ),
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState
       ) {
@@ -92,6 +95,7 @@ fun CompendiumItem(
       }
    }
 }
+
 
 @Composable
 fun ItemImage(
@@ -128,18 +132,19 @@ fun ItemBg(
    ) {
       GlowingCard(
          glowingColor = Color(0xFF005CBA), modifier = Modifier.height(75.dp), cornersRadius = 10.dp
-      ) {}
-      Row(
-         modifier = modifier
-            .fillMaxWidth()
-            .height(75.dp)
-            .padding(end = 15.dp),
-         verticalAlignment = Alignment.CenterVertically,
-         horizontalArrangement = Arrangement.End
       ) {
-         Text(
-            text = "#$entryNumber", fontSize = 25.sp, color = Color.White.copy(alpha = 0.4f)
-         )
+         Row(
+            modifier = modifier
+               .fillMaxWidth()
+               .height(75.dp)
+               .padding(end = 15.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
+         ) {
+            Text(
+               text = "#$entryNumber", fontSize = 25.sp, color = Color.White.copy(alpha = 0.4f)
+            )
+         }
       }
    }
 }
