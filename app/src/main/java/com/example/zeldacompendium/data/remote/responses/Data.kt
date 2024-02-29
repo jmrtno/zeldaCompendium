@@ -8,7 +8,7 @@ data class Data(
     @SerializedName("cooking_effect") val cookingEffect: String,
     val description: String,
     val dlc: Boolean,
-    val drops: List<String>,
+    val drops: List<String>?,
     val edible: Boolean,
     @SerializedName("fuse_attack_power") val fuseAttackPower: Int,
     @SerializedName("hearts_recovered")val heartsRecovered: Double,

@@ -39,7 +39,7 @@ import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModal
+import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModalContainer
 
 @Composable
 fun CompendiumItem(
@@ -91,7 +91,7 @@ fun CompendiumItem(
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState
       ) {
-         ItemDetailModal(itemId = entry.id)
+         ItemDetailModalContainer(itemId = entry.id)
       }
    }
 }

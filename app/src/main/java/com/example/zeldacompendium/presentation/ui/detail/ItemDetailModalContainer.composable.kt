@@ -1,4 +1,3 @@
-
 package com.example.zeldacompendium.presentation.ui.detail
 
 import androidx.compose.foundation.Image
@@ -6,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -36,10 +32,15 @@ import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Resource
+import com.example.zeldacompendium.presentation.ui.detail.categories.CreaturesItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.EquipmentItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.MaterialsItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.MonsterItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.TreasureItemDetail
 import java.util.Locale
 
 @Composable
-fun ItemDetailModal(
+fun ItemDetailModalContainer(
    itemId: Int,
    viewModel: ItemDetailViewModel = hiltViewModel()
 ) {
@@ -170,32 +171,12 @@ fun ItemDetailSection(
                )
             }
          }
-         LazyColumn(contentPadding = PaddingValues(11.dp)) {
-            val locationCount = itemInfo.data.commonLocations
-            item {
-               Text(
-                  text = "Locations",
-                  fontWeight = FontWeight.Bold,
-                  fontStyle = FontStyle.Italic,
-                  color = Color.LightGray.copy(alpha = 0.5f)
-               )
-               HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
-            }
-            if (!locationCount.isNullOrEmpty()) {
-               items(locationCount.size) {
-                  Text(
-                     text = itemInfo.data.commonLocations[it],
-                     color = Color.White
-                  )
-               }
-            } else {
-               item {
-                  Text(
-                     text = "Not defined",
-                     color = Color.White
-                  )
-               }
-            }
+         when(itemInfo.data.category){
+            "creatures" -> CreaturesItemDetail(itemInfo = itemInfo)
+            "monsters" -> MonsterItemDetail(itemInfo = itemInfo)
+            "equipment" -> EquipmentItemDetail(itemInfo = itemInfo)
+            "materials" -> MaterialsItemDetail(itemInfo = itemInfo)
+            "treasure" -> TreasureItemDetail(itemInfo = itemInfo)
          }
       }
    }
