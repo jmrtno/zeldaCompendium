@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.detail.categories
+package com.example.zeldacompendium.presentation.ui.detail.categories.materials
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -32,11 +33,11 @@ import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Resource
-import com.example.zeldacompendium.presentation.ui.detail.categories.CreaturesItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.EquipmentItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.MaterialsItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.MonsterItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.TreasureItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.CreaturesItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.equipment.EquipmentItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.materials.MaterialsItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.monsters.MonsterItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.treasures.TreasureItemDetail
 import java.util.Locale
 
 @Composable
@@ -101,7 +102,6 @@ fun ItemDetailStateWrapper(
 fun ItemDetailSection(
    itemInfo: ItemDetailModel,
 ) {
-
    Column(
       verticalArrangement = Arrangement.SpaceEvenly,
       horizontalAlignment = Alignment.CenterHorizontally
@@ -138,7 +138,7 @@ fun ItemDetailSection(
                   ) else it.toString()
                },
                fontWeight = FontWeight.Bold,
-               fontSize = 20.sp,
+               fontSize = 18.sp,
                textAlign = TextAlign.Start,
                color = Color.White
             )
@@ -147,6 +147,16 @@ fun ItemDetailSection(
                fontWeight = FontWeight.Bold,
                fontSize = 26.sp,
                textAlign = TextAlign.Start,
+               color = Color.LightGray.copy(alpha = 0.5f)
+            )
+            Text(
+               text = itemInfo.data.category.replaceFirstChar {
+                  if (it.isLowerCase()) it.titlecase(
+                     Locale.ROOT
+                  ) else it.toString()
+               },
+               fontWeight = FontWeight.Bold,
+               fontStyle = FontStyle.Italic,
                color = Color.LightGray.copy(alpha = 0.5f)
             )
          }

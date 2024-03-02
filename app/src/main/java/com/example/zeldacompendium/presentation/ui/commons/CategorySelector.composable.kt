@@ -19,21 +19,6 @@ import com.example.zeldacompendium.R
 fun CategorySelector(onItemSelected: (Int) -> Unit){
    Column{
       var selectedIndex by remember { mutableStateOf(0) }
-      val items = listOf(
-         R.drawable.creatures,
-         R.drawable.monsters,
-         R.drawable.equipment,
-         R.drawable.materials,
-         R.drawable.treasures
-      )
-
-      val itemsSelected = listOf(
-         R.drawable.creatures_hint,
-         R.drawable.monsters_hint,
-         R.drawable.equipment_hint,
-         R.drawable.materials_hint,
-         R.drawable.treasures_hint
-      )
 
       SearchBar(modifier = Modifier.padding(top = 15.dp))
 
@@ -45,8 +30,8 @@ fun CategorySelector(onItemSelected: (Int) -> Unit){
          horizontalArrangement = Arrangement.Center
       ) {
          SegmentedControl(
-            items = items,
-            itemsSelected = itemsSelected,
+            items = CategorySelectorHelper.items,
+            itemsSelected = CategorySelectorHelper.itemsSelected,
             defaultSelectedItemIndex = 0
          ) {
             selectedIndex = it
