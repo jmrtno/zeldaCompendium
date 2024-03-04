@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,30 +20,69 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
+import java.util.Locale
 
 @Composable
 fun EquipmentItemDetail(
    itemInfo: ItemDetailModel,
+   game: Int
 ) {
    Row {
-      Column(
+      LazyColumn(
          modifier = Modifier
             .padding(11.dp)
             .weight(0.5f),
       ) {
-         Text(
-            text = "Properties",
-            fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Italic,
-            color = Color.LightGray.copy(alpha = 0.5f)
-         )
-         HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
-         PropertiesRow(R.drawable.attack_icon, "attack_icon", itemInfo.data.properties.attack)
-         PropertiesRow(R.drawable.defense_icon, "defense_icon", itemInfo.data.properties.defense)
+         item {
+            Text(
+               text = "Properties",
+               fontWeight = FontWeight.Bold,
+               fontStyle = FontStyle.Italic,
+               color = Color.LightGray.copy(alpha = 0.5f)
+            )
+            HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
+            PropertiesRow(
+               iconRes = R.drawable.attack_icon,
+               contentDescription = "attack_icon",
+               fontSize = 24.sp,
+               value = itemInfo.data.properties.attack.toString()
+            )
+            PropertiesRow(
+               iconRes = R.drawable.defense_icon,
+               contentDescription = "defense_icon",
+               fontSize = 24.sp,
+               value = itemInfo.data.properties.defense.toString()
+            )
+            if (game != 1) {
+               PropertiesRow(
+                  iconRes = R.drawable.effect_icon,
+                  contentDescription = "effect_icon",
+                  fontSize = 14.sp,
+                  value = itemInfo.data.properties.effect.replaceFirstChar {
+                     if (it.isLowerCase()) it.titlecase(
+                        Locale.ROOT
+                     ) else it.toString()
+                  },
+               )
+               PropertiesRow(
+                  iconRes = R.drawable.type_icon,
+                  contentDescription = "type_icon",
+                  fontSize = 14.sp,
+                  value = itemInfo.data.properties.type.replaceFirstChar {
+                     if (it.isLowerCase()) it.titlecase(
+                        Locale.ROOT
+                     ) else it.toString()
+                  },
+               )
+            }
+         }
       }
 
       VerticalDivider()
@@ -109,7 +149,8 @@ fun EquipmentItemDetail(
 fun PropertiesRow(
    @DrawableRes iconRes: Int,
    contentDescription: String,
-   value: Int
+   fontSize: TextUnit,
+   value: String
 ) {
    Row(
       modifier = Modifier.padding(vertical = 15.dp),
@@ -122,8 +163,8 @@ fun PropertiesRow(
          modifier = Modifier.size(32.dp)
       )
       Text(
-         text = "$value",
-         fontSize = 27.sp,
+         text = value,
+         fontSize = fontSize,
          color = Color.White
       )
    }

@@ -196,8 +196,8 @@ fun ItemDetailSection(
          when (itemInfo.data.category) {
             "creatures" -> CreaturesItemDetail(itemInfo = itemInfo)
             "monsters" -> MonsterItemDetail(itemInfo = itemInfo)
-            "equipment" -> EquipmentItemDetail(itemInfo = itemInfo)
-            "materials" -> MaterialsItemDetail(itemInfo = itemInfo)
+            "equipment" -> EquipmentItemDetail(itemInfo = itemInfo, game = game)
+            "materials" -> MaterialsItemDetail(itemInfo = itemInfo, game = game)
             "treasure" -> TreasureItemDetail(itemInfo = itemInfo)
          }
       }

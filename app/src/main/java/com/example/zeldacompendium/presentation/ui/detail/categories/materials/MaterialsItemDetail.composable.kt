@@ -26,6 +26,7 @@ import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.t
 @Composable
 fun MaterialsItemDetail(
    itemInfo: ItemDetailModel,
+   game: Int
 ) {
    Row {
       Column(
@@ -105,18 +106,35 @@ fun MaterialsItemDetail(
                .weight(0.4f)
          ) {
             val dlcInfo = itemInfo.data.dlc
-            Text(
-               text = "DLC",
-               fontWeight = FontWeight.Bold,
-               fontStyle = FontStyle.Italic,
-               color = Color.LightGray.copy(alpha = 0.5f)
-            )
-            HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
-            Text(
-               text = if (dlcInfo) "Yes" else "No",
-               fontSize = 14.sp,
-               color = Color.White
-            )
+            val fusedPower = itemInfo.data.fuseAttackPower.toString()
+            if (game == 1) {
+               Text(
+                  text = "DLC",
+                  fontWeight = FontWeight.Bold,
+                  fontStyle = FontStyle.Italic,
+                  color = Color.LightGray.copy(alpha = 0.5f)
+               )
+               HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
+               Text(
+                  text = if (dlcInfo) "Yes" else "No",
+                  fontSize = 14.sp,
+                  color = Color.White
+               )
+            } else {
+               Text(
+                  text = "Fused",
+                  fontWeight = FontWeight.Bold,
+                  fontStyle = FontStyle.Italic,
+                  color = Color.LightGray.copy(alpha = 0.5f)
+               )
+               HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
+               Text(
+                  text = "+${fusedPower} attack power",
+                  fontSize = 14.sp,
+                  color = Color.White
+               )
+            }
+
          }
       }
    }
