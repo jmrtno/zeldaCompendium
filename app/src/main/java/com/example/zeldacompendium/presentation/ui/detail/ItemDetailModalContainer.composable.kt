@@ -42,11 +42,12 @@ import java.util.Locale
 
 @Composable
 fun ItemDetailModalContainer(
+   game: Int,
    itemId: Int,
    viewModel: ItemDetailViewModel = hiltViewModel()
 ) {
    val itemInfo = produceState<Resource<ItemDetailModel>>(initialValue = Resource.Loading()) {
-      value = viewModel.getItemInfo(itemId)
+      value = viewModel.getItemInfo(itemId, game)
    }.value
 
    Box(
@@ -55,6 +56,7 @@ fun ItemDetailModalContainer(
    ) {
       ItemDetailStateWrapper(
          itemInfo = itemInfo,
+         game = game,
          loadingModifier = Modifier
             .size(100.dp)
             .align(Alignment.Center)
@@ -71,13 +73,14 @@ fun ItemDetailModalContainer(
 @Composable
 fun ItemDetailStateWrapper(
    itemInfo: Resource<ItemDetailModel>,
+   game: Int,
    modifier: Modifier = Modifier,
    loadingModifier: Modifier = Modifier
 ) {
    when (itemInfo) {
       is Resource.Success -> {
          ItemDetailSection(
-            itemInfo = itemInfo.data!!
+            itemInfo = itemInfo.data!!, game = game
          )
       }
 
@@ -101,6 +104,7 @@ fun ItemDetailStateWrapper(
 @Composable
 fun ItemDetailSection(
    itemInfo: ItemDetailModel,
+   game: Int
 ) {
    Column(
       verticalArrangement = Arrangement.SpaceEvenly,
@@ -120,8 +124,16 @@ fun ItemDetailSection(
                modifier = Modifier
                   .size(100.dp)
                   .border(0.5.dp, Color.White),
-               model = ImageRequest.Builder(LocalContext.current).data(itemInfo.data.image)
-                  .placeholder(R.drawable.placeholder_img).crossfade(true).build(),
+               model = ImageRequest.Builder(LocalContext.current)
+                  .data(
+                     if (game == 1) {
+                        itemInfo.data.image
+                     } else {
+                        R.drawable.placeholder_img
+                     }
+                  )
+                  .placeholder(R.drawable.placeholder_img)
+                  .crossfade(true).build(),
                contentDescription = ""
             )
             Image(
@@ -181,7 +193,7 @@ fun ItemDetailSection(
                )
             }
          }
-         when(itemInfo.data.category){
+         when (itemInfo.data.category) {
             "creatures" -> CreaturesItemDetail(itemInfo = itemInfo)
             "monsters" -> MonsterItemDetail(itemInfo = itemInfo)
             "equipment" -> EquipmentItemDetail(itemInfo = itemInfo)

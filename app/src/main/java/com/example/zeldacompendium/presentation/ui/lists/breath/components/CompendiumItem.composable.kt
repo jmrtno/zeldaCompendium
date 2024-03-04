@@ -91,7 +91,7 @@ fun CompendiumItem(
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState
       ) {
-         ItemDetailModalContainer(itemId = entry.id)
+         ItemDetailModalContainer(itemId = entry.id, game = 1)
       }
    }
 }

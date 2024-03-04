@@ -5,6 +5,7 @@ import com.example.zeldacompendium.data.remote.responses.Data
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CompendiumApi {
 
@@ -16,6 +17,7 @@ interface CompendiumApi {
 
     @GET("entry/{id}")
     suspend fun getItemInfo(
-        @Path("id") itemId: Int
+        @Path("id") itemId: Int,
+        @Query("game") game: Int
     ): ItemDetailModel
 }

@@ -17,7 +17,7 @@ class ItemDetailViewModel @Inject constructor(
    private val repository: CompendiumRepository
 ) : ViewModel() {
 
-   suspend fun getItemInfo(itemId: Int): Resource<ItemDetailModel> {
-      return repository.getItemInfo(itemId)
+   suspend fun getItemInfo(itemId: Int, game: Int): Resource<ItemDetailModel> {
+      return repository.getItemInfo(itemId, game)
    }
 }
