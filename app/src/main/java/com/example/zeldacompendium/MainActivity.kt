@@ -3,12 +3,17 @@ package com.example.zeldacompendium
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.zeldacompendium.domain.service.NavigationServiceImpl
+import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.ServiceProvider
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
 import com.example.zeldacompendium.presentation.ui.lists.breath.BreathContainer
 import com.example.zeldacompendium.presentation.ui.lists.tears.TearsContainer
+import com.example.zeldacompendium.presentation.ui.locationsmap.breath.LocationMap
 import com.example.zeldacompendium.presentation.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +25,8 @@ class MainActivity : ComponentActivity() {
       setContent {
          ZeldaCompendiumTheme {
             val navController = rememberNavController()
+            val navigationService = NavigationServiceImpl(navController)
+            ServiceProvider.navigationService = navigationService
             NavHost(
                navController = navController,
                startDestination = "compendium_navigation"
@@ -36,6 +43,15 @@ class MainActivity : ComponentActivity() {
                   BreathContainer(
                      navController = navController
                   )
+               }
+               composable(
+                  route = "locations_map_screen/{gameId}",
+                  arguments = listOf(navArgument("gameId") { type = NavType.IntType })
+               ) { backStackEntry ->
+                  val gameId = backStackEntry.arguments?.getInt("gameId")
+                  if (gameId != null) {
+                     LocationMap(gameId = gameId)
+                  }
                }
             }
          }

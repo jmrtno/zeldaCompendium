@@ -1,5 +1,6 @@
 package com.example.zeldacompendium.presentation.ui.detail.categories.creatures
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -16,12 +17,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
+import com.example.zeldacompendium.domain.service.NavigationService
 import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.type.Edible
 import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.type.NoEdible
+
+
+object ServiceProvider {
+   lateinit var navigationService: NavigationService
+}
 
 @Composable
 fun CreaturesItemDetail(
    itemInfo: ItemDetailModel,
+   gameId: Int
 ) {
    Row {
       Column(
@@ -56,7 +64,12 @@ fun CreaturesItemDetail(
                   Text(
                      text = itemInfo.data.commonLocations[it],
                      fontSize = 14.sp,
-                     color = Color.White
+                     color = Color.White,
+                     modifier = Modifier.clickable {
+                        ServiceProvider
+                           .navigationService
+                           .navigateTo("locations_map_screen/$gameId")
+                     }
                   )
                }
             } else {
