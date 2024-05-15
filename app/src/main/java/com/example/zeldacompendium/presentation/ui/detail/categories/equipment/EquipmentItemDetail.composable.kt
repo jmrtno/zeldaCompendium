@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,8 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +29,7 @@ import java.util.Locale
 @Composable
 fun EquipmentItemDetail(
    itemInfo: ItemDetailModel,
-   game: Int
+   gameId: Int
 ) {
    Row {
       LazyColumn(
@@ -60,7 +57,7 @@ fun EquipmentItemDetail(
                fontSize = 24.sp,
                value = itemInfo.data.properties.defense.toString()
             )
-            if (game != 1) {
+            if (gameId != 1) {
                PropertiesRow(
                   iconRes = R.drawable.effect_icon,
                   contentDescription = "effect_icon",

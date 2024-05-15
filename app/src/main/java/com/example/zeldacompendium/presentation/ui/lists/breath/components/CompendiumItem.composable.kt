@@ -61,7 +61,9 @@ fun CompendiumItem(
             .padding(horizontal = 40.dp),
       ) {
          ItemImage(
-            modifier = modifier, imageURL = entry.imageURL, compendiumName = entry.compendiumName
+            modifier = modifier,
+            imageURL = entry.imageURL,
+            compendiumName = entry.compendiumName
          )
          Text(
             modifier = modifier.offset(y = (-19).dp),
@@ -91,7 +93,7 @@ fun CompendiumItem(
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState
       ) {
-         ItemDetailModalContainer(itemId = entry.id, game = 1)
+         ItemDetailModalContainer(itemId = entry.id, gameId = 1)
       }
    }
 }

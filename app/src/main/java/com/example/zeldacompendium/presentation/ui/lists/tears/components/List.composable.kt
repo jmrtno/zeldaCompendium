@@ -46,6 +46,7 @@ import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
 import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModalContainer
 import com.example.zeldacompendium.presentation.ui.lists.tears.CompendiumTearsViewModel
+import timber.log.Timber
 
 @Composable
 fun CompendiumList(
@@ -152,7 +153,7 @@ fun CompendiumItem(
                shape = RoundedCornerShape(20.dp),
                sheetState = sheetState
             ) {
-               ItemDetailModalContainer(itemId = entry.id, game = 2)
+               ItemDetailModalContainer(itemId = entry.id, gameId = 2)
             }
          }
       }
@@ -176,15 +177,15 @@ fun RetrySection(
    }
 }
 
-@Preview
-@Composable
-fun CompendiumItePreview() {
-   CompendiumItem(
-      entry = CompendiumListEntry(
-         category = "creatures",
-         imageURL = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/128/image",
-         id = 345,
-         compendiumName = "asdasdas dasdasd asdas fgd dfgdfgdfgd asdasdasdasd"
-      )
-   )
-}
+//@Preview
+//@Composable
+//fun CompendiumItePreview() {
+//   CompendiumItem(
+//      entry = CompendiumListEntry(
+//         category = "creatures",
+//         imageURL = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/128/image",
+//         id = 345,
+//         compendiumName = "asdasdas dasdasd asdas fgd dfgdfgdfgd asdasdasdasd"
+//      )
+//   )
+//}

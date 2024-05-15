@@ -26,7 +26,7 @@ import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.t
 @Composable
 fun MaterialsItemDetail(
    itemInfo: ItemDetailModel,
-   game: Int
+   gameId: Int
 ) {
    Row {
       Column(
@@ -107,7 +107,7 @@ fun MaterialsItemDetail(
          ) {
             val dlcInfo = itemInfo.data.dlc
             val fusedPower = itemInfo.data.fuseAttackPower.toString()
-            if (game == 1) {
+            if (gameId == 1) {
                Text(
                   text = "DLC",
                   fontWeight = FontWeight.Bold,

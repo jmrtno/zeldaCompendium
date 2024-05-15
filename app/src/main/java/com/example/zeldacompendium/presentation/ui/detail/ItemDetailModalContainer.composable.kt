@@ -42,12 +42,12 @@ import java.util.Locale
 
 @Composable
 fun ItemDetailModalContainer(
-   game: Int,
+   gameId: Int,
    itemId: Int,
    viewModel: ItemDetailViewModel = hiltViewModel()
 ) {
    val itemInfo = produceState<Resource<ItemDetailModel>>(initialValue = Resource.Loading()) {
-      value = viewModel.getItemInfo(itemId, game)
+      value = viewModel.getItemInfo(itemId, gameId)
    }.value
 
    Box(
@@ -56,7 +56,7 @@ fun ItemDetailModalContainer(
    ) {
       ItemDetailStateWrapper(
          itemInfo = itemInfo,
-         game = game,
+         gameId = gameId,
          loadingModifier = Modifier
             .size(100.dp)
             .align(Alignment.Center)
@@ -73,14 +73,14 @@ fun ItemDetailModalContainer(
 @Composable
 fun ItemDetailStateWrapper(
    itemInfo: Resource<ItemDetailModel>,
-   game: Int,
+   gameId: Int,
    modifier: Modifier = Modifier,
    loadingModifier: Modifier = Modifier
 ) {
    when (itemInfo) {
       is Resource.Success -> {
          ItemDetailSection(
-            itemInfo = itemInfo.data!!, game = game
+            itemInfo = itemInfo.data!!, gameId = gameId
          )
       }
 
@@ -104,7 +104,7 @@ fun ItemDetailStateWrapper(
 @Composable
 fun ItemDetailSection(
    itemInfo: ItemDetailModel,
-   game: Int
+   gameId: Int
 ) {
    Column(
       verticalArrangement = Arrangement.SpaceEvenly,
@@ -126,7 +126,7 @@ fun ItemDetailSection(
                   .border(0.5.dp, Color.White),
                model = ImageRequest.Builder(LocalContext.current)
                   .data(
-                     if (game == 1) {
+                     if (gameId == 1) {
                         itemInfo.data.image
                      } else {
                         R.drawable.placeholder_img
@@ -194,10 +194,10 @@ fun ItemDetailSection(
             }
          }
          when (itemInfo.data.category) {
-            "creatures" -> CreaturesItemDetail(itemInfo = itemInfo)
+            "creatures" -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
             "monsters" -> MonsterItemDetail(itemInfo = itemInfo)
-            "equipment" -> EquipmentItemDetail(itemInfo = itemInfo, game = game)
-            "materials" -> MaterialsItemDetail(itemInfo = itemInfo, game = game)
+            "equipment" -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
+            "materials" -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
             "treasure" -> TreasureItemDetail(itemInfo = itemInfo)
          }
       }
