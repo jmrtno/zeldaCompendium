@@ -2,6 +2,7 @@ package com.example.zeldacompendium.presentation.ui.detail.categories.equipment
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
+import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.ServiceProvider
 import java.util.Locale
 
 @Composable
@@ -102,10 +104,16 @@ fun EquipmentItemDetail(
             }
             if (!locationCount.isNullOrEmpty()) {
                items(locationCount.size) {
+                  val commonLocation = itemInfo.data.commonLocations[it]
                   Text(
-                     text = itemInfo.data.commonLocations[it],
+                     text = commonLocation,
                      fontSize = 14.sp,
-                     color = Color.White
+                     color = Color.White,
+                     modifier = Modifier.clickable {
+                        ServiceProvider
+                           .navigationService
+                           .navigateTo("locations_map_screen/$gameId/$commonLocation")
+                     }
                   )
                }
             } else {

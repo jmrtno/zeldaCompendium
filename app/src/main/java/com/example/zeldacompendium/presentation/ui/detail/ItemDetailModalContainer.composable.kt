@@ -195,10 +195,10 @@ fun ItemDetailSection(
          }
          when (itemInfo.data.category) {
             "creatures" -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
-            "monsters" -> MonsterItemDetail(itemInfo = itemInfo)
+            "monsters" -> MonsterItemDetail(itemInfo = itemInfo, gameId = gameId)
             "equipment" -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
             "materials" -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
-            "treasure" -> TreasureItemDetail(itemInfo = itemInfo)
+            "treasure" -> TreasureItemDetail(itemInfo = itemInfo, gameId = gameId)
          }
       }
    }

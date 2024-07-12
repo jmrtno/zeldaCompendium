@@ -61,14 +61,15 @@ fun CreaturesItemDetail(
             }
             if (!locationCount.isNullOrEmpty()) {
                items(locationCount.size) {
+                  val commonLocation = itemInfo.data.commonLocations[it]
                   Text(
-                     text = itemInfo.data.commonLocations[it],
+                     text = commonLocation,
                      fontSize = 14.sp,
                      color = Color.White,
                      modifier = Modifier.clickable {
                         ServiceProvider
                            .navigationService
-                           .navigateTo("locations_map_screen/$gameId")
+                           .navigateTo("locations_map_screen/$gameId/$commonLocation")
                      }
                   )
                }

@@ -45,12 +45,16 @@ class MainActivity : ComponentActivity() {
                   )
                }
                composable(
-                  route = "locations_map_screen/{gameId}",
-                  arguments = listOf(navArgument("gameId") { type = NavType.IntType })
+                  route = "locations_map_screen/{gameId}/{coordinates}",
+                  arguments = listOf(
+                     navArgument("gameId") { type = NavType.IntType },
+                     navArgument("coordinates") { type = NavType.StringType }
+                  )
                ) { backStackEntry ->
                   val gameId = backStackEntry.arguments?.getInt("gameId")
+                  val coordinates = backStackEntry.arguments?.getString("coordinates")
                   if (gameId != null) {
-                     LocationMap(gameId = gameId)
+                     LocationMap(gameId = gameId, coordinates = coordinates)
                   }
                }
             }
