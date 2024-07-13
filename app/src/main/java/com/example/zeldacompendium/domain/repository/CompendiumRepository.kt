@@ -15,7 +15,8 @@ class CompendiumRepository @Inject constructor(
       val response = try {
          api.getTearsAllEntries()
       } catch (e: Exception) {
-         return Resource.Error("An unknown error occurred.")
+         return Resource.Error("An unknown error occurred.\n" +
+                 "It may take some time")
       }
       return Resource.Success(response)
    }
@@ -24,7 +25,7 @@ class CompendiumRepository @Inject constructor(
       val response = try {
          api.getBreathAllEntries()
       } catch (e: Exception) {
-         return Resource.Error("An unknown error occurred.")
+         return Resource.Error("An unknown error occurred.\nIt may take some time")
       }
       return Resource.Success(response)
    }
@@ -32,7 +33,7 @@ class CompendiumRepository @Inject constructor(
       val response = try {
          api.getItemInfo(itemId, game)
       } catch (e: Exception) {
-         return Resource.Error("An unknow error occurred.")
+         return Resource.Error("An unknown error occurred.\nIt may take some time")
       }
       return Resource.Success(response)
    }

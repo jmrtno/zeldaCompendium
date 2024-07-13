@@ -101,7 +101,9 @@ fun CompendiumItem(
 
 @Composable
 fun ItemImage(
-   modifier: Modifier = Modifier, imageURL: String, compendiumName: String
+   modifier: Modifier = Modifier,
+   imageURL: String,
+   compendiumName: String
 ) {
    Box(
       modifier = modifier.offset(y = (-22).dp), contentAlignment = Alignment.Center

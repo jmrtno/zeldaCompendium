@@ -84,7 +84,7 @@ fun CompendiumList(
       if (isLoading) {
          CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
       }
-      if (loadError.isNotEmpty()) {
+      if (!isLoading && loadError.isNotEmpty()) {
          RetrySection(error = loadError) {
             viewModel.loadCompendium()
          }

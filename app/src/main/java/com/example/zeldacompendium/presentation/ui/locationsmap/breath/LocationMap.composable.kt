@@ -5,17 +5,19 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.viewinterop.AndroidView
-import com.example.zeldacompendium.presentation.ui.commons.locations.LocationHelper
+import com.example.zeldacompendium.presentation.ui.commons.locations.LocationBreathHelper
+import com.example.zeldacompendium.presentation.ui.commons.locations.LocationTearsHelper
 
 @Composable
 fun LocationMap(
    gameId: Int,
    coordinates: String?
 ) {
-   val locationCoordinates = coordinates?.let { LocationHelper.fromCommonLocation(it) }
+   val locationBreathCoordinates = coordinates?.let { LocationBreathHelper.fromCommonLocation(it) }
+   val locationTearsCoordinates = coordinates?.let { LocationTearsHelper.fromCommonLocation(it) }
    val url = when {
-      coordinates != null && gameId == 1 -> "https://objmap.zeldamods.org/#/map/$locationCoordinates"
-      coordinates != null && gameId == 2 -> "https://objmap-totk.zeldamods.org/#/map/z6,-554,3272.5,Surface"
+      coordinates != null && gameId == 1 -> "https://objmap.zeldamods.org/#/map/$locationBreathCoordinates"
+      coordinates != null && gameId == 2 -> "https://objmap-totk.zeldamods.org/#/map/$locationTearsCoordinates"
       else -> "https://objmap.zeldamods.org/#/map/z3,8,0"
    }
 
