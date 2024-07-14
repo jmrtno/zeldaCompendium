@@ -19,9 +19,6 @@ import com.example.zeldacompendium.R
 fun CategorySelector(onItemSelected: (Int) -> Unit){
    Column{
       var selectedIndex by remember { mutableStateOf(0) }
-
-      SearchBar(modifier = Modifier.padding(top = 15.dp))
-
       Row(
          modifier = Modifier
             .fillMaxWidth()

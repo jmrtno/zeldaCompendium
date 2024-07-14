@@ -2,6 +2,7 @@
 
 package com.example.zeldacompendium.presentation.ui.lists.tears
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,15 +19,18 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
 import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
+import com.example.zeldacompendium.presentation.ui.commons.SearchBar
 import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
 import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 import com.example.zeldacompendium.presentation.ui.lists.tears.components.CompendiumList
@@ -38,6 +42,7 @@ fun TearsContainer(
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
    var selectedIndex by remember { mutableIntStateOf(0) }
+   var searchText by remember { mutableStateOf("") }
    Scaffold(
       topBar = {
          CenterAlignedTopAppBar(
@@ -61,8 +66,17 @@ fun TearsContainer(
          )
       },
       bottomBar = {
-         CategorySelector { newSelectedIndex ->
-            selectedIndex = newSelectedIndex
+         Column {
+            SearchBar(
+               modifier = Modifier.padding(top = 15.dp),
+               onSearch = { query ->
+                  searchText = query
+                  viewModel.searchCompendium(query)
+               }
+            )
+            CategorySelector { newSelectedIndex ->
+               selectedIndex = newSelectedIndex
+            }
          }
       }
    ) { padding ->

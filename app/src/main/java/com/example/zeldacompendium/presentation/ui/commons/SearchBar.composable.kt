@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SearchBar(
    modifier: Modifier = Modifier,
-   hint: String = "",
+   hint: String = "Search...",
    onSearch: (String) -> Unit = {}
 ) {
    var text by remember {
@@ -50,7 +50,7 @@ fun SearchBar(
                isHintDisplayed = it.isFocused != true
             }
       )
-      if(isHintDisplayed) {
+      if (isHintDisplayed && text.isEmpty()) {
          Text(
             text = hint,
             color = Color.LightGray,

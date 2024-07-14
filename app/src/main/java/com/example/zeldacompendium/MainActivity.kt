@@ -13,7 +13,7 @@ import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.S
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
 import com.example.zeldacompendium.presentation.ui.lists.breath.BreathContainer
 import com.example.zeldacompendium.presentation.ui.lists.tears.TearsContainer
-import com.example.zeldacompendium.presentation.ui.locationsmap.breath.LocationMap
+import com.example.zeldacompendium.presentation.ui.locationsmap.LocatioMapContainer
 import com.example.zeldacompendium.presentation.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                   val gameId = backStackEntry.arguments?.getInt("gameId")
                   val coordinates = backStackEntry.arguments?.getString("coordinates")
                   if (gameId != null) {
-                     LocationMap(gameId = gameId, coordinates = coordinates)
+                     LocatioMapContainer(gameId = gameId, coordinates = coordinates)
                   }
                }
             }

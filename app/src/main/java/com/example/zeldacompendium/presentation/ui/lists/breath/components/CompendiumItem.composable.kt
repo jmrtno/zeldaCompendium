@@ -79,6 +79,7 @@ fun CompendiumItem(
    if (showBottomSheet) {
 
       ModalBottomSheet(
+         sheetState = sheetState,
          onDismissRequest = {
             showBottomSheet = false
          },
@@ -90,8 +91,7 @@ fun CompendiumItem(
             top = 85.dp,
             bottom = 60.dp
          ),
-         shape = RoundedCornerShape(20.dp),
-         sheetState = sheetState
+         shape = RoundedCornerShape(20.dp)
       ) {
          ItemDetailModalContainer(itemId = entry.id, gameId = 1)
       }

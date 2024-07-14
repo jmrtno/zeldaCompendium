@@ -22,6 +22,7 @@ class CompendiumBreathViewModel @Inject constructor(
    private val uniqueEntriesSet = mutableSetOf<CompendiumListEntry>()
    var loadError = mutableStateOf("")
    var isLoading = mutableStateOf(false)
+   private var originalCompendiumList = listOf<CompendiumListEntry>()
 
    init {
       loadBreathList()
@@ -48,7 +49,8 @@ class CompendiumBreathViewModel @Inject constructor(
 
                loadError.value = ""
                isLoading.value = false
-               compendiumList.value += uniqueNewEntries
+               originalCompendiumList += uniqueNewEntries
+               compendiumList.value = originalCompendiumList
             }
 
             is Resource.Error -> {
@@ -60,5 +62,15 @@ class CompendiumBreathViewModel @Inject constructor(
 
          }
       }
+   }
+   fun searchCompendium(query: String) {
+      val filteredList = if (query.isBlank()) {
+         originalCompendiumList
+      } else {
+         originalCompendiumList.filter {
+            it.compendiumName.contains(query, ignoreCase = true)
+         }
+      }
+      compendiumList.value = filteredList
    }
 }

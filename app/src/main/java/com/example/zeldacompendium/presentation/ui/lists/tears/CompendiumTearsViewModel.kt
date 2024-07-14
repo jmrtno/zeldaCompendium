@@ -20,6 +20,7 @@ class CompendiumTearsViewModel @Inject constructor(
     var compendiumList = mutableStateOf<List<CompendiumListEntry>>(listOf())
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
+    private var originalCompendiumList = listOf<CompendiumListEntry>()
 
     init {
        loadCompendium()
@@ -27,20 +28,21 @@ class CompendiumTearsViewModel @Inject constructor(
 
     fun loadCompendium(){
         viewModelScope.launch {
-            isLoading.value = true
-            when(val data = repository.getTearsAllEntries()){
+            when(val data = repository.getTearsAllEntries()) {
                 is Resource.Success -> {
                     Timber.tag("loadCompendium").d("called loadCompendium()")
                     val compendiumEntries = data.data!!.data.mapIndexed { index, entry ->
-                        CompendiumListEntry(entry.name.replaceFirstChar {
-                            if (it.isLowerCase()) it.titlecase(
-                                Locale.ROOT
-                            ) else it.toString()
-                        }, entry.category, entry.image, entry.id)
+                        CompendiumListEntry(
+                            entry.name.replaceFirstChar {
+                                if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
+                            },
+                            entry.category, entry.image, entry.id
+                        )
                     }
                     loadError.value = ""
                     isLoading.value = false
-                    compendiumList.value += compendiumEntries
+                    originalCompendiumList = compendiumEntries
+                    compendiumList.value = originalCompendiumList
                 }
                 is Resource.Error -> {
                     loadError.value = data.message!!
@@ -51,5 +53,15 @@ class CompendiumTearsViewModel @Inject constructor(
 
             }
         }
+    }
+    fun searchCompendium(query: String) {
+        val filteredList = if (query.isBlank()) {
+            originalCompendiumList
+        } else {
+            originalCompendiumList.filter {
+                it.compendiumName.contains(query, ignoreCase = true)
+            }
+        }
+        compendiumList.value = filteredList
     }
 }

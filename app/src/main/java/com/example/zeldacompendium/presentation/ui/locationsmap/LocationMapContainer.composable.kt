@@ -1,27 +1,51 @@
-package com.example.zeldacompendium.presentation.ui.locationsmap.breath
+package com.example.zeldacompendium.presentation.ui.locationsmap
 
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.zeldacompendium.presentation.ui.commons.locations.LocationBreathHelper
 import com.example.zeldacompendium.presentation.ui.commons.locations.LocationTearsHelper
+import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 
+@Composable
+fun LocatioMapContainer(
+   gameId: Int,
+   coordinates: String?
+){
+   Box(
+      modifier = Modifier.fillMaxSize()
+   ) {
+      LocationMap(
+         gameId = gameId,
+         coordinates = coordinates,
+         modifier = Modifier.padding(vertical = 22.dp)
+      )
+      SetFrame()
+   }
+}
 @Composable
 fun LocationMap(
    gameId: Int,
-   coordinates: String?
+   coordinates: String?,
+   modifier: Modifier = Modifier
 ) {
    val locationBreathCoordinates = coordinates?.let { LocationBreathHelper.fromCommonLocation(it) }
    val locationTearsCoordinates = coordinates?.let { LocationTearsHelper.fromCommonLocation(it) }
    val url = when {
       coordinates != null && gameId == 1 -> "https://objmap.zeldamods.org/#/map/$locationBreathCoordinates"
       coordinates != null && gameId == 2 -> "https://objmap-totk.zeldamods.org/#/map/$locationTearsCoordinates"
-      else -> "https://objmap.zeldamods.org/#/map/z3,8,0"
+      else -> ""
    }
 
    AndroidView(
+      modifier = modifier,
       factory = { context ->
          WebView(context).apply {
             layoutParams = ViewGroup.LayoutParams(
