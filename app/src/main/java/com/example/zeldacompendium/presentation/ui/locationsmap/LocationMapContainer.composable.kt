@@ -3,6 +3,7 @@ package com.example.zeldacompendium.presentation.ui.locationsmap
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
 import com.example.zeldacompendium.data.utils.Constants
 import com.example.zeldacompendium.presentation.ui.commons.locations.LocationBreathHelper
 import com.example.zeldacompendium.presentation.ui.commons.locations.LocationTearsHelper

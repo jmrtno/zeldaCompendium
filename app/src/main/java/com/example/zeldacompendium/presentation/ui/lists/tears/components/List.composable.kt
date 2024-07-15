@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.example.zeldacompendium.presentation.ui.lists.tears.components
 
 import androidx.compose.foundation.Image
@@ -87,74 +85,6 @@ fun CompendiumList(
       if (!isLoading && loadError.isNotEmpty()) {
          RetrySection(error = loadError) {
             viewModel.loadCompendium()
-         }
-      }
-   }
-}
-
-@Composable
-fun CompendiumItem(
-   entry: CompendiumListEntry,
-   modifier: Modifier = Modifier,
-) {
-
-   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-   var showBottomSheet by remember { mutableStateOf(false) }
-
-   Box(modifier = modifier
-      .fillMaxWidth()
-      .padding(15.dp)
-      .clickable {
-         showBottomSheet = true
-      }) {
-      GlowingCard(
-         glowingColor = Color(0xFF005CBA),
-         modifier = Modifier
-            .height(75.dp),
-         cornersRadius = 10.dp
-      ) {}
-      Row(
-         modifier = modifier
-            .height(70.dp)
-            .padding(horizontal = 15.dp),
-         verticalAlignment = Alignment.CenterVertically,
-      ) {
-         Text(
-            modifier = modifier.weight(1.0f),
-            maxLines = 1,
-            text = entry.compendiumName,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Start,
-            color = Color.LightGray,
-            overflow = TextOverflow.Ellipsis
-         )
-         Text(
-            modifier = modifier.weight(0.4f),
-            text = "#${entry.id}",
-            textAlign = TextAlign.End,
-            maxLines = 1,
-            fontSize = 25.sp,
-            color = Color.White.copy(alpha = 0.4f)
-         )
-
-         if (showBottomSheet) {
-            ModalBottomSheet(
-               onDismissRequest = {
-                  showBottomSheet = false
-               },
-               containerColor = Color(0XFF0C0D09).copy(alpha = 0.95f),
-               scrimColor = Color.Transparent,
-               windowInsets = WindowInsets(
-                  left = 15.dp,
-                  right = 15.dp,
-                  top = 85.dp,
-                  bottom = 60.dp
-               ),
-               shape = RoundedCornerShape(20.dp),
-               sheetState = sheetState
-            ) {
-               ItemDetailModalContainer(itemId = entry.id, gameId = 2)
-            }
          }
       }
    }

@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.example.zeldacompendium.presentation.ui.lists.breath.components
 
 import androidx.compose.foundation.Image
@@ -9,17 +7,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,7 +40,6 @@ fun CompendiumItem(
    modifier: Modifier = Modifier,
    entry: CompendiumListEntry
 ) {
-   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
    var showBottomSheet by remember { mutableStateOf(false) }
 
    Box(modifier = modifier
@@ -76,26 +69,12 @@ fun CompendiumItem(
          modifier = modifier, entryNumber = entry.id
       )
    }
-   if (showBottomSheet) {
-
-      ModalBottomSheet(
-         sheetState = sheetState,
-         onDismissRequest = {
-            showBottomSheet = false
-         },
-         containerColor = Color(0XFF0C0D09).copy(alpha = 0.95f),
-         scrimColor = Color.Transparent,
-         windowInsets = WindowInsets(
-            left = 15.dp,
-            right = 15.dp,
-            top = 85.dp,
-            bottom = 60.dp
-         ),
-         shape = RoundedCornerShape(20.dp)
-      ) {
-         ItemDetailModalContainer(itemId = entry.id, gameId = 1)
-      }
-   }
+   ItemDetailModalContainer(
+      gameId = 1,
+      entry = entry,
+      showBottomSheet = showBottomSheet,
+      onDismiss = { showBottomSheet = false }
+   )
 }
 
 

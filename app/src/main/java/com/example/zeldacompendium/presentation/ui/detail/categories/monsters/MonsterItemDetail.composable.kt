@@ -30,7 +30,6 @@ fun MonsterItemDetail(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
-   var webviewIsActive by remember { mutableStateOf(false) }
    Row {
       LazyColumn(
          modifier = Modifier.weight(0.5f),
@@ -94,7 +93,6 @@ fun MonsterItemDetail(
                      fontSize = 14.sp,
                      color = Color.White,
                      modifier = Modifier.clickable {
-                        webviewIsActive = true
                         ServiceProvider
                            .navigationService
                            .navigateTo("locations_map_screen/$gameId/$commonLocation")
@@ -133,13 +131,4 @@ fun MonsterItemDetail(
          }
       }
    }
-}
-
-fun NavController.navigateBack(isActive: Boolean) {
-   // TODO - Check if webview is active
-   // If webview is active -> dismiss webview
-   if(isActive) {
-
-   } else { popBackStack() }
-
 }
