@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.zeldacompendium.data.utils.Constants
 import com.example.zeldacompendium.presentation.ui.commons.locations.LocationBreathHelper
 import com.example.zeldacompendium.presentation.ui.commons.locations.LocationTearsHelper
 import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
@@ -39,8 +40,8 @@ fun LocationMap(
    val locationBreathCoordinates = coordinates?.let { LocationBreathHelper.fromCommonLocation(it) }
    val locationTearsCoordinates = coordinates?.let { LocationTearsHelper.fromCommonLocation(it) }
    val url = when {
-      coordinates != null && gameId == 1 -> "https://objmap.zeldamods.org/#/map/$locationBreathCoordinates"
-      coordinates != null && gameId == 2 -> "https://objmap-totk.zeldamods.org/#/map/$locationTearsCoordinates"
+      coordinates != null && gameId == 1 -> Constants.BREATH_MAP + "$locationBreathCoordinates"
+      coordinates != null && gameId == 2 -> Constants.TEARS_MAP + "$locationTearsCoordinates"
       else -> ""
    }
 

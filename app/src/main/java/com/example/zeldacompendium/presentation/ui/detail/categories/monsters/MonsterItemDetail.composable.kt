@@ -10,12 +10,17 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.ServiceProvider
 import java.util.Locale
@@ -25,6 +30,7 @@ fun MonsterItemDetail(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
+   var webviewIsActive by remember { mutableStateOf(false) }
    Row {
       LazyColumn(
          modifier = Modifier.weight(0.5f),
@@ -88,6 +94,7 @@ fun MonsterItemDetail(
                      fontSize = 14.sp,
                      color = Color.White,
                      modifier = Modifier.clickable {
+                        webviewIsActive = true
                         ServiceProvider
                            .navigationService
                            .navigateTo("locations_map_screen/$gameId/$commonLocation")
@@ -126,4 +133,13 @@ fun MonsterItemDetail(
          }
       }
    }
+}
+
+fun NavController.navigateBack(isActive: Boolean) {
+   // TODO - Check if webview is active
+   // If webview is active -> dismiss webview
+   if(isActive) {
+
+   } else { popBackStack() }
+
 }

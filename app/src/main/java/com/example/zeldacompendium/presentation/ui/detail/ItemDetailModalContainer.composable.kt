@@ -32,6 +32,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
+import com.example.zeldacompendium.data.utils.Constants
 import com.example.zeldacompendium.data.utils.Resource
 import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.CreaturesItemDetail
 import com.example.zeldacompendium.presentation.ui.detail.categories.equipment.EquipmentItemDetail
@@ -194,11 +195,11 @@ fun ItemDetailSection(
             }
          }
          when (itemInfo.data.category) {
-            "creatures" -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
-            "monsters" -> MonsterItemDetail(itemInfo = itemInfo, gameId = gameId)
-            "equipment" -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
-            "materials" -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
-            "treasure" -> TreasureItemDetail(itemInfo = itemInfo, gameId = gameId)
+            Constants.CREATURES -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
+            Constants.MONSTERS -> MonsterItemDetail(itemInfo = itemInfo, gameId = gameId)
+            Constants.EQUIPMENT -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
+            Constants.MATERIALS -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
+            Constants.TREASURE -> TreasureItemDetail(itemInfo = itemInfo, gameId = gameId)
          }
       }
    }
