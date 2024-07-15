@@ -222,19 +222,18 @@ fun ItemDetailSection(
             item {
                Text(
                   text = itemInfo.data.description,
-                  lineHeight = 18.sp,
-                  fontSize = 14.sp,
+                  fontSize = 18.sp,
                   color = Color.White
                )
             }
          }
-         when (itemInfo.data.category) {
-            Constants.CREATURES -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
-            Constants.MONSTERS -> MonsterItemDetail(itemInfo = itemInfo, gameId = gameId)
-            Constants.EQUIPMENT -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
-            Constants.MATERIALS -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
-            Constants.TREASURE -> TreasureItemDetail(itemInfo = itemInfo, gameId = gameId)
-         }
+      }
+      when (itemInfo.data.category) {
+         Constants.CREATURES -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
+         Constants.MONSTERS -> MonsterItemDetail(itemInfo = itemInfo, gameId = gameId)
+         Constants.EQUIPMENT -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
+         Constants.MATERIALS -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
+         Constants.TREASURE -> TreasureItemDetail(itemInfo = itemInfo, gameId = gameId)
       }
    }
 }
