@@ -18,7 +18,7 @@ fun TreasureItemDetailContainer(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
-   val pagerState = rememberPagerState(pageCount = { 3 })
+   val pagerState = rememberPagerState(pageCount = { 2 })
    HorizontalPager(
       modifier = Modifier.fillMaxHeight(),
       state = pagerState,

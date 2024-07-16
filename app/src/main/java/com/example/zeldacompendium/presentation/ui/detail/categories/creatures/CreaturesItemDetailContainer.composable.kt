@@ -20,7 +20,7 @@ fun CreaturesItemDetailContainer(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
-   val pagerState = rememberPagerState(pageCount = { 3 })
+   val pagerState = rememberPagerState(pageCount = { if (itemInfo.data.edible) 3 else 2 })
    HorizontalPager(
       modifier = Modifier.fillMaxHeight(),
       state = pagerState,
@@ -30,16 +30,16 @@ fun CreaturesItemDetailContainer(
          vertical = 12.dp
       ),
    ) { page ->
-         if (!itemInfo.data.edible) {
-            when (page) {
-               0 -> DropsPage(itemInfo)
-               1 -> LocationPage(itemInfo, gameId)
-            }
-         } else {
+         if (itemInfo.data.edible) {
             when (page) {
                0 -> HealingPage(itemInfo)
                1 -> CookingEffectPage(itemInfo)
                2 -> LocationPage(itemInfo, gameId)
+            }
+         } else {
+            when (page) {
+               0 -> DropsPage(itemInfo)
+               1 -> LocationPage(itemInfo, gameId)
             }
          }
       }

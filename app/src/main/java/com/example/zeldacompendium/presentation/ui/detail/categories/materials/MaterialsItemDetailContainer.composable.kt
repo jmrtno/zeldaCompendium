@@ -32,7 +32,7 @@ fun MaterialsItemDetailContainer(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
-   val pagerState = rememberPagerState(pageCount = { 4 })
+   val pagerState = rememberPagerState(pageCount = { if (gameId == 1) 3 else 4 })
    HorizontalPager(
       modifier = Modifier.fillMaxHeight(),
       state = pagerState,
