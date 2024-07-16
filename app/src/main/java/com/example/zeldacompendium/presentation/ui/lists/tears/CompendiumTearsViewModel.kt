@@ -28,6 +28,7 @@ class CompendiumTearsViewModel @Inject constructor(
 
     fun loadCompendium(){
         viewModelScope.launch {
+            isLoading.value = true
             when(val data = repository.getTearsAllEntries()) {
                 is Resource.Success -> {
                     Timber.tag("loadCompendium").d("called loadCompendium()")
@@ -35,10 +36,8 @@ class CompendiumTearsViewModel @Inject constructor(
                         CompendiumListEntry(
                             entry.name.replaceFirstChar {
                                 if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
-                            },
-                            entry.category, entry.image, entry.id
-                        )
-                    }
+                            }, entry.category, entry.image, entry.id)
+                    }.sortedBy { it.id }
                     loadError.value = ""
                     isLoading.value = false
                     originalCompendiumList = compendiumEntries
@@ -54,6 +53,7 @@ class CompendiumTearsViewModel @Inject constructor(
             }
         }
     }
+
     fun searchCompendium(query: String) {
         val filteredList = if (query.isBlank()) {
             originalCompendiumList

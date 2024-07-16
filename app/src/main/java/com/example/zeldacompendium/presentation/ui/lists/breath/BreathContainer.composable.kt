@@ -5,7 +5,7 @@ package com.example.zeldacompendium.presentation.ui.lists.breath
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -53,7 +53,7 @@ fun BreathContainer(
             navigationIcon = {
                IconButton(onClick = { navController.navigateUp() }) {
                   Icon(
-                     imageVector = Icons.Filled.ArrowBack,
+                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                      tint = Color(0xFF19FFFF),
                      contentDescription = "Localized description"
                   )
