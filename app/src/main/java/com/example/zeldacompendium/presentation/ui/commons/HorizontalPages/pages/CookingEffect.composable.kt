@@ -21,7 +21,7 @@ fun CookingEffectPage(
             painter = painterResource(id = imageCookingEffect),
             contentDescription = "cooking effect",
             modifier = Modifier
-               .size(width = 150.dp, height = 40.dp)
+               .size(width = 180.dp, height = 40.dp)
          )
       }
    }
