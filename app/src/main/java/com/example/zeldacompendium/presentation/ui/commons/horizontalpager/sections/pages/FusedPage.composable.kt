@@ -1,11 +1,11 @@
-package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
-import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.HorizontalPageContainer
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.page.HorizontalPage
 
 @Composable
 fun FusedPage(
@@ -13,7 +13,7 @@ fun FusedPage(
 ){
    val fusedPower = itemInfo.data.fuseAttackPower.toString()
 
-   HorizontalPageContainer(text = "Fused effect") {
+   HorizontalPage(text = "Fused effect") {
       item {
          Text(
             text = "+${fusedPower} attack power",

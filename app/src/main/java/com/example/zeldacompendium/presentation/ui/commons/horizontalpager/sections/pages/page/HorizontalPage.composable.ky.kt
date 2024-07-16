@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons.horizontalpager
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.page
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HorizontalPageContainer(
+fun HorizontalPage(
    text: String,
    content: LazyListScope.() -> Unit
 ) {

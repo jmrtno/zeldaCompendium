@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
-import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.HorizontalPageContainer
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.page.HorizontalPage
 import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.CookingEffectImageProvider
 
 @Composable
@@ -15,7 +15,7 @@ fun CookingEffectPage(
    itemInfo: ItemDetailModel
 ){
    val imageCookingEffect = CookingEffectImageProvider.getImageResource(itemInfo.data.cookingEffect)
-   HorizontalPageContainer(text = "Cooking Effect") {
+   HorizontalPage(text = "Cooking Effect") {
       item {
          Image(
             painter = painterResource(id = imageCookingEffect),

@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
-import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.HorizontalPageContainer
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.page.HorizontalPage
 import java.util.Locale
 
 @Composable
@@ -25,7 +25,7 @@ fun PropertiesPage(
    itemInfo: ItemDetailModel,
    gameId: Int
 ){
-   HorizontalPageContainer(text = "Properties") {
+   HorizontalPage(text = "Properties") {
       item {
          PropertiesRow(
             iconRes = R.drawable.attack_icon,
