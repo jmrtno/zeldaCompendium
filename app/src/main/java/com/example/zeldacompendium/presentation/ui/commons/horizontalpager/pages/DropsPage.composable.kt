@@ -1,11 +1,11 @@
-package com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
-import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.HorizontalPage
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.HorizontalPageContainer
 import java.util.Locale
 
 @Composable
@@ -14,7 +14,7 @@ fun DropsPage(
 ){
    val dropsCount = itemInfo.data.drops
 
-   HorizontalPage(text = "Drops") {
+   HorizontalPageContainer(text = "Drops") {
       if (!dropsCount.isNullOrEmpty()) {
          items(dropsCount.size) { drop ->
             Text(

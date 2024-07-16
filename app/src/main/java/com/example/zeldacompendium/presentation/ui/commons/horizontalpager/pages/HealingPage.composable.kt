@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
@@ -9,14 +9,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
-import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.HorizontalPage
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.HorizontalPageContainer
 
 @Composable
 fun HealingPage(
    itemInfo: ItemDetailModel
 ){
    val heartsCount = itemInfo.data.heartsRecovered.toInt()
-   HorizontalPage(text = "Healing") {
+   HorizontalPageContainer(text = "Healing") {
       item {
          Row {
             repeat(heartsCount) {

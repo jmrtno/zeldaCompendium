@@ -10,8 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
-import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages.DropsPage
-import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages.LocationPage
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.CustomHorizontalPager
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages.DropsPage
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.pages.LocationPage
 
 @Composable
 fun TreasureItemDetailContainer(
@@ -19,14 +20,8 @@ fun TreasureItemDetailContainer(
    gameId: Int
 ) {
    val pagerState = rememberPagerState(pageCount = { 2 })
-   HorizontalPager(
-      modifier = Modifier.fillMaxHeight(),
-      state = pagerState,
-      pageSpacing = 20.dp,
-      contentPadding = PaddingValues(
-         horizontal = 48.dp,
-         vertical = 12.dp
-      ),
+   CustomHorizontalPager(
+      pagerState = pagerState,
    ) { page ->
       when (page) {
          0 -> DropsPage(itemInfo)

@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons
+package com.example.zeldacompendium.presentation.ui.commons.categoryselector
 
 import com.example.zeldacompendium.R
 

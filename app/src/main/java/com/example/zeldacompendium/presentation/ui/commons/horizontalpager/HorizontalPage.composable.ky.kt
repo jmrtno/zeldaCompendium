@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons.HorizontalPages
+package com.example.zeldacompendium.presentation.ui.commons.horizontalpager
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,14 +20,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HorizontalPage(
+fun HorizontalPageContainer(
    text: String,
    content: LazyListScope.() -> Unit
 ) {
    Box(
       modifier = Modifier
          .fillMaxSize()
-         .background(Color(0XFF0C0D09), shape = RoundedCornerShape(15.dp))
+         .background(
+            Color(0XFF292825).copy(alpha = 0.5f),
+            shape = RoundedCornerShape(15.dp))
          .border(
             width = 1.dp,
             color = Color.LightGray.copy(alpha = 0.5f),

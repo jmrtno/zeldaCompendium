@@ -57,7 +57,7 @@ fun ItemDetailModalContainer(
    if (showBottomSheet) {
       ModalBottomSheet(
          onDismissRequest = { onDismiss() },
-         containerColor = Color(0XFF0C0D09).copy(alpha = 0.95f),
+         containerColor = Color(0XFF141413),
          scrimColor = Color.Transparent,
          windowInsets = WindowInsets(
             left = 15.dp,
