@@ -6,12 +6,13 @@ interface NavigationService {
    fun navigateTo(destination: String)
 }
 
-interface BackNavigationTest {
-   fun navigateBack(navController: NavController)
+object ServiceProvider {
+   lateinit var navigationService: NavigationService
 }
 
 class NavigationServiceImpl(private val navController: NavController) : NavigationService {
    override fun navigateTo(destination: String) {
       navController.navigate(destination)
    }
+
 }

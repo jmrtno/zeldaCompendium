@@ -1,24 +1,31 @@
 @file:OptIn(ExperimentalFoundationApi::class)
-package com.example.zeldacompendium.presentation.ui.detail.categories.equipment
+package com.example.zeldacompendium.presentation.ui.detail.categories.monsters
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
+import com.example.zeldacompendium.domain.service.NavigationService
+import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.HorizontalPage
+import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages.DropsPage
 import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages.LocationPage
-import com.example.zeldacompendium.presentation.ui.commons.HorizontalPages.pages.PropertiesPage
+import java.util.Locale
 
 @Composable
-fun EquipmentItemDetailContainer(
+fun MonsterItemDetailContainer(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
-   val pagerState = rememberPagerState(pageCount = { 2 })
+   val pagerState = rememberPagerState(pageCount = { 3 })
    HorizontalPager(
       modifier = Modifier.fillMaxHeight(),
       state = pagerState,
@@ -29,8 +36,8 @@ fun EquipmentItemDetailContainer(
       ),
    ) { page ->
          when (page) {
-            0 -> PropertiesPage(itemInfo, gameId)
+            0 -> DropsPage(itemInfo)
             1 -> LocationPage(itemInfo, gameId)
          }
-   }
+      }
 }

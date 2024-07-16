@@ -10,10 +10,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,11 +39,11 @@ import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Constants
 import com.example.zeldacompendium.data.utils.Resource
-import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.CreaturesItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.equipment.EquipmentItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.materials.MaterialsItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.monsters.MonsterItemDetail
-import com.example.zeldacompendium.presentation.ui.detail.categories.treasures.TreasureItemDetail
+import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.CreaturesItemDetailContainer
+import com.example.zeldacompendium.presentation.ui.detail.categories.equipment.EquipmentItemDetailContainer
+import com.example.zeldacompendium.presentation.ui.detail.categories.materials.MaterialsItemDetailContainer
+import com.example.zeldacompendium.presentation.ui.detail.categories.monsters.MonsterItemDetailContainer
+import com.example.zeldacompendium.presentation.ui.detail.categories.treasures.TreasureItemDetailContainer
 import java.util.Locale
 
 @Composable
@@ -209,31 +207,24 @@ fun ItemDetailSection(
          }
       }
 
-      Column(
+      Box(
          modifier = Modifier
             .fillMaxWidth()
             .padding(15.dp)
       ) {
-         LazyColumn(
-            modifier = Modifier
-               .padding(7.dp)
-               .height(100.dp)
-         ) {
-            item {
-               Text(
-                  text = itemInfo.data.description,
-                  fontSize = 18.sp,
-                  color = Color.White
-               )
-            }
-         }
+         Text(
+            text = itemInfo.data.description,
+            fontSize = 14.sp,
+            lineHeight = 18.sp,
+            color = Color.White
+         )
       }
       when (itemInfo.data.category) {
-         Constants.CREATURES -> CreaturesItemDetail(itemInfo = itemInfo, gameId = gameId)
-         Constants.MONSTERS -> MonsterItemDetail(itemInfo = itemInfo, gameId = gameId)
-         Constants.EQUIPMENT -> EquipmentItemDetail(itemInfo = itemInfo, gameId = gameId)
-         Constants.MATERIALS -> MaterialsItemDetail(itemInfo = itemInfo, gameId = gameId)
-         Constants.TREASURE -> TreasureItemDetail(itemInfo = itemInfo, gameId = gameId)
+         Constants.CREATURES -> CreaturesItemDetailContainer(itemInfo = itemInfo, gameId = gameId)
+         Constants.MONSTERS -> MonsterItemDetailContainer(itemInfo = itemInfo, gameId = gameId)
+         Constants.EQUIPMENT -> EquipmentItemDetailContainer(itemInfo = itemInfo, gameId = gameId)
+         Constants.MATERIALS -> MaterialsItemDetailContainer(itemInfo = itemInfo, gameId = gameId)
+         Constants.TREASURE -> TreasureItemDetailContainer(itemInfo = itemInfo, gameId = gameId)
       }
    }
 }
