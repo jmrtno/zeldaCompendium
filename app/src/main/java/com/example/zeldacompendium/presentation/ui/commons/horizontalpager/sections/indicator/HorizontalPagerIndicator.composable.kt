@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +31,6 @@ fun HorizontalPagerIndicator(
    indicatorColor: Color = Color(0xFF19FFFF),
    unselectedIndicatorSize: Dp = 8.dp,
    selectedIndicatorSize: Dp = 10.dp,
-   indicatorCornerRadius: Dp = 2.dp,
    indicatorPadding: Dp = 2.dp
 ) {
    Row(
@@ -67,12 +68,11 @@ fun HorizontalPagerIndicator(
                .padding(
                   // apply horizontal padding, so that each indicator is same width
                   horizontal = ((selectedIndicatorSize + indicatorPadding * 2) - size) / 2,
-                  vertical = size / 4
+                  vertical = size / 10
                )
-               .clip(RoundedCornerShape(indicatorCornerRadius))
+               .clip(CircleShape)
                .background(color)
-               .width(size)
-               .height(size / 2)
+               .size(size)
          )
       }
    }

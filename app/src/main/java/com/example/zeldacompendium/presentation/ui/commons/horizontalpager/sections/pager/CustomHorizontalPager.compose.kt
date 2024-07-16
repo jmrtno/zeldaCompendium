@@ -40,7 +40,7 @@ fun CustomHorizontalPager(
          pageContent(page)
       }
       HorizontalPagerIndicator(
-         modifier = Modifier.height(20.dp),
+         modifier = Modifier.height(25.dp),
          pageCount = pagerState.pageCount,
          currentPage = pagerState.currentPage,
          targetPage = pagerState.targetPage,
