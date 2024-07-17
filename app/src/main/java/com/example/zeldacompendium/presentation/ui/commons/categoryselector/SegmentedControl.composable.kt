@@ -2,6 +2,7 @@ package com.example.zeldacompendium.presentation.ui.commons.categoryselector
 
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -11,7 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,21 +29,22 @@ fun SegmentedControl(
    cornerRadius : Int = 10,
    onItemSelection: (selectedItemIndex: Int) -> Unit
 ) {
-   val selectedIndex = remember { mutableStateOf(defaultSelectedItemIndex) }
+   val selectedIndex = remember { mutableIntStateOf(defaultSelectedItemIndex) }
 
    Row(
       modifier = Modifier
    ) {
-      items.forEachIndexed { index, iconResId ->
+      items.forEachIndexed { index, _ ->
          Button(
             colors = ButtonDefaults.buttonColors(containerColor  = Color.Transparent),
             modifier = Modifier
                .height(50.dp)
                .width(itemWidth),
             onClick = {
-               selectedIndex.value = index
-               onItemSelection(selectedIndex.value)
+               selectedIndex.intValue = index
+               onItemSelection(selectedIndex.intValue)
             },
+            interactionSource = NoRippleInteractionSource(),
             shape = when (index) {
                0 -> RoundedCornerShape(
                   topStartPercent = cornerRadius,
@@ -66,7 +68,7 @@ fun SegmentedControl(
             contentPadding = PaddingValues(0.dp)
          ) {
             Image(
-               painter = painterResource(id = if (selectedIndex.value == index) itemsSelected[index] else items[index]),
+               painter = painterResource(id = if (selectedIndex.intValue == index) itemsSelected[index] else items[index]),
                contentDescription = null,
                modifier = Modifier
                   .size(40.dp)
