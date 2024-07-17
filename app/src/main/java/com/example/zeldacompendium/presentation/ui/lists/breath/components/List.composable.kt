@@ -1,7 +1,6 @@
 package com.example.zeldacompendium.presentation.ui.lists.breath.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,7 +26,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.lists.breath.CompendiumBreathViewModel
@@ -59,7 +57,7 @@ fun CompendiumList(
                viewModel.loadBreathList()
             }
          }
-         CompendiumItem(entry = compendiumList[it])
+         CompendiumItemBreath(entry = compendiumList[it])
       }
    }
    Box(

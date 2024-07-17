@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -58,15 +59,9 @@ fun ItemDetailModalContainer(
       ModalBottomSheet(
          onDismissRequest = { onDismiss() },
          containerColor = Color(0XFF141413),
-         scrimColor = Color.Transparent,
-         windowInsets = WindowInsets(
-            left = 15.dp,
-            right = 15.dp,
-            top = 85.dp,
-            bottom = 60.dp
-         ),
          shape = RoundedCornerShape(20.dp),
-         sheetState = sheetState
+         sheetState = sheetState,
+         modifier = Modifier.padding(vertical = 30.dp),
       ) {
          ItemDetailContainer(itemId = entry.id, gameId = gameId)
       }
@@ -141,7 +136,8 @@ fun ItemDetailSection(
 ) {
    Column(
       verticalArrangement = Arrangement.SpaceEvenly,
-      horizontalAlignment = Alignment.CenterHorizontally
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = Modifier.padding(bottom = 40.dp)
    ) {
       Row(
          modifier = Modifier
