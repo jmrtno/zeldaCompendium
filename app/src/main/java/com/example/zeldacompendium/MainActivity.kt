@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.zeldacompendium.domain.service.NavigationServiceImpl
-import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.ServiceProvider
+import com.example.zeldacompendium.domain.service.ServiceProvider
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
 import com.example.zeldacompendium.presentation.ui.lists.breath.BreathContainer
 import com.example.zeldacompendium.presentation.ui.lists.tears.TearsContainer

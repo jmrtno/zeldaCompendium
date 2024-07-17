@@ -34,15 +34,13 @@ class CompendiumBreathViewModel @Inject constructor(
             is Resource.Success -> {
                Timber.tag("loadCompendium").d("called loadCompendium()")
                val compendiumEntries = data.data!!.data.mapIndexed { index, entry ->
-                  val entryId = entry.id
                   val url =
-                     "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/${entryId}/image"
-                  CompendiumListEntry(entry.name.replaceFirstChar {
-                     if (it.isLowerCase()) it.titlecase(
-                        Locale.ROOT
-                     ) else it.toString()
+                     "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/${entry.id}/image"
+                  CompendiumListEntry(
+                     entry.name.replaceFirstChar {
+                     if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
                   }, entry.category, url, entry.id)
-               }
+               }.sortedBy { it.id }
 
                // Filtrar elementos duplicados antes de agregar a la lista
                val uniqueNewEntries = compendiumEntries.filter { uniqueEntriesSet.add(it) }
@@ -63,6 +61,7 @@ class CompendiumBreathViewModel @Inject constructor(
          }
       }
    }
+
    fun searchCompendium(query: String) {
       val filteredList = if (query.isBlank()) {
          originalCompendiumList

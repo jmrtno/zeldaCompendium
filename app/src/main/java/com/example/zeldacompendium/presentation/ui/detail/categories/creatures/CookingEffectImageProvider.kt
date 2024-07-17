@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.detail.categories.creatures.type
+package com.example.zeldacompendium.presentation.ui.detail.categories.creatures
 
 import com.example.zeldacompendium.R
 

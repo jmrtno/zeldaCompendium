@@ -2,11 +2,11 @@
 
 package com.example.zeldacompendium.presentation.ui.lists.breath
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -22,14 +22,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
-import com.example.zeldacompendium.presentation.ui.commons.CategorySelector
 import com.example.zeldacompendium.presentation.ui.commons.SearchBar
 import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.commons.categoryselector.CategorySelector
 import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumList
 
@@ -39,9 +39,10 @@ fun BreathContainer(
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
-
    var selectedIndex by remember { mutableIntStateOf(0) }
    var searchText by remember { mutableStateOf("") }
+   val focusManager = LocalFocusManager.current
+   val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
    Scaffold(
       topBar = {
          CenterAlignedTopAppBar(
@@ -51,20 +52,12 @@ fun BreathContainer(
             ),
             title = { },
             navigationIcon = {
-               IconButton(onClick = { navController.navigateUp() }) {
-                  Icon(
-                     imageVector = Icons.Filled.ArrowBack,
-                     tint = Color(0xFF19FFFF),
-                     contentDescription = "Localized description"
-                  )
-               }
-            },
-            actions = {
                IconButton(onClick = {
-
-               }) {
+                  focusManager.clearFocus()
+                  navController.navigateUp() }) {
                   Icon(
-                     imageVector = Icons.Filled.Menu,
+                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                     tint = Color(0xFF19FFFF),
                      contentDescription = "Localized description"
                   )
                }
@@ -74,13 +67,13 @@ fun BreathContainer(
       bottomBar = {
          Column {
             SearchBar(
-               modifier = Modifier.padding(top = 15.dp),
                onSearch = { query ->
                   searchText = query
                   viewModel.searchCompendium(query)
                }
             )
             CategorySelector { newSelectedIndex ->
+               focusManager.clearFocus()
                selectedIndex = newSelectedIndex
             }
          }
@@ -88,12 +81,10 @@ fun BreathContainer(
    ) { padding ->
       SetBackgroundImage()
       SetFrame()
-      Column(
+      Box(
          modifier = Modifier
             .padding(padding)
       ) {
-
-         val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
          CompendiumList(compendiumList = filteredList)
       }
    }

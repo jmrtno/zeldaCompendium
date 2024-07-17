@@ -1,16 +1,16 @@
 @file:OptIn(ExperimentalFoundationApi::class)
-package com.example.zeldacompendium.presentation.ui.detail.categories.equipment
+package com.example.zeldacompendium.presentation.ui.detail.categories.treasures
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pager.CustomHorizontalPager
+import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.DropsPage
 import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.LocationPage
-import com.example.zeldacompendium.presentation.ui.commons.horizontalpager.sections.pages.PropertiesPage
 
 @Composable
-fun EquipmentItemDetailContainer(
+fun TreasureItemDetailContainer(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
@@ -18,9 +18,9 @@ fun EquipmentItemDetailContainer(
    CustomHorizontalPager(
       pagerState = pagerState,
    ) { page ->
-         when (page) {
-            0 -> PropertiesPage(itemInfo, gameId)
-            1 -> LocationPage(itemInfo, gameId)
-         }
+      when (page) {
+         0 -> DropsPage(itemInfo)
+         1 -> LocationPage(itemInfo, gameId)
+      }
    }
 }

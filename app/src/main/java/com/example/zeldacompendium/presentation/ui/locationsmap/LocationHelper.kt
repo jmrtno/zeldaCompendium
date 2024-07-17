@@ -1,4 +1,4 @@
-package com.example.zeldacompendium.presentation.ui.commons.locations
+package com.example.zeldacompendium.presentation.ui.locationsmap
 
 enum class LocationBreathHelper(val commonLocation: String, val coordinates: String) {
    WEST_NECLUDA("West Necluda", "z4,1296,1524"),

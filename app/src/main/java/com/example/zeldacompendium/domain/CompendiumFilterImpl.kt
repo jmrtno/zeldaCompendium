@@ -6,8 +6,8 @@ class CompendiumFilterImpl : CompendiumFilter {
       return when (selectedIndex) {
          0 -> compendiumList.filter { it.category == "creatures" }
          1 -> compendiumList.filter { it.category == "monsters" }
-         2 -> compendiumList.filter { it.category == "equipment" }
-         3 -> compendiumList.filter { it.category == "materials" }
+         2 -> compendiumList.filter { it.category == "materials" }
+         3 -> compendiumList.filter { it.category == "equipment" }
          4 -> compendiumList.filter { it.category == "treasure" }
          else -> emptyList()
       }
