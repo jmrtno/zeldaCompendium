@@ -53,7 +53,7 @@ fun GameNavigation(
             border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
                navController.navigate(
-                  "compendium_breath_screen"
+                  "compendium_screen/1"
                )
             }
          ) {
@@ -65,7 +65,7 @@ fun GameNavigation(
             border = BorderStroke(3.dp, Color(0xFF946D48)),
             onClick = {
                navController.navigate(
-                  "compendium_tears_screen"
+                  "compendium_screen/2"
                )
             }
          ) {

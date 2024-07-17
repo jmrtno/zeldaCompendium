@@ -28,27 +28,21 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
+import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.tears.CompendiumTearsViewModel
 
 @Composable
 fun CompendiumList(
+   gameId: Int?,
    compendiumList: List<CompendiumListEntry>,
    viewModel: CompendiumTearsViewModel = hiltViewModel(),
 ) {
    val loadError by remember { viewModel.loadError }
    val isLoading by remember { viewModel.isLoading }
-
+   val itemCount = compendiumList.size
    LazyColumn(contentPadding = PaddingValues(16.dp)) {
-      val itemCount = compendiumList.size
       item {
-         Image(
-            painter = painterResource(id = R.drawable.logo_tears),
-            contentDescription = "Zelda totk Logo",
-            modifier = Modifier
-               .fillMaxWidth()
-               .size(120.dp)
-               .offset(y = -(15).dp)
-         )
+         ImageList(gameId = gameId)
       }
       items(itemCount) {
          if (it >= itemCount && !isLoading) {

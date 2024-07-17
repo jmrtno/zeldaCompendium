@@ -35,64 +35,48 @@ import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
 import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModalContainer
 
 @Composable
-fun CompendiumItemBreath(
-   modifier: Modifier = Modifier,
-   entry: CompendiumListEntry
+fun CompendiumItemBreathEmpty(
+   modifier: Modifier = Modifier
 ) {
-   var showBottomSheet by remember { mutableStateOf(false) }
 
    Box(modifier = modifier
       .padding(top = 30.dp)
-      .clickable {
-         showBottomSheet = true
-      }
    ) {
       Column(
          modifier = modifier
             .zIndex(1f)
             .padding(horizontal = 40.dp),
       ) {
-         ItemImage(
-            modifier = modifier,
-            imageURL = entry.imageURL,
-            compendiumName = entry.compendiumName
+         ItemImageEmpty(
+            modifier = modifier
          )
          Text(
             modifier = modifier.offset(y = (-19).dp),
-            text = entry.compendiumName,
+            text = "Item does not exist",
             fontSize = 18.sp,
             color = Color.LightGray
          )
       }
-      ItemBg(
-         modifier = modifier, entryNumber = entry.id
+      ItemBgEmpty(
+         modifier = modifier
       )
    }
-   ItemDetailModalContainer(
-      gameId = 1,
-      entry = entry,
-      showBottomSheet = showBottomSheet,
-      onDismiss = { showBottomSheet = false }
-   )
 }
 
-
 @Composable
-fun ItemImage(
+fun ItemImageEmpty(
    modifier: Modifier = Modifier,
-   imageURL: String,
-   compendiumName: String
 ) {
    Box(
-      modifier = modifier.offset(y = (-22).dp), contentAlignment = Alignment.Center
+      modifier = modifier.offset(y = (-22).dp),
+      contentAlignment = Alignment.Center
    ) {
-      AsyncImage(
+      Image(
          modifier = modifier
             .size(50.dp)
             .border(0.5.dp, Color.White),
-         model = ImageRequest.Builder(LocalContext.current).data(imageURL)
-            .placeholder(R.drawable.placeholder_img).crossfade(true).build(),
-         contentDescription = compendiumName
+         painter = painterResource(id = R.drawable.placeholder_img),
+         contentDescription = "placeholder"
       )
       Image(
          modifier = modifier.size(63.dp),
@@ -102,10 +86,9 @@ fun ItemImage(
    }
 }
 
-
 @Composable
-fun ItemBg(
-   modifier: Modifier = Modifier, entryNumber: Int
+fun ItemBgEmpty(
+   modifier: Modifier = Modifier
 ) {
    Box(
       modifier = modifier
@@ -113,7 +96,9 @@ fun ItemBg(
          .padding(horizontal = 15.dp)
    ) {
       GlowingCard(
-         glowingColor = Color(0xFF005CBA), modifier = Modifier.height(75.dp), cornersRadius = 10.dp
+         glowingColor = Color(0xFF005CBA),
+         modifier = Modifier.height(75.dp),
+         cornersRadius = 10.dp
       ) {
          Row(
             modifier = modifier
@@ -123,11 +108,9 @@ fun ItemBg(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End
          ) {
-            Text(
-               text = "#$entryNumber",
+            Text(text = "#",
                fontSize = 25.sp,
-               color = Color.White.copy(alpha = 0.4f)
-            )
+               color = Color.White.copy(alpha = 0.4f))
          }
       }
    }
@@ -135,15 +118,6 @@ fun ItemBg(
 
 @Preview
 @Composable
-fun CompendiumItePreview() {
-   /*
-   CompendiumItem(
-      entry = CompendiumListEntry(
-         category = "creatures",
-         imageURL = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/128/image",
-         id = 345,
-         compendiumName = "asdasdas dasdasd asdas"
-      )
-   )
-    */
+fun CompendiumItemBreathEmptyPreview() {
+   CompendiumItemBreathEmpty()
 }

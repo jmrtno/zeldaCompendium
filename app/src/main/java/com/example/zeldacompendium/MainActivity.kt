@@ -34,15 +34,24 @@ class MainActivity : ComponentActivity() {
                composable("compendium_navigation") {
                   HomeContainer(navController = navController)
                }
-               composable("compendium_tears_screen") {
-                  TearsContainer(
-                     navController = navController
+               composable(
+                  route = "compendium_screen/{gameId}",
+                  arguments = listOf(
+                     navArgument("gameId") { type = NavType.IntType },
                   )
-               }
-               composable("compendium_breath_screen") {
-                  BreathContainer(
-                     navController = navController
-                  )
+               ) { entry ->
+                  val gameId = entry.arguments?.getInt("gameId")
+                  if (gameId == 1) {
+                     BreathContainer(
+                        navController = navController,
+                        gameId = gameId
+                     )
+                  } else {
+                     TearsContainer(
+                        navController = navController,
+                        gameId = gameId
+                     )
+                  }
                }
                composable(
                   route = "locations_map_screen/{gameId}/{coordinates}",
@@ -50,9 +59,9 @@ class MainActivity : ComponentActivity() {
                      navArgument("gameId") { type = NavType.IntType },
                      navArgument("coordinates") { type = NavType.StringType }
                   )
-               ) { backStackEntry ->
-                  val gameId = backStackEntry.arguments?.getInt("gameId")
-                  val coordinates = backStackEntry.arguments?.getString("coordinates")
+               ) { entry ->
+                  val gameId = entry.arguments?.getInt("gameId")
+                  val coordinates = entry.arguments?.getString("coordinates")
                   if (gameId != null) {
                      LocatioMapContainer(gameId = gameId, coordinates = coordinates)
                   }
