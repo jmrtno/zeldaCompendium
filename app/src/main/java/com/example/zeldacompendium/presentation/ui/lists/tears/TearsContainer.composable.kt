@@ -74,6 +74,7 @@ fun TearsContainer(
       bottomBar = {
          Column {
             SearchBar(
+               modifier = Modifier.padding(top = 15.dp),
                onSearch = { query ->
                   searchText = query
                   viewModel.searchCompendium(query)

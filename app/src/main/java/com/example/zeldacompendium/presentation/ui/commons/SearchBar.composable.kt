@@ -71,7 +71,7 @@ fun SearchBar(
                )
             }
          }
-         if (text.isNotEmpty()) {
+         if (!isHintDisplayed && text.isNotEmpty()) {
             IconButton(onClick = {
                text = ""
                onSearch("")}
