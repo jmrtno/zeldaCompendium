@@ -4,6 +4,7 @@ package com.example.zeldacompendium.presentation.ui.lists.breath
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -23,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.zeldacompendium.domain.CompendiumFilter
@@ -31,18 +33,24 @@ import com.example.zeldacompendium.presentation.ui.commons.SearchBar
 import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
 import com.example.zeldacompendium.presentation.ui.commons.categoryselector.CategorySelector
 import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
+import com.example.zeldacompendium.presentation.ui.lists.ImageList
+import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumItemBreathEmpty
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumList
+import com.example.zeldacompendium.presentation.ui.lists.breath.components.ItemImage
+import kotlin.math.absoluteValue
 
 @Composable
 fun BreathContainer(
+   gameId: Int?,
    navController: NavController,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
    compendiumFilter: CompendiumFilter = CompendiumFilterImpl()
 ) {
    var selectedIndex by remember { mutableIntStateOf(0) }
    var searchText by remember { mutableStateOf("") }
+   val isLoading by remember { viewModel.isLoading }
    val focusManager = LocalFocusManager.current
-   val filteredList =  compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
+   val filteredList = compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
    Scaffold(
       topBar = {
          CenterAlignedTopAppBar(
@@ -85,7 +93,15 @@ fun BreathContainer(
          modifier = Modifier
             .padding(padding)
       ) {
-         CompendiumList(compendiumList = filteredList)
+         if (filteredList.isEmpty() && !isLoading) {
+            Column(modifier = Modifier.padding(16.dp)) {
+               ImageList(gameId = gameId)
+               CompendiumItemBreathEmpty()
+            }
+         } else {
+            CompendiumList(gameId = gameId, compendiumList = filteredList)
+         }
+         
       }
    }
 }

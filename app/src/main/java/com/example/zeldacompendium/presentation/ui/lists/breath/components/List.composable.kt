@@ -1,15 +1,11 @@
 package com.example.zeldacompendium.presentation.ui.lists.breath.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -22,16 +18,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
+import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.breath.CompendiumBreathViewModel
 
 @Composable
 fun CompendiumList(
+   gameId: Int?,
    compendiumList: List<CompendiumListEntry>,
    viewModel: CompendiumBreathViewModel = hiltViewModel(),
 ) {
@@ -42,14 +38,7 @@ fun CompendiumList(
    LazyColumn(contentPadding = PaddingValues(16.dp)) {
       val itemCount = compendiumList.size
       item {
-         Image(
-            painter = painterResource(id = R.drawable.logo_botw),
-            contentDescription = "Zelda botw Logo",
-            modifier = Modifier
-               .fillMaxWidth()
-               .size(120.dp)
-               .offset(y = -(15).dp)
-         )
+         ImageList(gameId = gameId)
       }
       items(itemCount) {
          if (it >= itemCount && !isLoading) {
