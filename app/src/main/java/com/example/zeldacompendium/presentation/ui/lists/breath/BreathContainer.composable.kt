@@ -60,7 +60,7 @@ fun BreathContainer(
             navigationIcon = {
                IconButton(onClick = {
                   focusManager.clearFocus()
-                  navController.navigateUp() }) {
+                  navController.popBackStack() }) {
                   Icon(
                      imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                      tint = Color(0xFF19FFFF),
@@ -71,16 +71,18 @@ fun BreathContainer(
          )
       },
       bottomBar = {
-         Column {
-            SearchBar(
-               onSearch = { query ->
-                  searchText = query
-                  viewModel.searchCompendium(query)
+         if (isError.isEmpty()) {
+            Column {
+               SearchBar(
+                  onSearch = { query ->
+                     searchText = query
+                     viewModel.searchCompendium(query)
+                  }
+               )
+               CategorySelector { newSelectedIndex ->
+                  focusManager.clearFocus()
+                  selectedIndex = newSelectedIndex
                }
-            )
-            CategorySelector { newSelectedIndex ->
-               focusManager.clearFocus()
-               selectedIndex = newSelectedIndex
             }
          }
       }
@@ -97,7 +99,10 @@ fun BreathContainer(
                CompendiumItemBreathEmpty()
             }
          } else {
-            CompendiumList(gameId = gameId, compendiumList = filteredList)
+            CompendiumList(
+               gameId = gameId,
+               compendiumList = filteredList
+            )
          }
          
       }

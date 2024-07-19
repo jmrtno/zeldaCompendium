@@ -51,7 +51,10 @@ fun CompendiumList(
          CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
       }
       if (!isLoading && loadError.isNotEmpty()) {
-         RetrySection(error = loadError) {
+         RetrySection(
+            error = loadError,
+            bottomTittle = "Retry"
+         ) {
             viewModel.loadBreathList()
          }
       }

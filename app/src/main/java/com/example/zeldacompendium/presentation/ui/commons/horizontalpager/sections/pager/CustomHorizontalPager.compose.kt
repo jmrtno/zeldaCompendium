@@ -25,8 +25,7 @@ fun CustomHorizontalPager(
 ) {
    Column(
       modifier = Modifier
-         .fillMaxWidth()
-         .padding(bottom = 30.dp),
+         .fillMaxWidth(),
       horizontalAlignment = Alignment.CenterHorizontally,
       verticalArrangement = Arrangement.SpaceBetween
    ) {

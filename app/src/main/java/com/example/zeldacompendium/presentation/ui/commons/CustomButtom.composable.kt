@@ -27,15 +27,13 @@ import com.example.zeldacompendium.R
 @Composable
 fun ImageButton(
    onClick: () -> Unit,
-   @DrawableRes backgroundDrawableId: Int,
-   modifier: Modifier = Modifier,
+   @DrawableRes backgroundDrawableId: Int = R.drawable.button_bg,
    shape: Shape = RoundedCornerShape(5.dp),
-   border: BorderStroke? = null,
+   border: BorderStroke? = BorderStroke(3.dp, Color(0xFF946D48)),
    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
    content: @Composable RowScope.() -> Unit
 ) {
    Button(
-      modifier = modifier,
       onClick = onClick,
       contentPadding = PaddingValues(0.dp),
       shape = shape,
@@ -67,12 +65,10 @@ fun ImageButtonPreview(
    ImageButton(
       onClick = { /* Acción al hacer clic */ },
       backgroundDrawableId = R.drawable.button_bg,
-      modifier = Modifier
-         .padding(16.dp),
       shape = RoundedCornerShape(5.dp),
       border = BorderStroke(3.dp, Color(0xFF946D48)),
       contentPadding = contentPadding,
    ) {
-      Text(text = "TOTK", color = Color(0xFF19ffff))
+      Text(text = "Button", color = Color(0xFF19ffff))
    }
 }
