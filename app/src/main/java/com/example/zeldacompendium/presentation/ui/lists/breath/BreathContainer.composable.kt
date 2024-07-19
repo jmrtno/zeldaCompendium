@@ -46,6 +46,7 @@ fun BreathContainer(
    var selectedIndex by remember { mutableIntStateOf(0) }
    var searchText by remember { mutableStateOf("") }
    val isLoading by remember { viewModel.isLoading }
+   val isError by remember { viewModel.loadError }
    val focusManager = LocalFocusManager.current
    val filteredList = compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
    Scaffold(
@@ -90,7 +91,7 @@ fun BreathContainer(
          modifier = Modifier
             .padding(padding)
       ) {
-         if (filteredList.isEmpty() && !isLoading) {
+         if (filteredList.isEmpty() && !isLoading && isError.isEmpty()) {
             Column(modifier = Modifier.padding(16.dp)) {
                ImageList(gameId = gameId)
                CompendiumItemBreathEmpty()

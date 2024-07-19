@@ -24,7 +24,9 @@ fun CustomHorizontalPager(
    pageContent: @Composable (page: Int) -> Unit
 ) {
    Column(
-      modifier = Modifier.fillMaxWidth(),
+      modifier = Modifier
+         .fillMaxWidth()
+         .padding(bottom = 30.dp),
       horizontalAlignment = Alignment.CenterHorizontally,
       verticalArrangement = Arrangement.SpaceBetween
    ) {
