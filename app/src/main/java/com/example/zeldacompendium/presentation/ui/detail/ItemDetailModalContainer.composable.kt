@@ -6,9 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,6 +16,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.zeldacompendium.R
@@ -40,6 +41,7 @@ import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.data.utils.Constants
 import com.example.zeldacompendium.data.utils.Resource
+import com.example.zeldacompendium.presentation.ui.commons.RetrySection
 import com.example.zeldacompendium.presentation.ui.detail.categories.creatures.CreaturesItemDetailContainer
 import com.example.zeldacompendium.presentation.ui.detail.categories.equipment.EquipmentItemDetailContainer
 import com.example.zeldacompendium.presentation.ui.detail.categories.materials.MaterialsItemDetailContainer
@@ -61,9 +63,13 @@ fun ItemDetailModalContainer(
          containerColor = Color(0XFF141413),
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState,
-         modifier = Modifier.padding(vertical = 30.dp),
+         modifier = Modifier.padding(bottom = 50.dp),
       ) {
-         ItemDetailContainer(itemId = entry.id, gameId = gameId)
+         ItemDetailContainer(
+            itemId = entry.id,
+            gameId = gameId,
+            onDismiss = onDismiss
+         )
       }
    }
 }
@@ -72,6 +78,7 @@ fun ItemDetailModalContainer(
 fun ItemDetailContainer(
    gameId: Int,
    itemId: Int,
+   onDismiss: () -> Unit,
    viewModel: ItemDetailViewModel = hiltViewModel()
 ) {
    val itemInfo = produceState<Resource<ItemDetailModel>>(initialValue = Resource.Loading()) {
@@ -85,7 +92,8 @@ fun ItemDetailContainer(
       ItemDetailStateWrapper(
          itemInfo = itemInfo,
          gameId = gameId,
-         loadingModifier = Modifier
+         onDismiss = onDismiss,
+         modifier = Modifier
             .size(100.dp)
             .align(Alignment.Center)
             .padding(
@@ -102,8 +110,8 @@ fun ItemDetailContainer(
 fun ItemDetailStateWrapper(
    itemInfo: Resource<ItemDetailModel>,
    gameId: Int,
-   modifier: Modifier = Modifier,
-   loadingModifier: Modifier = Modifier
+   onDismiss: () -> Unit,
+   modifier: Modifier = Modifier
 ) {
    when (itemInfo) {
       is Resource.Success -> {
@@ -113,17 +121,18 @@ fun ItemDetailStateWrapper(
       }
 
       is Resource.Error -> {
-         Text(
-            text = itemInfo.message!!,
-            color = Color.Red,
-            modifier = modifier
-         )
+         RetrySection(
+            error = itemInfo.message!!,
+            bottomTittle = "Exit"
+         ) {
+            onDismiss()
+         }
       }
 
       is Resource.Loading -> {
          CircularProgressIndicator(
             color = MaterialTheme.colorScheme.primary,
-            modifier = loadingModifier
+            modifier = modifier
          )
       }
    }

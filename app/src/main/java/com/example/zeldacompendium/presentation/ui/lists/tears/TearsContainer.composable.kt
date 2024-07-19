@@ -2,6 +2,7 @@
 
 package com.example.zeldacompendium.presentation.ui.lists.tears
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +38,7 @@ import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumItemBreathEmpty
 import com.example.zeldacompendium.presentation.ui.lists.tears.components.CompendiumList
+import kotlinx.coroutines.delay
 
 @Composable
 fun TearsContainer(
@@ -48,6 +51,7 @@ fun TearsContainer(
    var selectedIndex by remember { mutableIntStateOf(0) }
    var searchText by remember { mutableStateOf("") }
    val isLoading by remember { viewModel.isLoading }
+   val isError by remember { viewModel.loadError }
    val filteredList = compendiumFilter.filterCompendiumList(viewModel.compendiumList.value, selectedIndex)
 
    Scaffold(
@@ -72,37 +76,39 @@ fun TearsContainer(
          )
       },
       bottomBar = {
-         Column {
-            SearchBar(
-               onSearch = { query ->
-                  searchText = query
-                  viewModel.searchCompendium(query)
+         if (isError.isEmpty()) {
+            Column {
+               SearchBar(
+                  onSearch = { query ->
+                     searchText = query
+                     viewModel.searchCompendium(query)
+                  }
+               )
+               CategorySelector { newSelectedIndex ->
+                  focusManager.clearFocus()
+                  selectedIndex = newSelectedIndex
                }
-            )
-            CategorySelector { newSelectedIndex ->
-               focusManager.clearFocus()
-               selectedIndex = newSelectedIndex
             }
          }
       }
    ) { padding ->
       SetBackgroundImage()
       SetFrame()
-      Column(
+      Box(
          modifier = Modifier
             .padding(padding)
-            .fillMaxSize()
       ) {
-         if (filteredList.isEmpty() && !isLoading) {
+         if (filteredList.isEmpty() && !isLoading && isError.isEmpty()) {
             Column(modifier = Modifier.padding(16.dp)) {
                ImageList(gameId = gameId)
                CompendiumItemBreathEmpty()
             }
          } else {
-            CompendiumList(
-               gameId = gameId,
-               compendiumList = filteredList
-            )
+               CompendiumList(
+                  gameId = gameId,
+                  compendiumList = filteredList
+               )
+
          }
       }
    }
