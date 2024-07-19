@@ -48,7 +48,9 @@ fun SearchBar(
          singleLine = true,
          interactionSource = interactionSource,
          cursorBrush = SolidColor(Color.White),
-         onValueChange = { newText -> text = newText },
+         onValueChange = {
+            text = it
+            onSearch(it) },
          textStyle = TextStyle(color = Color.LightGray),
          modifier = Modifier
             .fillMaxWidth()

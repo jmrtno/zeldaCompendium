@@ -4,7 +4,6 @@ package com.example.zeldacompendium.presentation.ui.lists.breath
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -36,8 +35,6 @@ import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumItemBreathEmpty
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumList
-import com.example.zeldacompendium.presentation.ui.lists.breath.components.ItemImage
-import kotlin.math.absoluteValue
 
 @Composable
 fun BreathContainer(
