@@ -7,10 +7,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -63,7 +66,7 @@ fun ItemDetailModalContainer(
          containerColor = Color(0XFF141413),
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState,
-         modifier = Modifier.padding(bottom = 50.dp),
+         modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
       ) {
          ItemDetailContainer(
             itemId = entry.id,

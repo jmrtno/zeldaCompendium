@@ -4,7 +4,12 @@ package com.example.zeldacompendium.presentation.ui.lists.breath
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -72,7 +77,9 @@ fun BreathContainer(
       },
       bottomBar = {
          if (isError.isEmpty()) {
-            Column {
+            Column(
+               modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
+            ) {
                SearchBar(
                   onSearch = { query ->
                      searchText = query
