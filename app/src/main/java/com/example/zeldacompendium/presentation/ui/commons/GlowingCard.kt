@@ -28,7 +28,7 @@ fun GlowingCard(
    yShifting: Dp = 0.dp,
    content: @Composable BoxScope.() -> Unit
 ) {
-   for (i in 1..5) {
+
       Box(modifier = modifier.drawBehind {
          val canvasSize = size
          drawContext.canvas.nativeCanvas.apply {
@@ -45,7 +45,7 @@ fun GlowingCard(
                      glowingRadius.toPx(),
                      xShifting.toPx(),
                      yShifting.toPx(),
-                     glowingColor.copy(alpha = 0.2f * i).toArgb()
+                     glowingColor.copy(alpha = 0.2f * 5).toArgb()
                   )
                }
             )
@@ -73,4 +73,3 @@ fun GlowingCard(
          }
       }
    }
-}

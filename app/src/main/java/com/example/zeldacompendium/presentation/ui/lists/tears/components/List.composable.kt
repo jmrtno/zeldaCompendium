@@ -51,7 +51,7 @@ fun CompendiumList(
       if (!isLoading && loadError.isNotEmpty()) {
          RetrySection(
             error = loadError,
-            bottomTittle = "Retry"
+            buttonTittle = "Retry"
          ) {
             viewModel.loadCompendium()
          }

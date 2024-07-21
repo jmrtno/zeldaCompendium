@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,13 +20,13 @@ import com.example.zeldacompendium.R
 @Composable
 fun RetrySection(
    error: String,
-   bottomTittle: String,
+   buttonTittle: String,
    onRetry: () -> Unit
 ) {
    Column(
       horizontalAlignment = Alignment.CenterHorizontally,
       verticalArrangement = Arrangement.spacedBy(30.dp),
-      modifier = Modifier.padding(top = 12.dp)
+      modifier = Modifier.padding(top = 15.dp)
    ) {
       Image(
          painter = painterResource(id = R.drawable.game_over),
@@ -38,14 +39,11 @@ fun RetrySection(
          fontSize = 18.sp,
          modifier = Modifier.padding(horizontal = 24.dp)
       )
-      ImageButton(
-         onClick = { onRetry() },
-      ) {
-         Text(
-            text = bottomTittle,
-            color = Color(0xFF19FFFF)
-         )
-      }
+      CustomButton(
+         text = buttonTittle,
+         modifier = Modifier.size(150.dp, 70.dp),
+         onClick = { onRetry() }
+      )
    }
 }
 
@@ -53,7 +51,7 @@ fun RetrySection(
 @Composable
 fun RetrySectionPreview() {
    RetrySection(
-      bottomTittle = "Button",
+      buttonTittle = "Button",
       error = "Something went wrong. Please try again.",
       onRetry = { /* Handle retry action here */ }
    )
