@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -44,7 +47,13 @@ fun HomeContainer(
    ) {
       SetBackgroundImage()
       Column(
-         modifier = Modifier.padding(top = 120.dp, bottom = 70.dp)
+         horizontalAlignment = Alignment.CenterHorizontally,
+         verticalArrangement = Arrangement.spacedBy(22.dp),
+         modifier = Modifier.padding(
+            top = 120.dp,
+            start = 20.dp,
+            end =  20.dp
+         )
       ) {
          GameNavigation(navController = navController)
          OnBoardingMessage()
@@ -58,8 +67,7 @@ fun GameNavigation(
    navController: NavController,
 ) {
    Row(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.padding(15.dp)
+      verticalAlignment = Alignment.CenterVertically
    ) {
       Column(
          horizontalAlignment = Alignment.CenterHorizontally,
@@ -109,8 +117,6 @@ fun GameNavigation(
 fun OnBoardingMessage() {
    Box(
       modifier = Modifier
-         .fillMaxSize()
-         .padding(horizontal = 20.dp)
          .background(
             Color(0xFF121210),
             shape = RoundedCornerShape(15.dp)
@@ -132,6 +138,11 @@ fun OnBoardingMessage() {
             color = Color.LightGray.copy(alpha = 0.5f)
          )
          HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
+         Text(
+            text = "",
+            fontSize = 14.sp,
+            color = Color.LightGray
+         )
       }
 
    }
