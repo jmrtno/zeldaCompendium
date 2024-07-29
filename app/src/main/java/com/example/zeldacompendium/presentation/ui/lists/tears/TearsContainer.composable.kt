@@ -5,7 +5,6 @@ package com.example.zeldacompendium.presentation.ui.lists.tears
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -20,7 +19,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -41,7 +39,6 @@ import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
 import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumItemBreathEmpty
 import com.example.zeldacompendium.presentation.ui.lists.tears.components.CompendiumList
-import kotlinx.coroutines.delay
 
 @Composable
 fun TearsContainer(
