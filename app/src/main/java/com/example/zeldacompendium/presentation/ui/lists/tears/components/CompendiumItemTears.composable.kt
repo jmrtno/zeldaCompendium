@@ -36,12 +36,7 @@ fun CompendiumItemTears(
       .clickable {
          showBottomSheet = true
       }) {
-      GlowingCard(
-         glowingColor = Color(0xFF005CBA),
-         modifier = Modifier
-            .height(75.dp),
-         cornersRadius = 10.dp
-      ) {}
+      GlowingCard { }
       Row(
          modifier = modifier
             .height(70.dp)
