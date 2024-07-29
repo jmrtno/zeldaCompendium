@@ -1,75 +1,98 @@
 package com.example.zeldacompendium.presentation.ui.commons
 
-import android.graphics.Paint
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.PaintingStyle
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.drawscope.inset
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun GlowingCard(
-   glowingColor: Color,
-   modifier: Modifier = Modifier,
-   //imageDrawableResId: Int = R.drawable.button_bg,
-   containerColor: Color = Color(0XFF0C0D09),
-   cornersRadius: Dp = 0.dp,
-   glowingRadius: Dp = 10.dp,
-   xShifting: Dp = 0.dp,
-   yShifting: Dp = 0.dp,
    content: @Composable BoxScope.() -> Unit
 ) {
-
-      Box(modifier = modifier.drawBehind {
-         val canvasSize = size
-         drawContext.canvas.nativeCanvas.apply {
-            drawRoundRect(0f, // Left
-               0f, // Top
-               canvasSize.width, // Right
-               canvasSize.height, // Bottom
-               cornersRadius.toPx(), // Radius X
-               cornersRadius.toPx(), // Radius Y
-               Paint().apply {
-                  color = containerColor.toArgb()
-                  isAntiAlias = true
-                  setShadowLayer(
-                     glowingRadius.toPx(),
-                     xShifting.toPx(),
-                     yShifting.toPx(),
-                     glowingColor.copy(alpha = 0.2f * 5).toArgb()
-                  )
-               }
-            )
-         }
+   val paint = remember {
+      Paint().apply {
+         style = PaintingStyle.Stroke
+         strokeWidth = 20f
       }
+   }
+
+   val frameworkPaint = remember {
+      paint.asFrameworkPaint()
+   }
+
+   val color = Color(0xFF005CBA)
+
+   val transparent = color
+      .copy(alpha = 0f)
+      .toArgb()
+
+   frameworkPaint.color = transparent
+
+   frameworkPaint.setShadowLayer(
+      10f,
+      0f,
+      0f,
+      color
+         .copy(alpha = .5f)
+         .toArgb()
+   )
+   Box(
+      modifier = Modifier
+         .height(75.dp)
+         .background(Color(0XFF0C0D09), RoundedCornerShape(10.dp))
+   ) {
+      content()
+      Canvas(modifier = Modifier
+         .fillMaxSize()
       ) {
-         Box(
-            modifier = Modifier
-               .fillMaxSize()
-               .clip(RoundedCornerShape(cornersRadius))
-               .border(3.dp, Color(0xFF946D48), RoundedCornerShape(10.dp))
-         ) {
-            // para imagen de fondo añadir aqui
-            /*
-            Image(
-               modifier = Modifier
-                  .fillMaxSize()
-                  .border(3.dp, Color(0xFF946D48), shape = RoundedCornerShape(cornersRadius)),
-               painter = painterResource(id = imageDrawableResId),
-               contentDescription = null,
-               contentScale = ContentScale.Crop
-            )
-            */
-            content()
+         inset {
+            this.drawIntoCanvas {
+               it.drawRoundRect(
+                  left = 0f,
+                  top = 0f,
+                  right = size.width,
+                  bottom = size.height,
+                  radiusX = 10.dp.toPx(),
+                  5.dp.toPx(),
+                  paint = paint
+               )
+
+               drawRoundRect(
+                  Color(0xFF63FCFC),
+                  cornerRadius = CornerRadius(10f,10f),
+                  style = Stroke(width = 1.dp.toPx())
+               )
+            }
          }
       }
    }
+}
+
+
+@Preview
+@Composable
+fun GlowingCardPreview() {
+   GlowingCard(
+   ) {
+      // Add content here for preview
+   }
+}

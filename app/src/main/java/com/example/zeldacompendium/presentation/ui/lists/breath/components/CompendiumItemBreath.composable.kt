@@ -43,9 +43,6 @@ fun CompendiumItemBreath(
 
    Box(modifier = modifier
       .padding(top = 30.dp)
-      .clickable {
-         showBottomSheet = true
-      }
    ) {
       Column(
          modifier = modifier
@@ -65,7 +62,8 @@ fun CompendiumItemBreath(
          )
       }
       ItemBg(
-         modifier = modifier, entryNumber = entry.id
+         modifier = modifier.clickable { showBottomSheet = true },
+         entryNumber = entry.id
       )
    }
    ItemDetailModalContainer(
@@ -84,7 +82,8 @@ fun ItemImage(
    compendiumName: String
 ) {
    Box(
-      modifier = modifier.offset(y = (-22).dp), contentAlignment = Alignment.Center
+      modifier = modifier.offset(y = (-22).dp),
+      contentAlignment = Alignment.Center
    ) {
       AsyncImage(
          modifier = modifier
@@ -105,16 +104,16 @@ fun ItemImage(
 
 @Composable
 fun ItemBg(
-   modifier: Modifier = Modifier, entryNumber: Int
+   modifier: Modifier = Modifier,
+   entryNumber: Int
 ) {
    Box(
       modifier = modifier
          .fillMaxWidth()
          .padding(horizontal = 15.dp)
+         .clickable { }
    ) {
-      GlowingCard(
-         glowingColor = Color(0xFF005CBA), modifier = Modifier.height(75.dp), cornersRadius = 10.dp
-      ) {
+      GlowingCard {
          Row(
             modifier = modifier
                .fillMaxWidth()
@@ -136,8 +135,7 @@ fun ItemBg(
 @Preview
 @Composable
 fun CompendiumItePreview() {
-   /*
-   CompendiumItem(
+   CompendiumItemBreath(
       entry = CompendiumListEntry(
          category = "creatures",
          imageURL = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/128/image",
@@ -145,5 +143,4 @@ fun CompendiumItePreview() {
          compendiumName = "asdasdas dasdasd asdas"
       )
    )
-    */
 }

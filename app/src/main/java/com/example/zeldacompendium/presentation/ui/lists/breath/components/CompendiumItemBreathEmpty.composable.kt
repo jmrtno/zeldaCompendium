@@ -95,11 +95,7 @@ fun ItemBgEmpty(
          .fillMaxWidth()
          .padding(horizontal = 15.dp)
    ) {
-      GlowingCard(
-         glowingColor = Color(0xFF005CBA),
-         modifier = Modifier.height(75.dp),
-         cornersRadius = 10.dp
-      ) {
+      GlowingCard {
          Row(
             modifier = modifier
                .fillMaxWidth()
