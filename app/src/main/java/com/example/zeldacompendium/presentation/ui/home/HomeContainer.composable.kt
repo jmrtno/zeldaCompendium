@@ -113,7 +113,7 @@ fun GameNavigation(
             modifier = Modifier.size(250.dp, 80.dp),
             onClick = {
                navController.navigate(
-                  "compendium_screen/1"
+                  "compendium_screen/2"
                )
             }
          )

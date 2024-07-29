@@ -3,7 +3,7 @@ package com.example.zeldacompendium.data.utils
 object Constants {
     const val ERROR_MSG = "It appears that you may not have an internet connection or the service you're trying to access is currently unavailable." +
             "\n\nPlease check your internet connection or try again later."
-    const val WELCOME_MSG = "This application will help you in your games around Hyrule. Use it to find out about any creature, treasure, monster, material or weapon in the Breath of the Wild and Tears of the Kingdom games. You can also check their location by clicking on Location name symbol "
+    const val WELCOME_MSG = "This application will help you in your games around Hyrule. Use it to find out about any creature, treasure, monster, material or weapon in the Breath of the Wild and Tears of the Kingdom games. You can also check their location by clicking on Location name icon "
     const val WELCOME_MSG2 = "This project has been made possible thanks to "
     const val WELCOME_MSG3 = ", which collects all the necessary information about the items, and "
     const val TAG = "URL"

@@ -47,7 +47,7 @@ fun CustomButton(
       paint.asFrameworkPaint()
    }
 
-   val color = Color(0xFFE2DED3)
+   val color = Color(0xFF63FCFC)
 
    val transparent = color
       .copy(alpha = 0f)
@@ -66,7 +66,7 @@ fun CustomButton(
    Box(
       modifier = modifier
          .padding(12.dp)
-         .background(Color(0xFFE0D8C1))
+         .background(Color(0xFFC4FFFF))
    ) {
       Button(
          onClick = { onClick() },
@@ -79,7 +79,7 @@ fun CustomButton(
       ) {
          Text(
             text = text,
-            color = Color(0xFFE0D8C1),
+            color = Color(0xFFC4FFFF),
             fontSize = 14.sp,
             fontStyle = FontStyle.Italic,
             textAlign = TextAlign.Center
@@ -101,7 +101,7 @@ fun CustomButton(
                )
 
                drawRoundRect(
-                  Color(0xFFE0D8C1),
+                  Color(0xFFC4FFFF),
                   cornerRadius = CornerRadius(0f,0f),
                   style = Stroke(width = 1.dp.toPx())
                )
