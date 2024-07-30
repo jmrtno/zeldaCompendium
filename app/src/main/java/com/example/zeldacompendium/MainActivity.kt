@@ -12,8 +12,8 @@ import androidx.navigation.navArgument
 import com.example.zeldacompendium.domain.service.NavigationServiceImpl
 import com.example.zeldacompendium.domain.service.ServiceProvider
 import com.example.zeldacompendium.presentation.ui.home.HomeContainer
-import com.example.zeldacompendium.presentation.ui.lists.breath.BreathContainer
-import com.example.zeldacompendium.presentation.ui.lists.tears.TearsContainer
+import com.example.zeldacompendium.presentation.ui.lists.games.breath.BreathContainer
+import com.example.zeldacompendium.presentation.ui.lists.games.tears.TearsContainer
 import com.example.zeldacompendium.presentation.ui.locationsmap.LocatioMapContainer
 import com.example.zeldacompendium.presentation.ui.theme.ZeldaCompendiumTheme
 import dagger.hilt.android.AndroidEntryPoint

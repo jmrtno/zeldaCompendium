@@ -6,8 +6,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import com.example.zeldacompendium.data.remote.responses.ItemDetailModel
 import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.pager.CustomHorizontalPager
-import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.pages.DropsPage
-import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.pages.LocationPage
+import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.page.type.DropsPage
+import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.page.type.LocationPage
 
 @Composable
 fun TreasureItemDetailContainer(
