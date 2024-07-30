@@ -36,8 +36,8 @@ import com.example.zeldacompendium.presentation.ui.components.SearchBar
 import com.example.zeldacompendium.presentation.ui.components.SetBackgroundImage
 import com.example.zeldacompendium.presentation.ui.components.categoryselector.CategorySelector
 import com.example.zeldacompendium.presentation.ui.components.SetFrame
-import com.example.zeldacompendium.presentation.ui.lists.ImageList
-import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumItemBreathEmpty
+import com.example.zeldacompendium.presentation.ui.lists.ListHeaderImageSection
+import com.example.zeldacompendium.presentation.ui.lists.breath.sections.items.CompendiumItemBreathEmpty
 import com.example.zeldacompendium.presentation.ui.lists.tears.components.CompendiumList
 
 @Composable
@@ -102,7 +102,7 @@ fun TearsContainer(
       ) {
          if (filteredList.isEmpty() && !isLoading && isError.isEmpty()) {
             Column(modifier = Modifier.padding(16.dp)) {
-               ImageList(gameId = gameId)
+               ListHeaderImageSection(gameId = gameId)
                CompendiumItemBreathEmpty()
             }
          } else {

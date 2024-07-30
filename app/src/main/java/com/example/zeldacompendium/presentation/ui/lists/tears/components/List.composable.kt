@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.components.RetrySection
-import com.example.zeldacompendium.presentation.ui.lists.ImageList
+import com.example.zeldacompendium.presentation.ui.lists.ListHeaderImageSection
 import com.example.zeldacompendium.presentation.ui.lists.tears.CompendiumTearsViewModel
 
 @Composable
@@ -30,7 +30,7 @@ fun CompendiumList(
    val itemCount = compendiumList.size
    LazyColumn(contentPadding = PaddingValues(16.dp)) {
       item {
-         ImageList(gameId = gameId)
+         ListHeaderImageSection(gameId = gameId)
       }
       items(itemCount) {
          if (it >= itemCount && !isLoading) {

@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import com.example.zeldacompendium.R
 
 @Composable
-fun ImageList(
+fun ListHeaderImageSection(
    gameId: Int?
 ){
    Image(

@@ -13,7 +13,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class CompendiumBreathViewModel @Inject constructor(
+class BreathViewModel @Inject constructor(
    private val repository: CompendiumRepository,
 ): ViewModel() {
 

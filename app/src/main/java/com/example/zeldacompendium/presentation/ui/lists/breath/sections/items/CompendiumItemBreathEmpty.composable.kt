@@ -1,9 +1,7 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-package com.example.zeldacompendium.presentation.ui.lists.breath.components
+package com.example.zeldacompendium.presentation.ui.lists.breath.sections.items
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,35 +11,23 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.example.zeldacompendium.R
-import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.components.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.sections.ItemDetailModalContainer
 
 @Composable
-fun CompendiumItemBreath(
-   modifier: Modifier = Modifier,
-   entry: CompendiumListEntry
+fun CompendiumItemBreathEmpty(
+   modifier: Modifier = Modifier
 ) {
-   var showBottomSheet by remember { mutableStateOf(false) }
 
    Box(modifier = modifier
       .padding(top = 30.dp)
@@ -51,49 +37,36 @@ fun CompendiumItemBreath(
             .zIndex(1f)
             .padding(horizontal = 40.dp),
       ) {
-         ItemImage(
-            modifier = modifier,
-            imageURL = entry.imageURL,
-            compendiumName = entry.compendiumName
+         ItemImageEmpty(
+            modifier = modifier
          )
          Text(
             modifier = modifier.offset(y = (-19).dp),
-            text = entry.compendiumName,
+            text = "Item does not exist",
             fontSize = 18.sp,
             color = Color.LightGray
          )
       }
-      ItemBg(
-         modifier = modifier.clickable { showBottomSheet = true },
-         entryNumber = entry.id
+      ItemBgEmpty(
+         modifier = modifier
       )
    }
-   ItemDetailModalContainer(
-      gameId = 1,
-      entry = entry,
-      showBottomSheet = showBottomSheet,
-      onDismiss = { showBottomSheet = false }
-   )
 }
 
-
 @Composable
-fun ItemImage(
+fun ItemImageEmpty(
    modifier: Modifier = Modifier,
-   imageURL: String,
-   compendiumName: String
 ) {
    Box(
       modifier = modifier.offset(y = (-22).dp),
       contentAlignment = Alignment.Center
    ) {
-      AsyncImage(
+      Image(
          modifier = modifier
             .size(50.dp)
             .border(0.5.dp, Color.White),
-         model = ImageRequest.Builder(LocalContext.current).data(imageURL)
-            .placeholder(R.drawable.placeholder_img).crossfade(true).build(),
-         contentDescription = compendiumName
+         painter = painterResource(id = R.drawable.placeholder_img),
+         contentDescription = "placeholder"
       )
       Image(
          modifier = modifier.size(63.dp),
@@ -103,17 +76,14 @@ fun ItemImage(
    }
 }
 
-
 @Composable
-fun ItemBg(
-   modifier: Modifier = Modifier,
-   entryNumber: Int
+fun ItemBgEmpty(
+   modifier: Modifier = Modifier
 ) {
    Box(
       modifier = modifier
          .fillMaxWidth()
          .padding(horizontal = 15.dp)
-         .clickable { }
    ) {
       GlowingCard {
          Row(
@@ -124,11 +94,9 @@ fun ItemBg(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End
          ) {
-            Text(
-               text = "#$entryNumber",
+            Text(text = "#",
                fontSize = 25.sp,
-               color = Color.White.copy(alpha = 0.4f)
-            )
+               color = Color.White.copy(alpha = 0.4f))
          }
       }
    }
@@ -136,13 +104,6 @@ fun ItemBg(
 
 @Preview
 @Composable
-fun CompendiumItePreview() {
-   CompendiumItemBreath(
-      entry = CompendiumListEntry(
-         category = "creatures",
-         imageURL = "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/128/image",
-         id = 345,
-         compendiumName = "asdasdas dasdasd asdas"
-      )
-   )
+fun CompendiumItemBreathEmptyPreview() {
+   CompendiumItemBreathEmpty()
 }
