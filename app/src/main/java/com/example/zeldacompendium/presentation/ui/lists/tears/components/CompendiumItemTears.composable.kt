@@ -22,8 +22,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModalContainer
+import com.example.zeldacompendium.presentation.ui.components.GlowingCard
+import com.example.zeldacompendium.presentation.ui.detail.sections.ItemDetailModalContainer
 
 @Composable
 fun CompendiumItemTears(

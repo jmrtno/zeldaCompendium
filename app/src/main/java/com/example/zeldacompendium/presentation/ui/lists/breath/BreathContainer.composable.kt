@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -33,10 +31,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.zeldacompendium.domain.CompendiumFilter
 import com.example.zeldacompendium.domain.CompendiumFilterImpl
-import com.example.zeldacompendium.presentation.ui.commons.SearchBar
-import com.example.zeldacompendium.presentation.ui.commons.SetBackgroundImage
-import com.example.zeldacompendium.presentation.ui.commons.categoryselector.CategorySelector
-import com.example.zeldacompendium.presentation.ui.home.component.SetFrame
+import com.example.zeldacompendium.presentation.ui.components.SearchBar
+import com.example.zeldacompendium.presentation.ui.components.SetBackgroundImage
+import com.example.zeldacompendium.presentation.ui.components.categoryselector.CategorySelector
+import com.example.zeldacompendium.presentation.ui.components.SetFrame
 import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumItemBreathEmpty
 import com.example.zeldacompendium.presentation.ui.lists.breath.components.CompendiumList

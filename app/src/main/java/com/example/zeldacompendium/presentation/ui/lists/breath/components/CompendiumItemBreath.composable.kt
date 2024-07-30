@@ -33,8 +33,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.presentation.ui.commons.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.ItemDetailModalContainer
+import com.example.zeldacompendium.presentation.ui.components.GlowingCard
+import com.example.zeldacompendium.presentation.ui.detail.sections.ItemDetailModalContainer
 
 @Composable
 fun CompendiumItemBreath(

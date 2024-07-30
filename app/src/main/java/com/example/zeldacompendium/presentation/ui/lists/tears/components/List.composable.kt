@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.zeldacompendium.data.models.CompendiumListEntry
-import com.example.zeldacompendium.presentation.ui.commons.RetrySection
+import com.example.zeldacompendium.presentation.ui.components.RetrySection
 import com.example.zeldacompendium.presentation.ui.lists.ImageList
 import com.example.zeldacompendium.presentation.ui.lists.tears.CompendiumTearsViewModel
 
