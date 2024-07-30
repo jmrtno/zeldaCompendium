@@ -79,7 +79,7 @@ fun CustomButton(
       ) {
          Text(
             text = text,
-            color = Color(0xFFC4FFFF),
+            color = Color(0xFFFFFEF2),
             fontSize = 14.sp,
             fontStyle = FontStyle.Italic,
             textAlign = TextAlign.Center

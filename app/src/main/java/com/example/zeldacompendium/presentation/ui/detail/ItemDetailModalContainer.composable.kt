@@ -8,17 +8,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -54,22 +59,28 @@ fun ItemDetailModalContainer(
    gameId: Int,
    entry: CompendiumListEntry,
    showBottomSheet: Boolean,
+   sheetState: SheetState = rememberModalBottomSheetState(
+      skipPartiallyExpanded = true
+   ),
+   windowInsets: WindowInsets = WindowInsets.displayCutout,
    onDismiss: () -> Unit
 ){
-   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+   val bottomPadding = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
    if (showBottomSheet) {
       ModalBottomSheet(
          onDismissRequest = { onDismiss() },
          containerColor = Color(0XFF141413),
          shape = RoundedCornerShape(20.dp),
          sheetState = sheetState,
-         modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+         windowInsets = windowInsets
       ) {
-         ItemDetailContainer(
-            itemId = entry.id,
-            gameId = gameId,
-            onDismiss = onDismiss
-         )
+         Column(modifier = Modifier.padding(bottom = bottomPadding)) {
+            ItemDetailContainer(
+               itemId = entry.id,
+               gameId = gameId,
+               onDismiss = onDismiss
+            )
+         }
       }
    }
 }
