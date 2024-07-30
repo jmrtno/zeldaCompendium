@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.components.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.sections.ItemDetailModalContainer
+import com.example.zeldacompendium.presentation.ui.detail.DetailModalContainer
 
 @Composable
 fun TearsItem(
@@ -62,7 +62,7 @@ fun TearsItem(
             fontSize = 25.sp,
             color = Color.White.copy(alpha = 0.4f)
          )
-         ItemDetailModalContainer(
+         DetailModalContainer(
             gameId = 2,
             entry = entry,
             showBottomSheet = showBottomSheet,

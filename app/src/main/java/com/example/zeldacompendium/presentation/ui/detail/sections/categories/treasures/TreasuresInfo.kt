@@ -1,5 +1,5 @@
 @file:OptIn(ExperimentalFoundationApi::class)
-package com.example.zeldacompendium.presentation.ui.detail.sections.categories.monsters
+package com.example.zeldacompendium.presentation.ui.detail.sections.categories.treasures
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.rememberPagerState
@@ -10,7 +10,7 @@ import com.example.zeldacompendium.presentation.ui.components.horizontalpager.se
 import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.page.type.LocationPage
 
 @Composable
-fun MonsterItemDetailContainer(
+fun TreasuresInfo(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
@@ -18,9 +18,9 @@ fun MonsterItemDetailContainer(
    CustomHorizontalPager(
       pagerState = pagerState,
    ) { page ->
-         when (page) {
-            0 -> DropsPage(itemInfo)
-            1 -> LocationPage(itemInfo, gameId)
-         }
+      when (page) {
+         0 -> DropsPage(itemInfo)
+         1 -> LocationPage(itemInfo, gameId)
       }
+   }
 }

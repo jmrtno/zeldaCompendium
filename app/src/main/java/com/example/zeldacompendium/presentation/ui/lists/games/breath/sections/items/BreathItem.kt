@@ -34,7 +34,7 @@ import coil.request.ImageRequest
 import com.example.zeldacompendium.R
 import com.example.zeldacompendium.data.models.CompendiumListEntry
 import com.example.zeldacompendium.presentation.ui.components.GlowingCard
-import com.example.zeldacompendium.presentation.ui.detail.sections.ItemDetailModalContainer
+import com.example.zeldacompendium.presentation.ui.detail.DetailModalContainer
 
 @Composable
 fun BreathItem(
@@ -68,7 +68,7 @@ fun BreathItem(
          entryNumber = entry.id
       )
    }
-   ItemDetailModalContainer(
+   DetailModalContainer(
       gameId = 1,
       entry = entry,
       showBottomSheet = showBottomSheet,

@@ -12,7 +12,7 @@ import com.example.zeldacompendium.presentation.ui.components.horizontalpager.se
 import com.example.zeldacompendium.presentation.ui.components.horizontalpager.sections.page.type.LocationPage
 
 @Composable
-fun CreaturesItemDetailContainer(
+fun CreaturesInfo(
    itemInfo: ItemDetailModel,
    gameId: Int
 ) {
