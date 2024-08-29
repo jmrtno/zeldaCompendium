@@ -27,8 +27,8 @@ fun GameNavigationSection(
          modifier = Modifier.weight(1f)
       ) {
          Image(
-            painter = painterResource(id = R.drawable.link_botw),
-            modifier = Modifier.size(125.dp),
+            painter = painterResource(id = R.drawable.breath_home),
+            modifier = Modifier.size(120.dp),
             contentDescription = ""
          )
          CustomButton(
@@ -48,8 +48,8 @@ fun GameNavigationSection(
          horizontalAlignment = Alignment.CenterHorizontally
       ) {
          Image(
-            painter = painterResource(id = R.drawable.link_totk),
-            modifier = Modifier.size(125.dp),
+            painter = painterResource(id = R.drawable.tears_home),
+            modifier = Modifier.size(120.dp),
             contentDescription = ""
          )
          CustomButton(

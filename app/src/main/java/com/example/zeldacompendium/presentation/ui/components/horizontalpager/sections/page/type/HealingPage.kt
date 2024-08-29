@@ -23,14 +23,14 @@ fun HealingPage(
                Image(
                   painter = painterResource(id = R.drawable.heart),
                   contentDescription = "${itemInfo.data.heartsRecovered} hearts recovered",
-                  modifier = Modifier.size(32.dp)
+                  modifier = Modifier.size(40.dp)
                )
             }
             if (heartsCount == 0) {
                Image(
                   painter = painterResource(id = R.drawable.empty_heart),
                   contentDescription = "${itemInfo.data.heartsRecovered} hearts recovered",
-                  modifier = Modifier.size(32.dp)
+                  modifier = Modifier.size(40.dp)
                )
             }
          }
