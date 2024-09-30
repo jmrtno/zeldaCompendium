@@ -20,7 +20,13 @@ class CookingEffectImageProvider {
             "speed up" -> R.drawable.speed_up
             "extra hearts" -> R.drawable.bonus_heart
             "extra stamina" -> R.drawable.extra_stamina
-            // TODO -> Add TEARS cooking effects
+            "swim speed up" -> R.drawable.speed_up
+            "cold weather attack" -> R.drawable.cold_atk_up
+            "hot weather attack" -> R.drawable.heat_atk_up
+            "stormy weather attack" -> R.drawable.lighting_atk_up
+            "glow" -> R.drawable.boost_glow
+            "gloom recovery" -> R.drawable.resist_gloom
+            "slip resistance" -> R.drawable.slip_resist
             else -> null
          }
       }
