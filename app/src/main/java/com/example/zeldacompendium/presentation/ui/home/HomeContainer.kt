@@ -29,9 +29,10 @@ fun HomeContainer(
          horizontalAlignment = Alignment.CenterHorizontally,
          verticalArrangement = Arrangement.spacedBy(22.dp),
          modifier = Modifier.padding(
-            top = 120.dp,
+            top = 100.dp,
             start = 20.dp,
-            end =  20.dp
+            end =  20.dp,
+            bottom = 60.dp
          )
       ) {
          GameNavigationSection(navController = navController)

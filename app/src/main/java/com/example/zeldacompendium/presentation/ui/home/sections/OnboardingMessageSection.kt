@@ -8,7 +8,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.InlineTextContent
@@ -51,45 +53,49 @@ fun OnBoardingMessageSection(
             width = 2.dp,
             color = Color.LightGray.copy(alpha = 0.5f),
             shape = RoundedCornerShape(15.dp)
-         ),
+         )
    ) {
-      Column(
-         modifier = Modifier
-            .padding(11.dp)
+      LazyColumn(
+         contentPadding = PaddingValues(16.dp)
       ) {
-
-         Text(
-            text = "Welcome!",
-            fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Italic,
-            fontSize = 18.sp,
-            color = Color.LightGray.copy(alpha = 0.5f)
-         )
-         HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
-         Text(
-            text = text,
-            inlineContent = inlineContent,
-            style = TextStyle(
-               fontSize = 14.sp,
-               color = Color.LightGray,
-               lineHeight = 20.sp
+         item {
+            Text(
+               text = "Welcome!",
+               fontWeight = FontWeight.Bold,
+               fontStyle = FontStyle.Italic,
+               fontSize = 18.sp,
+               color = Color.LightGray.copy(alpha = 0.5f)
             )
-         )
-         ClickableText(
-            text = annotatedText,
-            style = TextStyle(
-               fontSize = 14.sp,
-               color = Color.LightGray,
-               lineHeight = 20.sp
-            ),
-            onClick = { offset ->
-               annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
-                  .firstOrNull()?.let { annotation ->
-                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
-                     context.startActivity(intent)
-                  }
-            }
-         )
+         }
+         item {
+            HorizontalDivider(modifier = Modifier.padding(bottom = 7.dp))
+         }
+         item {
+            Text(
+               text = text,
+               inlineContent = inlineContent,
+               style = TextStyle(
+                  fontSize = 14.sp,
+                  color = Color.LightGray,
+                  lineHeight = 20.sp
+               )
+            )
+            ClickableText(
+               text = annotatedText,
+               style = TextStyle(
+                  fontSize = 14.sp,
+                  color = Color.LightGray,
+                  lineHeight = 20.sp
+               ),
+               onClick = { offset ->
+                  annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                     .firstOrNull()?.let { annotation ->
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                        context.startActivity(intent)
+                     }
+               }
+            )
+         }
       }
    }
 }
